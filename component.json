@@ -1,0 +1,40 @@
+{
+  "name": "backbone.marionette.component",
+  "description": "Component Based Extension for your Backbone.Marionette.js apps!",
+  "version": "0.1.0",
+  "repo": "https://github.com/exaptis/backbone.marionette.component",
+  "main": "lib/core/backbone.marionette.component.js",
+  "keywords": [
+    "backbone",
+    "plugin",
+    "marionette",
+    "composite",
+    "architecture",
+    "single",
+    "single",
+    "page",
+    "app",
+    "client",
+    "browser"
+  ],
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/exaptis/backbone.marionette.component/blob/master/license.txt"
+    }
+  ],
+  "author": {
+    "name": "David Loidolt",
+    "email": "david.loidolt@software-craftsmen.at",
+    "web": "http://www.softwarecraftsmen.at"
+  },
+  "dependencies": {
+    "marionettejs/backbone.marionette": "*",
+    "jashkenas/backbone": "*",
+    "jashkenas/underscore": "*"
+  },
+  "scripts": [
+    "lib/core/backbone.marionette.component.js"
+  ]
+}

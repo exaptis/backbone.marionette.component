@@ -1,0 +1,52 @@
+require.config
+  baseUrl: "../app/scripts"
+  deps: ["backbone.marionette"]
+  paths:
+    spec: "../../test/spec" # lives in the test directory
+    jquery: "../bower_components/jquery/jquery"
+    backbone: "../bower_components/backbone-amd/backbone"
+    underscore: "../bower_components/underscore-amd/underscore"
+    rivets: '../bower_components/rivets/dist/rivets'
+
+  # alias all marionette libs
+    "backbone.marionette": "../bower_components/backbone.marionette/lib/core/amd/backbone.marionette"
+
+  # Alias text.js for template loading and shortcut the templates dir to tmpl
+    text: "../bower_components/requirejs-text/text"
+    tmpl: "../templates"
+
+  # handlebars from the require handlerbars plugin below
+    handlebars: "../bower_components/require-handlebars-plugin/Handlebars"
+
+  # require handlebars plugin - Alex Sexton
+    i18nprecompile: "../bower_components/require-handlebars-plugin/hbs/i18nprecompile"
+    json2: "../bower_components/require-handlebars-plugin/hbs/json2"
+    hbs: "../bower_components/require-handlebars-plugin/hbs"
+
+  hbs:
+    disableI18n: true
+
+###
+Environments such PhantomJS 1.8.* do not provides the bind method on Function prototype.
+This shim will ensure that source-map generation will not break when running on PhantomJS.
+###
+unless Function::bind
+  Function::bind = (args...) ->
+    "use strict"
+    self = this
+    ()->
+      self.apply args[0], args.splice(1)
+
+# require test suite
+require [
+  "jquery"
+  "spec/testSuite"
+], ($, testSuite) ->
+  "use strict"
+
+  # on dom ready require all specs and run
+  $ ->
+    require testSuite.specs, ->
+      if window.mochaPhantomJS then mochaPhantomJS.run() else mocha.run()
+      return
+

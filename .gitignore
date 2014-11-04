@@ -1,15 +1,19 @@
-.DS_Store
-*.swp
-*.swo
-*.orig
-tmp/
-ext/
+# Created at build time
+build/
+out/
+
+#Created by the atlassian plugin
+atlassian-ide-plugin.xml
+
+#Created by JavaScript build tools
 node_modules/
-coverage/
-test/
-.grunt/
-npm-debug.log
 bower_components/
-.grunt
+npm-debug.log
+
+#Created by JavaScript test tools
+coverage/
 reports
 jsdoc
+
+
+.DS_Store

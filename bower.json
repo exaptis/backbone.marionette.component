@@ -1,42 +1,44 @@
 {
-    "name": "backbone.marionette.component",
-    "description": "Component Based Extension for your Backbone.Marionette.js apps!",
-    "homepage": "https://github.com/exaptis/backbone.marionette.component",
-    "main": "lib/core/backbone.marionette.component.js",
-    "version": "0.1.0",
-    "keywords": [
-        "backbone",
-        "framework",
-        "client",
-        "browser",
-        "composite"
-    ],
-    "author": {
-        "name": "David Loidolt",
-        "email": "david.loidolt@software-craftsmen.at",
-        "web": "http://www.softwarecraftsmen.at"
-    },
-    "ignore": [
-        ".gitignore",
-        ".editorconfig",
-        ".jshintc",
-        "build",
-        "Gruntfile.coffee",
-        "CONTRIBUTING.md",
-        "package.json"
-    ],
-    "dependencies": {
-        "backbone": "1.0.0 - 1.1.2",
-        "underscore": "1.4.4 - 1.7.0",
-        "backbone.marionette": "2.2.x",
-        "jquery": "^1.x || ^2.x"
-    },
-    "devDependencies": {
-        "chai": "1.9.*",
-        "requirejs": "2.1.x",
-        "require-handlebars-plugin": "^0.10.0",
-        "rivets": "^0.7",
-        "mocha": "2.x",
-        "sinon": "1.11.*"
-    }
+  "name": "backbone.marionette.component",
+  "description": "Component Based Extension for your Backbone.Marionette.js apps!",
+  "homepage": "https://github.com/exaptis/backbone.marionette.component",
+  "main": "lib/core/backbone.marionette.component.js",
+  "version": "0.1.0",
+  "keywords": [
+    "backbone",
+    "framework",
+    "client",
+    "browser",
+    "composite"
+  ],
+  "author": {
+    "name": "David Loidolt",
+    "email": "david.loidolt@software-craftsmen.at",
+    "web": "http://www.softwarecraftsmen.at"
+  },
+  "ignore": [
+    ".gitignore",
+    ".editorconfig",
+    ".jshintc",
+    "build",
+    "Gruntfile.coffee",
+    "CONTRIBUTING.md",
+    "package.json"
+  ],
+  "dependencies": {
+    "backbone": "1.0.0 - 1.1.2",
+    "underscore": "1.4.4 - 1.7.0",
+    "backbone.marionette": "2.2.x",
+    "jquery": "^1.x || ^2.x"
+  },
+  "devDependencies": {
+    "chai": "1.9.*",
+    "requirejs": "2.1.x",
+    "require-handlebars-plugin": "^0.10.0",
+    "rivets": "^0.7",
+    "mocha": "2.x",
+    "sinon": "1.11.*",
+    "sinon-chai": "~2.6.0",
+    "chai-changes": "~1.3.4"
+  }
 }

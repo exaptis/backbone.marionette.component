@@ -1,16 +1,15 @@
 require.config
   baseUrl: "../app/scripts"
-  deps: [marionette]
+  deps: ['marionette']
   paths:
     spec: "../../test/spec" # lives in the test directory
-    jquery: "../bower_components/jquery/jquery"
-    backbone: "../bower_components/backbone-amd/backbone"
-    marionette: "../bower_components/backbone.marionette/lib/core/amd/backbone.marionette"
-    underscore: "../bower_components/underscore-amd/underscore"
+    jquery: "../bower_components/jquery/dist/jquery"
+    backbone: "../bower_components/backbone/backbone"
+    marionette: "../bower_components/backbone.marionette/lib/core/backbone.marionette"
+    underscore: "../bower_components/underscore/underscore"
     rivets: '../bower_components/rivets/dist/rivets'
 
-  # Alias text.js for template loading and shortcut the templates dir to tmpl
-    text: "../bower_components/requirejs-text/text"
+  # Shortcut the templates dir to tmpl
     tmpl: "../templates"
 
   # handlebars from the require handlerbars plugin below

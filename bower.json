@@ -27,17 +27,16 @@
     ],
     "dependencies": {
         "backbone": "1.0.0 - 1.1.2",
-        "underscore": "1.4.4 - 1.6.0",
+        "underscore": "1.4.4 - 1.7.0",
         "backbone.marionette": "2.2.x",
         "jquery": "^1.x || ^2.x"
     },
     "devDependencies": {
         "chai": "1.9.*",
         "requirejs": "2.1.x",
-        "require-handlebars-plugin": "^0.9.0",
+        "require-handlebars-plugin": "^0.10.0",
         "rivets": "^0.7",
-        "jquery-mockjax": "1.5.3",
-        "mocha": "1.17.*",
-        "sinon": "1.10.*"
+        "mocha": "2.x",
+        "sinon": "1.11.*"
     }
 }

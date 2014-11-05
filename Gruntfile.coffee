@@ -10,7 +10,7 @@ module.exports = (grunt) ->
 
   # configurable paths
   directoryConfig =
-    root: "",
+    root: ""
     srcApp: "src/app"
     srcTest: "src/test"
     srcServer: "src/server"
@@ -133,7 +133,7 @@ module.exports = (grunt) ->
           {
             expand: true
             dot: true
-            cwd: "<%= dirs.root %>"
+            cwd: "bower_components"
             dest: "<%= dirs.buildApp %>/bower_components"
             src: ["**"]
           }
@@ -296,18 +296,21 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          script: "<%= dirs.buildServer %>/devServer.js"
-          port: "<%= ports.development %>"
+          script: "<%= dirs.buildServer %>/server.js"
+          port: "<%= ports.dev %>"
+          node_env: 'dev'
 
       test:
         options:
-          script: "<%= dirs.buildServer %>/testServer.js"
+          script: "<%= dirs.buildServer %>/server.js"
           port: "<%= ports.test %>"
+          node_env: 'test'
 
       dist:
         options:
-          script: "<%= dirs.buildServer %>/distServer.js"
+          script: "<%= dirs.buildServer %>/server.js"
           port: "<%= ports.dist %>"
+          node_env: 'dist'
 
 
   # mocha command

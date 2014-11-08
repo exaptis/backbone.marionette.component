@@ -1,7 +1,5 @@
 require [
-  'backbone'
-  'backbone.marionette'
   'application'
-], (Backbone, Marionette, App) ->
+], (App) ->
   'use strict'
   App.start()

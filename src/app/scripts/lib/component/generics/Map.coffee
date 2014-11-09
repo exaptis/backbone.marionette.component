@@ -13,6 +13,9 @@ define [], () ->
     get: (key) ->
       @_entries[key]
 
+    remove: (key) ->
+      delete @_entries[key]
+
     clear: () ->
       @_entries = {}
 

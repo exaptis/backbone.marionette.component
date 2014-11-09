@@ -291,7 +291,6 @@ module.exports = (grunt) ->
       options:
         args: [
           "localhost"
-          "<%= ports.api %>"
         ]
 
       dev:
@@ -393,7 +392,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       "clean"
       "compile"
-      "express:dev"
+#      "express:dev"
       "test:dev"
       "open:dev"
       "watch"

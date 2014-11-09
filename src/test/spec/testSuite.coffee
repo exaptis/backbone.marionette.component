@@ -3,6 +3,6 @@ define ->
 
   # return an array of specs to be run
   specs: [
-    'spec/component'
-    'spec/generics/Map'
+    'spec/lib/component/component'
+    'spec/lib/component/generics/Map'
   ]

@@ -9,7 +9,9 @@
         "_": true,
         "Backbone": true,
         "Marionette": true,
-        "slice": true
+        "slice": true,
+        "be": true,
+        "an": true
     },
     "node": true,
     "esnext": true,

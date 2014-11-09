@@ -15,5 +15,9 @@ coverage/
 reports
 jsdoc
 
+#Created by Grunt to support require.js path lookup for coffee script files
+src/app/scripts/init.js
+src/app/scripts/init.js.map
+
 
 .DS_Store

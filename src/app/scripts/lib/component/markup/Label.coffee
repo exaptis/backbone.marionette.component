@@ -15,12 +15,12 @@ define [
   class Label extends Component
 
     constructor: (@componentId, @value, @model) ->
-      super
+      super @componentId, @model
 
     render: () ->
       if @model
-        @getDomNode().attr('rv-text', "#{@getBindingPrefix()}:#{@value}")
-        @initDataBinding()
+        @getDomNode().attr('rv-text', "#{@cid}:#{@value}")
+        super
       else
         @getDomNode().text(@value)
 

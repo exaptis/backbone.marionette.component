@@ -36,35 +36,39 @@ define [
       #then
       expect(component.getViewInstance()).to.be.equal(viewInstance)
 
-    it 'should increase bindingId per instance', ->
+    it 'should set and get model', ->
+      #given
+      model = new Backbone.Model()
+
       #when
+      component.setModel(model)
+
+      #then
+      expect(component.getModel()).to.be.equal(model)
+
+    it 'should increase bindingId per instance', ->
+      #given
       component1 = new Component 'componentId1'
       component2 = new Component 'componentId2'
 
-      #then
-      expect(component1.getBindingId() + 1).to.be.equal component2.getBindingId()
+      #when
+      counter1 = parseInt(component1.cid.slice -1) + 1
+      counter2 = parseInt(component2.cid.slice -1)
 
-    it 'should prefix bindingId for view binding', ->
+      #then
+      expect(counter1).to.be.equal counter2
+
+    it 'should return cid:model object for binding', ->
       #given
-      componentId = component.getBindingId()
+      model = new Backbone.Model()
+      expectedModelData = {}
+      expectedModelData["#{component.cid}"] = model
 
       #when
-      bindingPrefix = component.getBindingPrefix()
+      component.setModel model
 
       #then
-      expect(bindingPrefix).to.be.equal("#{component.componentPrefix}#{componentId}")
-
-    it 'should return the dom node from the view instance based on the component id', ->
-      #given
-#      viewInstance =
-#        $: $("<li>")
-      componentId = component.getBindingId()
-
-      #when
-      bindingPrefix = component.getBindingPrefix()
-
-      #then
-      expect(bindingPrefix).to.be.equal("#{component.componentPrefix}#{componentId}")
+      expect(component.getModelData()).to.be.eql expectedModelData
 
 
 

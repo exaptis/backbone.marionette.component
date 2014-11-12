@@ -1,5 +1,5 @@
 define [
-  'lib/component/component'
+  'lib/component/Component'
 ], (
   Component
 ) ->
@@ -16,6 +16,13 @@ define [
 
     constructor: (@componentId, @value, @model) ->
       super
+
+    render: () ->
+      if @model
+        @getDomNode().attr('rv-text', "#{@getBindingPrefix()}:#{@value}")
+        @initDataBinding()
+      else
+        @getDomNode().text(@value)
 
 
   Backbone.Marionette.Component or= {}

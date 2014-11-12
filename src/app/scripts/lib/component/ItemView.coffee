@@ -18,6 +18,7 @@ define [
 
     constructor: () ->
       @_components = new Map
+      super
 
     ###
       Adds a child component to this view
@@ -31,6 +32,8 @@ define [
         if @_components.has component.getComponentId()
           throw new Error "#{component.getComponentId()} has already been added"
 
+        component.setViewInstance @
+
         @_components.put component.getComponentId(), component
 
     contains: (component) ->
@@ -41,7 +44,7 @@ define [
 
     onRender: ->
       @_components.each (component) ->
-        component.render()
+        component.render(@)
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.ItemView or= ItemView

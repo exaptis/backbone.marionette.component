@@ -6,14 +6,12 @@
     <link rel="stylesheet" href="../app/bower_components/mocha/mocha.css">
 </head>
 <body>
+
 <div id="mocha"></div>
 <div id="fixture"></div>
 
 <script src="../app/bower_components/mocha/mocha.js"></script>
-<!-- CHAI DEPENDENCIES -->
 <script src="../app/bower_components/chai/chai.js"></script>
-<!--<script src="../app/bower_components/chai-changes/chai-changes.js"></script>-->
-<!-- SINON DEPDENDENCIES -->
 <script src="../app/bower_components/sinon/index.js"></script>
 <script src="../app/bower_components/sinon-chai/lib/sinon-chai.js"></script>
 <script>
@@ -28,6 +26,8 @@
     window.sinon = sinon;
 </script>
 <script src="../app/bower_components/requirejs/require.js" data-main="../test/SpecRunner"></script>
+<script src="../app/bower_components/blanket/dist/qunit/blanket.js" data-cover-only="/app/scripts/lib"></script>
+<script src="../app/node_modules/grunt-blanket-mocha/support/mocha-blanket.js"></script>
 <script>
     document.write(
         '<script src="http://'

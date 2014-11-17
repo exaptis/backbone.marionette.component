@@ -116,38 +116,39 @@ module.exports = (grunt) ->
     copy:
       dev:
         files: [
-          {
-            expand: true
-            dot: true
-            cwd: "<%= dirs.srcApp %>"
-            dest: "<%= dirs.buildApp %>"
-            src: [
-              "*.html"
-              "templates/**"
-              "*.{ico,txt}"
-              ".htaccess"
-              "styles/**"
-              "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
-            ]
-          }
-          {
-            expand: true
-            dot: true
-            cwd: "bower_components"
-            dest: "<%= dirs.buildApp %>/bower_components"
-            src: ["**"]
-          }
+          expand: true
+          dot: true
+          cwd: "<%= dirs.srcApp %>"
+          dest: "<%= dirs.buildApp %>"
+          src: [
+            "*.html"
+            "templates/**"
+            "*.{ico,txt}"
+            ".htaccess"
+            "styles/**"
+            "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
+          ]
+        ,
+          expand: true
+          dot: true
+          cwd: "bower_components"
+          dest: "<%= dirs.buildApp %>/bower_components"
+          src: ["**"]
+        ,
+          expand: true
+          dot: true
+          cwd: "node_modules"
+          dest: "<%= dirs.buildApp %>/node_modules"
+          src: ["grunt-blanket-mocha/**"]
         ]
 
       test:
         files: [
-          {
-            expand: true
-            dot: true
-            cwd: "<%= dirs.srcTest %>"
-            dest: "<%= dirs.buildTest %>"
-            src: ["index.html"]
-          }
+          expand: true
+          dot: true
+          cwd: "<%= dirs.srcTest %>"
+          dest: "<%= dirs.buildTest %>"
+          src: ["index.html"]
         ]
 
       dist:
@@ -384,6 +385,12 @@ module.exports = (grunt) ->
 
         src: "<%= dirs.buildApp %>/index.html"
         dest: "<%= dirs.buildApp %>/index.html"
+
+    blanket_mocha:
+      all: ["<%= dirs.buildTest %>/index.html"],
+      options:
+        threshold: 90,
+        run: false
 
 
   # starts express server with live testing via testserver

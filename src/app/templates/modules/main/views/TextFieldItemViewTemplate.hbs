@@ -1,0 +1,42 @@
+<h2 class="page-headline">TextField Component</h2>
+<p>
+    The TextField Component can be used to ...
+</p>
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+class TextFieldItemView extends Backbone.Marionette.Component.ItemView
+
+    initialize: ->
+        @add(new TextField('textfield1', 'name', new Backbone.Model(name: 'David')))
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-html">
+    &lt;label for=&quot;inputName&quot;&gt;Name&lt;/label&gt;
+    &lt;input type=&quot;text&quot; component-id=&quot;textfield1&quot; id=&quot;inputName&quot; placeholder=&quot;Name&quot;&gt;
+</code>
+</pre>
+<!-- @formatter:on -->
+
+<h3 class="page-subline">Output</h3>
+<div class="well">
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Form</legend>
+            <div class="form-group">
+                <label for="inputName" class="col-lg-2 control-label">Name</label>
+
+                <div class="col-lg-10">
+                    <div class="form-control-wrapper">
+                        <input type="email" component-id="textfield1" id="inputName" placeholder="Name">
+                        <span class="material-input"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

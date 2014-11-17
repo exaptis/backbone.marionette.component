@@ -39,12 +39,12 @@ define [
     contains: (component) ->
       @_components.has component.getComponentId()
 
-    remove: (component) ->
+    removeComponent: (component) ->
       @_components.remove component.getComponentId()
 
     onRender: ->
       @_components.each (component) ->
-        component.render(@)
+        component.render()
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.ItemView or= ItemView

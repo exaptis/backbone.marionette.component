@@ -45,7 +45,7 @@ define [
       itemView.add(component)
 
       #when
-      itemView.remove(component)
+      itemView.removeComponent(component)
 
       #then
       expect(itemView.contains(component)).to.be.false

@@ -17,10 +17,9 @@ define [
     constructor: (@componentId, @value, @model) ->
       super @componentId, @model
 
-    render: () ->
+    beforeRender: () ->
       if @model
         @getDomNode().attr('rv-text', "#{@cid}:#{@value}")
-        super
       else
         @getDomNode().text(@value)
 

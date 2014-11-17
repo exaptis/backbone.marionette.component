@@ -4,14 +4,14 @@ define [
   'use strict'
 
   describe 'Component', ->
-    component = null
-
     beforeEach ->
-      component = new Component 'componentId'
+      @component = new Component 'componentId'
+      @viewInstance =
+        $el: $('<div>')
 
     it 'should be an instantce of Component', ->
-      expect(component).to.be.an.instanceof Component
-      expect(component.constructor.name).to.be.equal 'Component'
+      expect(@component).to.be.an.instanceof Component
+      expect(@component.constructor.name).to.be.equal 'Component'
 
     it 'should throw an error if no Id is provided', ->
       expect(-> new Component()).to.throw(Error)
@@ -21,30 +21,27 @@ define [
       newComponentid = "newComponentid"
 
       #when
-      component.setComponentId(newComponentid)
+      @component.setComponentId(newComponentid)
 
       #then
-      expect(component.getComponentId()).to.be.equal(newComponentid)
+      expect(@component.getComponentId()).to.be.equal(newComponentid)
 
     it 'should set and get viewInstance', ->
-      #given
-      viewInstance = {foo: 'bar'}
-
       #when
-      component.setViewInstance(viewInstance)
+      @component.setViewInstance(@viewInstance)
 
       #then
-      expect(component.getViewInstance()).to.be.equal(viewInstance)
+      expect(@component.getViewInstance()).to.be.equal(@viewInstance)
 
     it 'should set and get model', ->
       #given
       model = new Backbone.Model()
 
       #when
-      component.setModel(model)
+      @component.setModel(model)
 
       #then
-      expect(component.getModel()).to.be.equal(model)
+      expect(@component.getModel()).to.be.equal(model)
 
     it 'should increase bindingId per instance', ->
       #given
@@ -62,13 +59,36 @@ define [
       #given
       model = new Backbone.Model()
       expectedModelData = {}
-      expectedModelData["#{component.cid}"] = model
+      expectedModelData["#{@component.cid}"] = model
 
       #when
-      component.setModel model
+      @component.setModel model
 
       #then
-      expect(component.getModelData()).to.be.eql expectedModelData
+      expect(@component.getModelData()).to.be.eql expectedModelData
 
+
+    it 'should throw an error if the element can not be found inside the view', ->
+      #when
+      @component.setViewInstance(@viewInstance)
+
+      #then
+      expect(-> component.getDomNode()).to.throw(Error)
+
+    it 'should call beforeRender and afterRender when render is called', ->
+      #given
+      beforeRenderSpy = sinon.spy @component, 'beforeRender'
+      afterRenderSpy = sinon.spy @component, 'afterRender'
+
+      #when
+      @component.setViewInstance(@viewInstance)
+      @component.render()
+
+      #then
+      beforeRenderSpy.should.have.been.called;
+      beforeRenderSpy.should.have.been.calledOnce;
+
+      afterRenderSpy.should.have.been.called;
+      afterRenderSpy.should.have.been.calledOnce;
 
 

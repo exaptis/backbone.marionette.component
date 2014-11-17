@@ -47,7 +47,12 @@ define [
       Retrieve dom node from viewInstance
     ###
     getDomNode: () ->
-      @viewInstance.$("[component-id='#{@componentId}']")
+      domNode = @viewInstance.$("[component-id='#{@componentId}']")
+
+      unless domNode
+        throw new Error "element with id '#{@componentId}' could not be found"
+
+      domNode
 
     ###
       Return key:value object for data binding
@@ -58,10 +63,22 @@ define [
       data
 
     ###
-      Binding the model data to the view instance
+      Called before the component is rendered
     ###
+    beforeRender: ->
+
+      ###
+        Called after the component is rendered
+      ###
+    afterRender: ->
+
+      ###
+        Binding the model data to the view instance
+      ###
     render: () ->
+      @beforeRender()
       @rivetsView = rivets.bind @viewInstance.$el, @getModelData()
+      @afterRender()
 
     ###
       Unbind rivetsView when component is closed

@@ -6,5 +6,6 @@ define ->
     'spec/lib/component/ComponentSpec'
     'spec/lib/component/ItemViewSpec'
     'spec/lib/component/markup/LabelSpec'
+    'spec/lib/component/form/TextFieldSpec'
     'spec/lib/component/generics/MapSpec'
   ]

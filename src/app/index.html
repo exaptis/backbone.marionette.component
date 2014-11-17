@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="../bower_components/prismjs/prism.css">
 
 </head>
 <body>
@@ -23,32 +24,123 @@
 <![endif]-->
 
 
-<div class="hero-unit">
-    <h1>'Allo, 'Allo!</h1>
+<div class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand withripple" href="javascript:void(0)">
+            Backbone.Marionette.Component
+            <div class="ripple-wrapper"></div>
+        </a>
+    </div>
 
-    <p>You now have</p>
-    <ul>
-        <li>HTML5 Boilerplate</li>
-    </ul>
+    <div class="navbar-collapse navbar-responsive-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="javascript:void(0)" class="withripple">
+                    Home
+                    <div class="ripple-wrapper"></div>
+                </a>
+            </li>
 
-    <div id="links-region">
-        <strong>Component</strong>
-        <ul>
-            <li>
-                Markup
-                <ul>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
+                    Markup <b class="caret"></b>
+
+                    <div class="ripple-wrapper"></div>
+                </a>
+                <ul class="dropdown-menu">
                     <li>
-                        <a href="#component/markup/label">Label</a>
+                        <a href="#component/markup/label" class="withripple">
+                            Label
+                            <div class="ripple-wrapper"></div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
+                    Form <b class="caret"></b>
+
+                    <div class="ripple-wrapper"></div>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#component/form/textField" class="withripple">
+                            TextField
+                            <div class="ripple-wrapper"></div>
+                        </a>
                     </li>
                 </ul>
             </li>
         </ul>
     </div>
+</div>
 
-    <div id="content-region">
 
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Backbone.Marionette.Component</h1>
+
+                <p class="lead">Based on Apache Wicket and Marionette.js</p>
+            </div>
+            <div class="col-md-6">
+                <div class="well infobox">
+                    <p>
+                        <em>Material Design for Bootstrap</em> is a theme for Bootstrap 3 which lets you use the new
+                        <a href="http://www.google.com/design/spec/material-design/">Google Material Design</a>
+                        in your favorite front-end framework.
+                    </p>
+
+                    <p>
+                        If you like this project you can support me by donating something on Gittip, starring this repository, or
+                        <a href="https://github.com/exaptis/backbone.marionette.component/issues">reporting bugs and ideas</a>.
+                    </p>
+
+                    <p>
+                        Read more about <em>Marionette.Component for Backbone</em>
+                        <a href="https://github.com/exaptis/backbone.marionette.component">at the Github page</a>.
+                    </p>
+
+                    <a href="https://github.com/exaptis/backbone.marionette.component/archive/master.zip" class="btn btn-sup btn-material-pink btn-raised withripple">
+                        <img src="demo/imgs/download.png" alt="gittip" height="30">
+                        <span>DOWNLOAD</span>
+
+                        <div class="ripple-wrapper"></div>
+                    </a>
+                    <a href="https://github.com/exaptis/backbone.marionette.component/issues" class="btn btn-sup btn-material-deeppurple withripple">
+                        <img src="demo/imgs/issue.png" alt="gittip" height="30">
+                        <span>ISSUES</span>
+
+                        <div class="ripple-wrapper"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="content-region">
+
+            </div>
+        </div>
     </div>
 </div>
+
+
+<a href="https://github.com/exaptis/backbone.marionette.component">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+         src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+         alt="Fork me on GitHub"
+         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+</a>
 
 <script src="../bower_components/requirejs/require.js" data-main="../scripts/init"></script>
 

@@ -1,2 +1,34 @@
-<div component-id="message1"></div>
-<div component-id="message2"></div>
+<h2 class="page-headline">Label Component</h2>
+<p>
+    The Label Component can be used to ...
+</p>
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+  class LabelItemView extends Backbone.Marionette.Component.ItemView
+
+    initialize: ->
+        @add(new Label("message1", "Hello World"))
+        @add(new Label("message2", "message", new Backbone.Model(message: "Hi Human!")))
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-html">
+    &lt;span component-id=&quot;message1&quot;&gt;&lt;/span&gt;
+    &lt;span component-id=&quot;message2&quot;&gt;&lt;/span&gt;
+</code>
+</pre>
+<!-- @formatter:on -->
+<h3 class="page-subline">Output</h3>
+<div class="well">
+    <p>
+        <span component-id="message1"></span>
+    </p>
+
+    <p>
+        <span component-id="message2"></span>
+    </p>
+</div>

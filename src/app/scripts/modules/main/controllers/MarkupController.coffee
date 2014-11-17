@@ -8,6 +8,8 @@ define [
   class LabelController extends Backbone.Marionette.Controller
 
     initialize: (@app) ->
+
+    showLabelMarkupComponent: ->
       @app.contentRegion.show new LabelItemView
 
 

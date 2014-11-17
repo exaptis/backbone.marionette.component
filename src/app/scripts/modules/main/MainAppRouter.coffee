@@ -1,7 +1,9 @@
 define [
-  'modules/main/controllers/markup/LabelMarkupController'
+  'modules/main/controllers/MarkupController'
+  'modules/main/controllers/FormController'
 ], (
-  LabelMarkupController
+  MarkupController
+  FormController
 ) ->
   'use strict'
 
@@ -9,11 +11,17 @@ define [
 
     appRoutes:
       'component/markup/label': 'showLabelMarkupComponent'
+      'component/form/textField': 'showTextFieldFormComponent'
 
   initialize: (module) ->
     API =
       showLabelMarkupComponent: () ->
-        new LabelMarkupController(module.app)
+        controller = new MarkupController(module.app)
+        controller.showLabelMarkupComponent()
+
+      showTextFieldFormComponent: () ->
+        controller = new FormController(module.app)
+        controller.showTextFieldComponent()
 
     new MainAppRouter
       controller: API

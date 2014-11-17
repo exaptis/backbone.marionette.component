@@ -8,4 +8,6 @@ define ->
     'spec/lib/component/markup/LabelSpec'
     'spec/lib/component/form/TextFieldSpec'
     'spec/lib/component/generics/MapSpec'
+    'spec/lib/component/adapter/RivetsSpec'
+    'spec/lib/component/utils/InstanceCounterSpec'
   ]

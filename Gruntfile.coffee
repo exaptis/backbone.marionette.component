@@ -420,12 +420,12 @@ module.exports = (grunt) ->
 
   grunt.registerTask "test:dev", [
     "express:test"
-    "exec:mocha"
+    "blanket_mocha"
   ]
 
   grunt.registerTask "test:dist", [
     "express:test"
-    "exec:mocha"
+    "blanket_mocha"
     "express:dist"
   ]
 

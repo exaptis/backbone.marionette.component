@@ -9,10 +9,11 @@ define [], () ->
   ##
 
   class InstanceCounter
-    counter = 0
+    constructor: ->
+      counter = 0
 
-    getCounter: () ->
-      counter
+      @getCounter = ->
+        counter
 
-    incrementCounter: () ->
-      ++counter
+      @incrementCounter = ->
+        ++counter

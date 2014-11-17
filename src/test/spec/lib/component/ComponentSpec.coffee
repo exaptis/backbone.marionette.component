@@ -7,6 +7,7 @@ define [
     beforeEach ->
       @component = new Component 'componentId'
       @viewInstance =
+        $: jQuery
         $el: $('<div>')
 
     it 'should be an instantce of Component', ->
@@ -69,11 +70,16 @@ define [
 
 
     it 'should throw an error if the element can not be found inside the view', ->
-      #when
+      #given
       @component.setViewInstance(@viewInstance)
+      errorMessage = "element with id '#{@component.getComponentId()}' could not be found"
+
+      #when
+      getMissingDomNode = =>
+        @component.getDomNode()
 
       #then
-      expect(-> component.getDomNode()).to.throw(Error)
+      expect(getMissingDomNode).to.throw errorMessage
 
     it 'should call beforeRender and afterRender when render is called', ->
       #given
@@ -90,5 +96,18 @@ define [
 
       afterRenderSpy.should.have.been.called;
       afterRenderSpy.should.have.been.calledOnce;
+
+    it 'should unbind rivetsView on close', ->
+      #given
+      @component.setViewInstance(@viewInstance)
+      @component.render()
+      rivetsViewUnbindSpy = sinon.spy @component.rivetsView, 'unbind'
+
+      #when
+      @component.close()
+
+      #then
+      rivetsViewUnbindSpy.should.have.been.called;
+      rivetsViewUnbindSpy.should.have.been.calledOnce;
 
 

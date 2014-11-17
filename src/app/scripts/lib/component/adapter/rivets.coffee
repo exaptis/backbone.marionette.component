@@ -11,6 +11,7 @@ define ['rivets'], (rivets) ->
     set: set
   }}
   ###
+  UNSUPPORTED_OBJECT_MESSAGE = 'object not supported for rv-adapter ":"'
 
   rivets.adapters[":"] =
     observe: (obj, keypath, callback) ->
@@ -19,7 +20,7 @@ define ['rivets'], (rivets) ->
       else if obj instanceof Backbone.Collection
         obj.on 'add remove reset', callback
       else
-        throw new Error 'object not supported for rv-adapter ":"'
+        throw new Error UNSUPPORTED_OBJECT_MESSAGE
       return
 
     unobserve: (obj, keypath, callback) ->
@@ -28,7 +29,7 @@ define ['rivets'], (rivets) ->
       else if obj instanceof Backbone.Collection
         obj.off 'add remove reset', callback
       else
-        throw new Error 'object not supported for rv-adapter ":"'
+        throw new Error UNSUPPORTED_OBJECT_MESSAGE
       return
 
     get: (obj, keypath) ->
@@ -37,7 +38,7 @@ define ['rivets'], (rivets) ->
       else if obj instanceof Backbone.Collection
         return obj[keypath]
       else
-        throw new Error 'object not supported for rv-adapter'
+        throw new Error UNSUPPORTED_OBJECT_MESSAGE
       return
 
     set: (obj, keypath, value) ->
@@ -46,7 +47,7 @@ define ['rivets'], (rivets) ->
       else if obj instanceof Backbone.Collection
         obj[keypath] = value
       else
-        throw new Error 'object not supported for rv-adapter'
+        throw new Error UNSUPPORTED_OBJECT_MESSAGE
       return
 
   rivets

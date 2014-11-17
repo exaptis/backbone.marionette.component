@@ -49,7 +49,7 @@ define [
     getDomNode: () ->
       domNode = @viewInstance.$("[component-id='#{@componentId}']")
 
-      unless domNode
+      unless domNode.length
         throw new Error "element with id '#{@componentId}' could not be found"
 
       domNode

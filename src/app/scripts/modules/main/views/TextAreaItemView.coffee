@@ -1,10 +1,12 @@
 define [
   'lib/component/ItemView'
   'lib/component/form/TextArea'
+  'modules/main/behavior/CodeHighlightBehavior'
   'hbs!/templates/modules/main/views/TextAreaItemViewTemplate'
 ], (
   ItemView
   TextArea
+  CodeHighlightBehavior
   TextAreaItemViewTemplate
 ) ->
   'use strict'
@@ -13,9 +15,9 @@ define [
 
     template: TextAreaItemViewTemplate
 
+    behaviors:
+      codeHighlight:
+        behaviorClass: CodeHighlightBehavior
+
     initialize: ->
       @add(new TextArea('textarea1', 'comment', new Backbone.Model(comment: 'This is my first comment...')))
-
-    onShow: ->
-      @$el.find('code').each (index, element) ->
-        Prism.highlightElement element

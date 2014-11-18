@@ -1,10 +1,12 @@
 define [
   'lib/component/ItemView'
   'lib/component/form/TextField'
+  'modules/main/behavior/CodeHighlightBehavior'
   'hbs!/templates/modules/main/views/TextFieldItemViewTemplate'
 ], (
   ItemView
   TextField
+  CodeHighlightBehavior
   TextFieldItemViewTemplate
 ) ->
   'use strict'
@@ -13,9 +15,9 @@ define [
 
     template: TextFieldItemViewTemplate
 
+    behaviors:
+      codeHighlight:
+        behaviorClass: CodeHighlightBehavior
+
     initialize: ->
       @add(new TextField('textfield1', 'name', new Backbone.Model(name: 'David')))
-
-    onShow: ->
-      @$el.find('code').each (index, element) ->
-        Prism.highlightElement element

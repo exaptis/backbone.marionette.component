@@ -1,0 +1,42 @@
+<h2 class="page-headline">TextArea Component</h2>
+<p>
+    The TextArea Component can be used to ...
+</p>
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+class TextAreaItemView extends Backbone.Marionette.Component.ItemView
+
+    initialize: ->
+        @add(new TextArea('textarea1', 'comment', new Backbone.Model(comment: 'This is my first comment ...')))
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-html">
+    &lt;label for=&quot;inputName&quot;&gt;Name&lt;/label&gt;
+    &lt;textarea component-id=&quot;textarea1&quot; id=&quot;comment&quot; placeholder=&quot;Comment&quot;&gt;&lt;/textarea&gt;
+</code>
+</pre>
+<!-- @formatter:on -->
+
+<h3 class="page-subline">Output</h3>
+<div class="well">
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Form</legend>
+            <div class="form-group">
+                <label for="comment" class="col-lg-2 control-label">Comment</label>
+
+                <div class="col-lg-10">
+                    <div class="form-control-wrapper">
+                        <textarea component-id="textarea1" id="comment" placeholder="Comment"></textarea>
+                        <span class="material-input"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

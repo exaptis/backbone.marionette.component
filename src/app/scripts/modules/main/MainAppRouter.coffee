@@ -12,6 +12,7 @@ define [
     appRoutes:
       'component/markup/label': 'showLabelMarkupComponent'
       'component/form/textField': 'showTextFieldFormComponent'
+      'component/form/textArea': 'showTextAreaFormComponent'
 
   initialize: (module) ->
     API =
@@ -22,6 +23,10 @@ define [
       showTextFieldFormComponent: () ->
         controller = new FormController(module.app)
         controller.showTextFieldComponent()
+
+      showTextAreaFormComponent: () ->
+        controller = new FormController(module.app)
+        controller.showTextAreaComponent()
 
     new MainAppRouter
       controller: API

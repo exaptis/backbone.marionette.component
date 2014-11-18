@@ -1,13 +1,13 @@
 define [
   'lib/component/Component'
-  'lib/component/form/TextField'
+  'lib/component/form/TextArea'
 ], (
   Component
-  TextField
+  TextArea
 ) ->
   'use strict'
 
-  describe 'TextField', ->
+  describe 'TextArea', ->
     COMPONENT_ID = "COMPONENT_ID"
     COMPONENT_PROPERTY = "COMPONENT_PROPERTY"
     COMPONENT_VALUE = "COMPONENT_VALUE"
@@ -19,7 +19,7 @@ define [
 
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE)
-      @textField = new TextField COMPONENT_ID, COMPONENT_PROPERTY, @model
+      @textArea = new TextArea COMPONENT_ID, COMPONENT_PROPERTY, @model
 
       @targetNode = $("<input>").attr 'component-id', COMPONENT_ID
       @viewInstance.$el.append @targetNode
@@ -27,22 +27,22 @@ define [
     afterEach ->
       @viewInstance.$el.empty()
 
-    it 'should be an instantce of TextField', ->
-      expect(@textField).to.be.an.instanceof TextField
-      expect(@textField).to.be.an.instanceof Component
-      expect(@textField.constructor.name).to.be.equal 'TextField'
+    it 'should be an instantce of TextArea', ->
+      expect(@textArea).to.be.an.instanceof TextArea
+      expect(@textArea).to.be.an.instanceof Component
+      expect(@textArea.constructor.name).to.be.equal 'TextArea'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new TextField()).to.throw(Error);
+      expect(-> new TextArea()).to.throw(Error);
 
 
     it 'should set the component model-value on the dom node', ->
       #given
-      @textField.setViewInstance(@viewInstance)
+      @textArea.setViewInstance(@viewInstance)
 
       #when
-      @textField.render()
+      @textArea.render()
 
       #then
-      expect(@textField.getDomNode()[0]).to.be.equal @targetNode[0]
-      expect(@textField.getDomNode().val()).to.be.equal COMPONENT_VALUE
+      expect(@textArea.getDomNode()[0]).to.be.equal @targetNode[0]
+      expect(@textArea.getDomNode().val()).to.be.equal COMPONENT_VALUE

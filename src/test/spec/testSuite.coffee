@@ -7,6 +7,7 @@ define ->
     'spec/lib/component/ItemViewSpec'
     'spec/lib/component/markup/LabelSpec'
     'spec/lib/component/form/TextFieldSpec'
+    'spec/lib/component/form/TextAreaSpec'
     'spec/lib/component/generics/MapSpec'
     'spec/lib/component/adapter/RivetsSpec'
     'spec/lib/component/utils/InstanceCounterSpec'

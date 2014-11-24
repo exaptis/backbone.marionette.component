@@ -2,6 +2,27 @@
 <p>
     The TextArea Component can be used to ...
 </p>
+
+<br />
+
+<div class="well">
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Example</legend>
+            <div class="form-group">
+                <label for="comment" class="col-lg-2 control-label">Comment</label>
+
+                <div class="col-lg-10">
+                    <div class="form-control-wrapper">
+                        <textarea class="form-control" component-id="textarea1" id="comment" placeholder="Comment"></textarea>
+                        <span class="material-input"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
 <!-- @formatter:off -->
 <h3 class="page-subline">Code</h3>
 <pre>
@@ -21,22 +42,3 @@ class TextAreaItemView extends Backbone.Marionette.Component.ItemView
 </code>
 </pre>
 <!-- @formatter:on -->
-
-<h3 class="page-subline">Output</h3>
-<div class="well">
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>Form</legend>
-            <div class="form-group">
-                <label for="comment" class="col-lg-2 control-label">Comment</label>
-
-                <div class="col-lg-10">
-                    <div class="form-control-wrapper">
-                        <textarea component-id="textarea1" id="comment" placeholder="Comment"></textarea>
-                        <span class="material-input"></span>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-</div>

@@ -2,6 +2,26 @@
 <p>
     The TextField Component can be used to ...
 </p>
+<br />
+
+<div class="well">
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Example</legend>
+            <div class="form-group">
+                <label for="inputName" class="col-lg-2 control-label">Name</label>
+
+                <div class="col-lg-10">
+                    <div class="form-control-wrapper">
+                        <input class="form-control" type="email" component-id="textfield1" id="inputName" placeholder="Name">
+                        <span class="material-input"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
 <!-- @formatter:off -->
 <h3 class="page-subline">Code</h3>
 <pre>
@@ -21,22 +41,3 @@ class TextFieldItemView extends Backbone.Marionette.Component.ItemView
 </code>
 </pre>
 <!-- @formatter:on -->
-
-<h3 class="page-subline">Output</h3>
-<div class="well">
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>Form</legend>
-            <div class="form-group">
-                <label for="inputName" class="col-lg-2 control-label">Name</label>
-
-                <div class="col-lg-10">
-                    <div class="form-control-wrapper">
-                        <input type="email" component-id="textfield1" id="inputName" placeholder="Name">
-                        <span class="material-input"></span>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-</div>

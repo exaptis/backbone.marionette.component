@@ -1,0 +1,51 @@
+<h2 class="page-headline">RadioButton Component</h2>
+<p>
+    The RadioButton Component can be used to ...
+</p>
+
+<br />
+
+<div class="well">
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Example</legend>
+                <div class="radio">
+                    <label>
+                        <input component-id="radioButtonMale" type="radio" name="optionsGender" id="optionsGenderMale" value="male">
+                        <span class="circle"></span>
+                        <span class="check"></span>
+                        Male
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input component-id="radioButtonFemale" type="radio" name="optionsGender" id="optionsGenderFemale" value="female">
+                        <span class="circle"></span>
+                        <span class="check"></span>
+                        Female
+                    </label>
+                </div>
+        </fieldset>
+    </form>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+class RadioButtonItemView extends Backbone.Marionette.Component.ItemView
+
+    initialize: ->
+        @add(new RadioButton('radioButtonMale', 'isChecked', new Backbone.Model(isChecked: true)))
+        @add(new RadioButton('radioButtonFemale', 'isChecked', new Backbone.Model(isChecked: false)))
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;input component-id=&quot;radioButtonMale&quot; type=&quot;radio&quot; name=&quot;optionsGender&quot; value=&quot;male&quot;&gt; Male
+    &lt;input component-id=&quot;radioButtonFemale&quot; type=&quot;radio&quot; name=&quot;optionsGender&quot; value=&quot;female&quot;&gt; Female
+</code>
+</pre>
+<!-- @formatter:on -->

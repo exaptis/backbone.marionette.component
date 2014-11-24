@@ -1,0 +1,53 @@
+<h2 class="page-headline">Checkbox Component</h2>
+<p>
+    The Checkbox Component can be used to ...
+</p>
+<br />
+
+<div class="well">
+    <form class="form">
+        <fieldset>
+            <legend>Example</legend>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input component-id="checkboxApple" type="checkbox" name="fruits" value="apple">
+                        <span class="ripple"></span>
+                        <span class="check"></span>
+                        Apple
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input component-id="checkboxOrange" type="checkbox" name="fruits" value="orange">
+                        <span class="ripple"></span>
+                        <span class="check"></span>
+                        Orange
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+class CheckboxItemView extends Backbone.Marionette.Component.ItemView
+
+    initialize: ->
+        @add(new Checkbox('checkboxApple', 'isChecked', new Backbone.Model(isChecked: true)))
+        @add(new Checkbox('checkboxOrange', 'isChecked', new Backbone.Model(isChecked: false)))
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;input component-id=&quot;checkboxApple&quot; type=&quot;checkbox&quot; name=&quot;fruits&quot; value=&quot;apple&quot;&gt; Apple
+    &lt;input component-id=&quot;checkboxOrange&quot; type=&quot;checkbox&quot; name=&quot;fruits&quot; value=&quot;orange&quot;&gt; Orange
+</code>
+</pre>
+<!-- @formatter:on -->
+

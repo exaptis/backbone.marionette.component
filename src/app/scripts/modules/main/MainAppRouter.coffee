@@ -1,6 +1,7 @@
 define [
   'modules/main/controllers/MarkupController'
   'modules/main/controllers/FormController'
+  'underscore.string'
 ], (
   MarkupController
   FormController
@@ -10,23 +11,18 @@ define [
   class MainAppRouter extends Backbone.Marionette.AppRouter
 
     appRoutes:
-      'component/markup/label': 'showLabelMarkupComponent'
-      'component/form/textField': 'showTextFieldFormComponent'
-      'component/form/textArea': 'showTextAreaFormComponent'
+      'component/markup/:component': 'showMarkupComponent'
+      'component/form/:component': 'showFormComponent'
 
   initialize: (module) ->
     API =
-      showLabelMarkupComponent: () ->
+      showMarkupComponent: (component) ->
         controller = new MarkupController(module.app)
-        controller.showLabelMarkupComponent()
+        controller["show#{_.string.capitalize(component)}Component"]()
 
-      showTextFieldFormComponent: () ->
+      showFormComponent: (component) ->
         controller = new FormController(module.app)
-        controller.showTextFieldComponent()
-
-      showTextAreaFormComponent: () ->
-        controller = new FormController(module.app)
-        controller.showTextAreaComponent()
+        controller["show#{_.string.capitalize(component)}Component"]()
 
     new MainAppRouter
       controller: API

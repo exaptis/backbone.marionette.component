@@ -46,6 +46,8 @@
     "requirejs": "2.1.x",
     "sinon-chai": "~2.6.0",
     "sinon": "http://sinonjs.org/releases/sinon-1.12.0.js",
-    "blanket": "~1.1.5"
+    "blanket": "~1.1.5",
+    "underscore.string": "~2.4.0",
+    "fontawesome": "~4.2.0"
   }
 }

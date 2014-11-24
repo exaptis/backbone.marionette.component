@@ -178,7 +178,6 @@ module.exports = (grunt) ->
         ]
 
       initjsforintellij:
-        sourceMap: false
         files: [
           expand: true
           cwd: "<%= dirs.srcApp %>/scripts"

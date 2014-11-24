@@ -21,7 +21,7 @@ define [
     ###
     compentInstanceCounter = new InstanceCounter
 
-    constructor: (@componentId, @model) ->
+    constructor: (@componentId) ->
       unless @componentId
         throw new Error "componentId needs to be specified"
 

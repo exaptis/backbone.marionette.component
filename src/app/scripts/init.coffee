@@ -8,4 +8,6 @@ require ['require-config'], ->
       'bootstrap'
       'backbone.marionette'
       'prism-coffeescript'
+      'ripples'
+      'material'
     ]

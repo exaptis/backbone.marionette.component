@@ -9,7 +9,7 @@ define [
 
     initialize: (@app) ->
 
-    showLabelMarkupComponent: ->
+    showLabelComponent: ->
       @app.contentRegion.show new LabelItemView
 
 

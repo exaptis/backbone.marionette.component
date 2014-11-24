@@ -10,5 +10,7 @@ require [
 
   App.on 'start', ->
     Backbone.history.start()
+#    $.material.init()
 
   App.start()
+

@@ -8,6 +8,8 @@ define ->
     'spec/lib/component/markup/LabelSpec'
     'spec/lib/component/form/TextFieldSpec'
     'spec/lib/component/form/TextAreaSpec'
+    'spec/lib/component/form/RadioButtonSpec'
+    'spec/lib/component/form/CheckboxSpec'
     'spec/lib/component/generics/MapSpec'
     'spec/lib/component/adapter/RivetsSpec'
     'spec/lib/component/utils/InstanceCounterSpec'

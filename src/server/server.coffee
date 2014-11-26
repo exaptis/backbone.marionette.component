@@ -31,6 +31,8 @@ switch process.env.NODE_ENV
     app.use '/src/test', express.static "#{paths.source}/test"
     app.get "/", (req, res) ->
       res.sendFile "#{paths.build}/test/index.html"
+    app.get "/*.js.map", (req, res) ->
+      res.send(200)
 
   when 'dist'
     app.use '/', express.static "#{paths.build}/dist"

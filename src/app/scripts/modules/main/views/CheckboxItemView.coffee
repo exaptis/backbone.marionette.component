@@ -2,11 +2,13 @@ define [
   'lib/component/ItemView'
   'lib/component/form/Checkbox'
   'modules/main/behavior/CodeHighlightBehavior'
+  'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/CheckboxItemViewTemplate'
 ], (
   ItemView
   Checkbox
   CodeHighlightBehavior
+  MaterializeBehavior
   CheckboxItemViewTemplate
 ) ->
   'use strict'
@@ -18,6 +20,9 @@ define [
     behaviors:
       codeHighlight:
         behaviorClass: CodeHighlightBehavior
+      materialize:
+        behaviorClass: MaterializeBehavior
+
 
     initialize: ->
       @add(new Checkbox('checkboxApple', 'isChecked', new Backbone.Model(isChecked: true)))

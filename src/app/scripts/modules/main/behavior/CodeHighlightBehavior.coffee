@@ -1,4 +1,7 @@
-define ['prism'], (Prism) ->
+define [
+  'prism'
+  'prism-coffeescript'
+], (Prism) ->
   'use strict'
 
   class CodeHighlightBehavior extends Marionette.Behavior

@@ -2,11 +2,13 @@ define [
   'lib/component/ItemView'
   'lib/component/form/RadioButton'
   'modules/main/behavior/CodeHighlightBehavior'
+  'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/RadioButtonItemViewTemplate'
 ], (
   ItemView
   RadioButton
   CodeHighlightBehavior
+  MaterializeBehavior
   RadioButtonItemViewTemplate
 ) ->
   'use strict'
@@ -18,7 +20,11 @@ define [
     behaviors:
       codeHighlight:
         behaviorClass: CodeHighlightBehavior
+      materialize:
+        behaviorClass: MaterializeBehavior
 
     initialize: ->
-      @add(new RadioButton('radioButtonMale', 'isChecked', new Backbone.Model(isChecked: true)))
-      @add(new RadioButton('radioButtonFemale', 'isChecked', new Backbone.Model(isChecked: false)))
+      radioButtonModel = new Backbone.Model(gender: 'male')
+      radioButtonModel.values = ['male','female']
+
+      @add(new RadioButton('radioButtonGender', 'gender', radioButtonModel))

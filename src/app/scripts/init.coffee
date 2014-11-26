@@ -7,7 +7,4 @@ require ['require-config'], ->
       'main'
       'bootstrap'
       'backbone.marionette'
-      'prism-coffeescript'
-      'ripples'
-      'material'
     ]

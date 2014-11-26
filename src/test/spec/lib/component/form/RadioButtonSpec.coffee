@@ -1,17 +1,25 @@
 define [
   'lib/component/Component'
-  'lib/component/form/Checkbox'
+  'lib/component/form/RadioButton'
 ], (
   Component
-  Checkbox
+  RadioButton
 ) ->
   'use strict'
 
-  describe 'Checkbox', ->
+  describe 'RadioButton', ->
     COMPONENT_ID = "COMPONENT_ID"
     COMPONENT_PROPERTY = "COMPONENT_PROPERTY"
-    COMPONENT_VALUE_TRUE = true
-    COMPONENT_VALUE_FALSE = false
+
+    TEXT_1 = 'TEXT_1'
+    TEXT_2 = 'TEXT_2'
+
+    VALUE_1 = 'VALUE_1'
+    VALUE_2 = 'VALUE_2'
+
+    ERROR_MESSAGE_MODEL = 'model needs to be specified'
+    ERROR_MESSAGE_COLLECTION = 'collection needs to be specified'
+    ERROR_MESSAGE_UNSUPPORTED_METHOD = 'Unsupported Method, use getDomNodes() instead.'
 
     before ->
       @viewInstance =
@@ -19,44 +27,74 @@ define [
         $el: $('#fixture')
 
     beforeEach ->
-      @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE_TRUE)
-      @checkbox = new Checkbox COMPONENT_ID, COMPONENT_PROPERTY, @model
+      @model = new Backbone.Model(COMPONENT_PROPERTY: null)
+      @collection = new Backbone.Collection [
+        value: VALUE_1, text: TEXT_1
+      , value: VALUE_2, text: TEXT_2
+      ]
 
-      @targetNode = $("<input>").attr 'component-id', COMPONENT_ID
+      @radioButton = new RadioButton COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
+
+      @targetNode = $("<input>").attr
+        'component-id': COMPONENT_ID
+        'name': 'radioGroup'
+        'type': 'radio'
+
       @viewInstance.$el.append @targetNode
 
     afterEach ->
       @viewInstance.$el.empty()
 
-    it 'should be an instantce of Checkbox', ->
-      expect(@checkbox).to.be.an.instanceof Checkbox
-      expect(@checkbox).to.be.an.instanceof Component
-      expect(@checkbox.constructor.name).to.be.equal 'Checkbox'
+    it 'should be an instantce of RadioButton', ->
+      expect(@radioButton).to.be.an.instanceof RadioButton
+      expect(@radioButton).to.be.an.instanceof Component
+      expect(@radioButton.constructor.name).to.be.equal 'RadioButton'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new Checkbox()).to.throw(Error);
+      expect(-> new RadioButton()).to.throw ERROR_MESSAGE_MODEL
 
+    it 'should throw an error if no collection is passed', ->
+      expect(=> new RadioButton(COMPONENT_ID, COMPONENT_PROPERTY, @model)).to.throw ERROR_MESSAGE_COLLECTION;
 
-    it 'should set the checkbox as checked', ->
+    it 'should throw an error if getDomNode is called', ->
+      expect(=> @radioButton.getDomNode()).to.throw ERROR_MESSAGE_UNSUPPORTED_METHOD
+
+    it 'should call beforeRender and getDomNodes when rendered', ->
       #given
-      @model.set COMPONENT_PROPERTY, COMPONENT_VALUE_TRUE
-      @checkbox.setViewInstance(@viewInstance)
+      @radioButton.setViewInstance(@viewInstance)
+
+      sinon.spy @radioButton, 'beforeRender'
+      sinon.spy @radioButton, 'getDomNodes'
 
       #when
-      @checkbox.render()
+      @radioButton.render()
 
       #then
-      expect(@checkbox.getDomNode()[0]).to.be.equal @targetNode[0]
-      expect(@checkbox.getDomNode().prop('checked')).to.be.true
+      @radioButton.beforeRender.should.have.been.calledOnce
+      @radioButton.getDomNodes.should.have.been.calledOnce
 
-    it 'should set the checkbox as unckecked', ->
+    it 'should have no selected radio button', ->
       #given
-      @model.set COMPONENT_PROPERTY, COMPONENT_VALUE_FALSE
-      @checkbox.setViewInstance(@viewInstance)
+      @radioButton.setViewInstance(@viewInstance)
 
       #when
-      @checkbox.render()
+      @radioButton.render()
 
       #then
-      expect(@checkbox.getDomNode()[0]).to.be.equal @targetNode[0]
-      expect(@checkbox.getDomNode().prop('checked')).to.be.false
+      radioButtons = @radioButton.getDomNodes()
+      expect($(radioButtons.get(0)).prop('checked')).to.be.false
+      expect($(radioButtons.get(1)).prop('checked')).to.be.false
+
+    it 'should select radio button based on model value', ->
+      #given
+      @model.set COMPONENT_PROPERTY, VALUE_1
+      @radioButton.setViewInstance(@viewInstance)
+
+      #when
+      @radioButton.render()
+
+      #then
+      radioButtons = @radioButton.getDomNodes()
+      expect($(radioButtons.get(0)).prop('checked')).to.be.true
+      expect($(radioButtons.get(1)).prop('checked')).to.be.false
+

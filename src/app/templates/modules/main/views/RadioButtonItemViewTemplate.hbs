@@ -9,7 +9,7 @@
     <form class="form-horizontal" role="form">
         <fieldset>
             <legend>Example</legend>
-            <input component-id="radioButtonGender" type="radio" name="gender">
+            <input component-id="radioButtonGender" type="radio" name="genders">
         </fieldset>
     </form>
 </div>
@@ -20,19 +20,21 @@
 <code class="language-coffeescript">
     class RadioButtonItemView extends Backbone.Marionette.Component.ItemView
 
-    initialize: ->
-    @add(new RadioButton('radioButtonMale', 'isChecked', new Backbone.Model(isChecked: true)))
-    @add(new RadioButton('radioButtonFemale', 'isChecked', new Backbone.Model(isChecked: false)))
+        initialize: ->
+          model = new Backbone.Model(gender: 'm')
+          collection = new Backbone.Collection([
+            value: 'm', text: 'Male'
+          , value: 'f', text: 'Female'
+          ])
+
+          @add(new RadioButton('radioButtonGender', 'gender', model, collection))
 </code>
 </pre>
 
 <h3 class="page-subline">Markup</h3>
 <pre>
 <code class="language-markup">
-    &lt;input component-id=&quot;radioButtonMale&quot; type=&quot;radio&quot; name=&quot;optionsGender&quot; value=&quot;male&quot;&gt;
-    Male
-    &lt;input component-id=&quot;radioButtonFemale&quot; type=&quot;radio&quot; name=&quot;optionsGender&quot; value=&quot;female&quot;&gt;
-    Female
+    &lt;input component-id=&quot;radioButtonGender&quot; type=&quot;radio&quot; name=&quot;gender&quot;&gt;
 </code>
 </pre>
 <!-- @formatter:on -->

@@ -24,7 +24,10 @@ define [
         behaviorClass: MaterializeBehavior
 
     initialize: ->
-      radioButtonModel = new Backbone.Model(gender: 'male')
-      radioButtonModel.values = ['male','female']
+      model = new Backbone.Model(gender: 'm')
+      collection = new Backbone.Collection([
+        value: 'm', text: 'Male'
+      , value: 'f', text: 'Female'
+      ])
 
-      @add(new RadioButton('radioButtonGender', 'gender', radioButtonModel))
+      @add(new RadioButton('radioButtonGender', 'gender', model, collection))

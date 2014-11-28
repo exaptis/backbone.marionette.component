@@ -10,6 +10,7 @@ define ->
     'spec/lib/component/form/TextAreaSpec'
     'spec/lib/component/form/RadioButtonSpec'
     'spec/lib/component/form/CheckboxSpec'
+    'spec/lib/component/form/DropdownSpec'
     'spec/lib/component/generics/MapSpec'
     'spec/lib/component/adapter/RivetsSpec'
     'spec/lib/component/utils/InstanceCounterSpec'

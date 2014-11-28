@@ -1,0 +1,42 @@
+<h2 class="page-headline">Dropdown Component</h2>
+<p>
+    The Dropdown Component can be used to ...
+</p>
+
+<br/>
+
+<div class="well">
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Example</legend>
+            <select component-id="fruitChoice"/>
+            <select component-id="fruitChoice" multiple/>
+        </fieldset>
+    </form>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class DropdownItemView extends Backbone.Marionette.Component.ItemView
+
+        initialize: ->
+            model = new Backbone.Model(gender: 'm')
+            collection = new Backbone.Collection([
+            value: '1', text: 'Orange'
+            , value: '2', text: 'Apple'
+            , value: '3', text: 'Banana'
+            ])
+
+            @add(new Dropdown('fruitChoice', 'fruits', model, collection))
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;input component-id=&quot;radioButtonGender&quot; type=&quot;radio&quot; name=&quot;gender&quot;&gt;
+</code>
+</pre>
+<!-- @formatter:on -->

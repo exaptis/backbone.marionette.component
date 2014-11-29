@@ -23,11 +23,13 @@
 
         initialize: ->
             model = new Backbone.Model(gender: 'm')
-            collection = new Backbone.Collection([
-            value: '1', text: 'Orange'
-            , value: '2', text: 'Apple'
-            , value: '3', text: 'Banana'
-            ])
+            collection = new Backbone.Collection [
+              value: '1', text: 'Orange'
+            ,
+              value: '2', text: 'Apple'
+            ,
+              value: '3', text: 'Banana'
+            ]
 
             @add(new Dropdown('fruitChoice', 'fruits', model, collection))
 </code>

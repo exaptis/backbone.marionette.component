@@ -35,10 +35,9 @@ define [
 
       @select = new DropDown COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
 
-      @targetNode = $("<input>").attr
+      @targetNode = $("<select>").attr
         'component-id': COMPONENT_ID
-        'name': 'radioGroup'
-        'type': 'radio'
+        'multiple': 'multiple'
 
       @viewInstance.$el.append @targetNode
 
@@ -73,6 +72,22 @@ define [
       @select.beforeRender.should.have.been.calledOnce
       @select.getDomNodes.should.have.been.calledOnce
 
+    it 'should render the options from the collection', ->
+      #given
+      @select.setViewInstance(@viewInstance)
+
+      #when
+      @select.render()
+
+      #then
+      options = @select.getDomNodes().children('option')
+
+      expect($(options.eq(0)).val()).to.be.equal VALUE_1
+      expect($(options.eq(0)).text()).to.be.equal TEXT_1
+
+      expect($(options.eq(1)).val()).to.be.equal VALUE_2
+      expect($(options.eq(1)).text()).to.be.equal TEXT_2
+
     it 'should have no selected radio button', ->
       #given
       @select.setViewInstance(@viewInstance)
@@ -81,20 +96,16 @@ define [
       @select.render()
 
       #then
-      options = @select.getDomNodes().find('option')
-      expect($(options.get(0)).prop('checked')).to.be.false
-      expect($(options.get(1)).prop('checked')).to.be.false
+      expect(@select.getDomNodes().val()).to.be.equal null
 
-    it 'should select radio button based on model value', ->
+    it 'should select value based on model value', ->
       #given
-      @model.set COMPONENT_PROPERTY, VALUE_1
       @select.setViewInstance(@viewInstance)
+      @model.set COMPONENT_PROPERTY, [VALUE_1]
 
       #when
       @select.render()
 
       #then
-      options = @select.getDomNodes().find('option')
-      expect($(options.get(0)).prop('checked')).to.be.true
-      expect($(options.get(1)).prop('checked')).to.be.false
+      expect(@select.getDomNodes().val()).to.be.eql [VALUE_1]
 

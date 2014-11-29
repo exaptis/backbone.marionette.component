@@ -1,12 +1,12 @@
 define [
-  'modules/main/views/TextFieldItemView'
   'modules/main/views/TextAreaItemView'
+  'modules/main/views/TextFieldItemView'
   'modules/main/views/RadioButtonItemView'
   'modules/main/views/CheckboxItemView'
   'modules/main/views/DropdownItemView'
 ], (
-  TextFieldItemView
   TextAreaItemView
+  TextFieldItemView
   RadioButtonItemView
   CheckboxItemView
   DropdownItemView

@@ -1,9 +1,11 @@
 define [
   'lib/component/Component'
   'lib/component/form/Checkbox'
+  'mocks/component/MockedItemView'
 ], (
   Component
   Checkbox
+  MockedItemView
 ) ->
   'use strict'
 
@@ -13,11 +15,6 @@ define [
     COMPONENT_VALUE_TRUE = true
     COMPONENT_VALUE_FALSE = false
 
-    before ->
-      @viewInstance =
-        $: jQuery
-        $el: $('#fixture')
-
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE_TRUE)
       @checkbox = new Checkbox COMPONENT_ID, COMPONENT_PROPERTY, @model
@@ -26,10 +23,11 @@ define [
         'component-id': COMPONENT_ID
         'type': 'checkbox'
 
-      @viewInstance.$el.append @targetNode
+      @view = new MockedItemView
+      @view.$el.append @targetNode
 
     afterEach ->
-      @viewInstance.$el.empty()
+      @view.$el.empty()
 
     it 'should be an instantce of Checkbox', ->
       expect(@checkbox).to.be.an.instanceof Checkbox
@@ -39,14 +37,13 @@ define [
     it 'should throw an error if no id and no model is passed', ->
       expect(-> new Checkbox()).to.throw(Error);
 
-
     it 'should set the checkbox as checked', ->
       #given
       @model.set COMPONENT_PROPERTY, COMPONENT_VALUE_TRUE
-      @checkbox.setViewInstance(@viewInstance)
+      @view.add @checkbox
 
       #when
-      @checkbox.render()
+      @view.render()
 
       #then
       expect(@checkbox.getDomNode()[0]).to.be.equal @targetNode[0]
@@ -55,10 +52,10 @@ define [
     it 'should set the checkbox as unckecked', ->
       #given
       @model.set COMPONENT_PROPERTY, COMPONENT_VALUE_FALSE
-      @checkbox.setViewInstance(@viewInstance)
+      @view.add @checkbox
 
       #when
-      @checkbox.render()
+      @view.render()
 
       #then
       expect(@checkbox.getDomNode()[0]).to.be.equal @targetNode[0]

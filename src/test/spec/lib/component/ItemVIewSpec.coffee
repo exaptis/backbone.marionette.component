@@ -73,13 +73,13 @@ define [
       #then
       expect(addComponentTwice).to.throw errorMessage
 
-    it 'should call render on every component', ->
+    it 'should call getModelData on every component', ->
       #given
       component1 = new Component("componentId1")
       component2 = new Component("componentId2")
 
-      renderSpy1 = sinon.spy component1, 'render'
-      renderSpy2 = sinon.spy component2, 'render'
+      sinon.spy component1, 'getModelData'
+      sinon.spy component2, 'getModelData'
 
       @itemView.add component1, component2
 
@@ -87,11 +87,34 @@ define [
       @itemView.onRender()
 
       #then
-      renderSpy1.should.have.been.called
-      renderSpy1.should.have.been.calledOnce
+      component1.getModelData.should.have.been.calledOnce
+      component2.getModelData.should.have.been.calledOnce
 
-      renderSpy2.should.have.been.called
-      renderSpy2.should.have.been.calledOnce
+    it 'should call beforeRender and afterRender on component when render is called', ->
+      #given
+      component = new Component("componentId")
+      sinon.spy component, 'beforeRender'
+      sinon.spy component, 'afterRender'
 
+      @itemView.add component
 
+      #when
+      @itemView.onRender()
 
+      #then
+      component.beforeRender.should.have.been.calledOnce;
+      component.afterRender.should.have.been.calledOnce;
+
+    it 'should unbind rivetsView on close', ->
+      #given
+      component = new Component("componentId")
+      @itemView.add component
+      @itemView.onRender()
+
+      sinon.spy @itemView.rivetsView, 'unbind'
+
+      #when
+      @itemView.onClose()
+
+      #then
+      @itemView.rivetsView.unbind.should.have.been.calledOnce;

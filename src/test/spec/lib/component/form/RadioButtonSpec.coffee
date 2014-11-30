@@ -1,9 +1,11 @@
 define [
   'lib/component/Component'
   'lib/component/form/RadioButton'
+  'mocks/component/MockedItemView'
 ], (
   Component
   RadioButton
+  MockedItemView
 ) ->
   'use strict'
 
@@ -21,11 +23,6 @@ define [
     ERROR_MESSAGE_COLLECTION = 'collection needs to be specified'
     ERROR_MESSAGE_UNSUPPORTED_METHOD = 'Unsupported Method, use getDomNodes() instead.'
 
-    before ->
-      @viewInstance =
-        $: jQuery
-        $el: $('#fixture')
-
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: null)
       @collection = new Backbone.Collection [
@@ -40,10 +37,11 @@ define [
         'name': 'radioGroup'
         'type': 'radio'
 
-      @viewInstance.$el.append @targetNode
+      @view = new MockedItemView
+      @view.$el.append @targetNode
 
     afterEach ->
-      @viewInstance.$el.empty()
+      @view.$el.empty()
 
     it 'should be an instantce of RadioButton', ->
       expect(@radioButton).to.be.an.instanceof RadioButton
@@ -61,13 +59,13 @@ define [
 
     it 'should call beforeRender and getDomNodes when rendered', ->
       #given
-      @radioButton.setViewInstance(@viewInstance)
+      @view.add @radioButton
 
       sinon.spy @radioButton, 'beforeRender'
       sinon.spy @radioButton, 'getDomNodes'
 
       #when
-      @radioButton.render()
+      @view.render()
 
       #then
       @radioButton.beforeRender.should.have.been.calledOnce
@@ -75,10 +73,10 @@ define [
 
     it 'should have no selected radio button', ->
       #given
-      @radioButton.setViewInstance(@viewInstance)
+      @view.add @radioButton
 
       #when
-      @radioButton.render()
+      @view.render()
 
       #then
       radioButtons = @radioButton.getDomNodes()
@@ -87,11 +85,11 @@ define [
 
     it 'should select radio button based on model value', ->
       #given
+      @view.add @radioButton
       @model.set COMPONENT_PROPERTY, VALUE_1
-      @radioButton.setViewInstance(@viewInstance)
 
       #when
-      @radioButton.render()
+      @view.render()
 
       #then
       radioButtons = @radioButton.getDomNodes()

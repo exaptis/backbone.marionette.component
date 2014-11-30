@@ -81,33 +81,6 @@ define [
       #then
       expect(getMissingDomNode).to.throw errorMessage
 
-    it 'should call beforeRender and afterRender when render is called', ->
-      #given
-      beforeRenderSpy = sinon.spy @component, 'beforeRender'
-      afterRenderSpy = sinon.spy @component, 'afterRender'
 
-      #when
-      @component.setViewInstance(@viewInstance)
-      @component.render()
-
-      #then
-      beforeRenderSpy.should.have.been.called;
-      beforeRenderSpy.should.have.been.calledOnce;
-
-      afterRenderSpy.should.have.been.called;
-      afterRenderSpy.should.have.been.calledOnce;
-
-    it 'should unbind rivetsView on close', ->
-      #given
-      @component.setViewInstance(@viewInstance)
-      @component.render()
-      rivetsViewUnbindSpy = sinon.spy @component.rivetsView, 'unbind'
-
-      #when
-      @component.close()
-
-      #then
-      rivetsViewUnbindSpy.should.have.been.called;
-      rivetsViewUnbindSpy.should.have.been.calledOnce;
 
 

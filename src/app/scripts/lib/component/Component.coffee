@@ -72,16 +72,3 @@ define [
       ###
     afterRender: ->
 
-      ###
-        Binding the model data to the view instance
-      ###
-    render: () ->
-      @beforeRender()
-      @rivetsView = rivets.bind @viewInstance.$el, @getModelData()
-      @afterRender()
-
-    ###
-      Unbind rivetsView when component is closed
-    ###
-    close: () ->
-      @rivetsView.unbind() if @rivetsView

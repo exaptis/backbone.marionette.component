@@ -1,9 +1,11 @@
 define [
   'lib/component/Component'
   'lib/component/form/TextArea'
+  'mocks/component/MockedItemView'
 ], (
   Component
   TextArea
+  MockedItemView
 ) ->
   'use strict'
 
@@ -12,20 +14,17 @@ define [
     COMPONENT_PROPERTY = "COMPONENT_PROPERTY"
     COMPONENT_VALUE = "COMPONENT_VALUE"
 
-    before ->
-      @viewInstance =
-        $: jQuery
-        $el: $('#fixture')
-
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE)
       @textArea = new TextArea COMPONENT_ID, COMPONENT_PROPERTY, @model
 
       @targetNode = $("<input>").attr 'component-id', COMPONENT_ID
-      @viewInstance.$el.append @targetNode
+
+      @view = new MockedItemView
+      @view.$el.append @targetNode
 
     afterEach ->
-      @viewInstance.$el.empty()
+      @view.$el.empty()
 
     it 'should be an instantce of TextArea', ->
       expect(@textArea).to.be.an.instanceof TextArea
@@ -38,10 +37,10 @@ define [
 
     it 'should set the component model-value on the dom node', ->
       #given
-      @textArea.setViewInstance(@viewInstance)
+      @view.add @textArea
 
       #when
-      @textArea.render()
+      @view.render()
 
       #then
       expect(@textArea.getDomNode()[0]).to.be.equal @targetNode[0]

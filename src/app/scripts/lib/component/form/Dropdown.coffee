@@ -14,10 +14,7 @@ define [
 
   class Dropdown extends Component
 
-    defaultOptions:
-      multiple: false
-
-    constructor: (@componentId, @property, @model, @collection, @options) ->
+    constructor: (@componentId, @property, @model, @collection) ->
       unless @model
         throw new Error 'model needs to be specified'
 
@@ -26,14 +23,10 @@ define [
 
       super @componentId
 
-      @options = _.extend {}, @defaultOptions, @options
-
-
     beforeRender: () ->
       ITEM_NAME = 'option'
 
       optionNode = $('<option>')
-      optionNode.attr('multiple','multiple') if @options.multiple
       optionNode.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}.models")
       optionNode.attr('rv-value', "#{ITEM_NAME}:value")
       optionNode.attr('rv-text', "#{ITEM_NAME}:text")

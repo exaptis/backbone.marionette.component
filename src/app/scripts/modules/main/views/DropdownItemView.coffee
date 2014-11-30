@@ -1,11 +1,13 @@
 define [
   'lib/component/ItemView'
+  'lib/component/markup/Label'
   'lib/component/form/Dropdown'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/DropdownItemViewTemplate'
 ], (
   ItemView
+  Label
   Dropdown
   CodeHighlightBehavior
   MaterializeBehavior
@@ -33,4 +35,5 @@ define [
         value: '3', text: 'Banana'
       ]
 
+      @add(new Label("fruitValue", "fruit", model))
       @add(new Dropdown('fruitChoice', 'fruit', model, collection))

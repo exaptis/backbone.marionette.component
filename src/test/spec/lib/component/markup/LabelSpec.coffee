@@ -1,9 +1,11 @@
 define [
   'lib/component/Component'
   'lib/component/markup/Label'
+  'mocks/component/MockedItemView'
 ], (
   Component
   Label
+  MockedItemView
 ) ->
   'use strict'
 
@@ -12,17 +14,14 @@ define [
     COMPONENT_PROPERTY = "COMPONENT_PROPERTY"
     COMPONENT_VALUE = "COMPONENT_VALUE"
 
-    before ->
-      @viewInstance =
-        $: jQuery
-        $el: $('#fixture')
-
     beforeEach ->
       @targetNode = $("<span>").attr 'component-id', COMPONENT_ID
-      @viewInstance.$el.append @targetNode
+
+      @view = new MockedItemView
+      @view.$el.append @targetNode
 
     afterEach ->
-      @viewInstance.$el.empty()
+      @view.$el.empty()
 
     it 'should be an instantce of Label', ->
       label = new Label COMPONENT_ID, COMPONENT_VALUE
@@ -37,10 +36,10 @@ define [
     it 'should set the component value on the dom node', ->
       #given
       label = new Label COMPONENT_ID, COMPONENT_VALUE
+      @view.add label
 
       #when
-      label.setViewInstance(@viewInstance)
-      label.render()
+      @view.render()
 
       #then
       expect(label.getDomNode()[0]).to.be.equal @targetNode[0]
@@ -51,10 +50,10 @@ define [
       #given
       COMPONENT_MODEL = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE)
       label = new Label COMPONENT_ID, COMPONENT_PROPERTY, COMPONENT_MODEL
+      @view.add label
 
       #when
-      label.setViewInstance(@viewInstance)
-      label.render()
+      @view.render()
 
       #then
       #      debugger

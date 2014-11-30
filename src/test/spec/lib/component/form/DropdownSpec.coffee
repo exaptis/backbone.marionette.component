@@ -1,9 +1,11 @@
 define [
   'lib/component/Component'
   'lib/component/form/DropDown'
+  'mocks/component/MockedItemView'
 ], (
   Component
   DropDown
+  MockedItemView
 ) ->
   'use strict'
 
@@ -21,16 +23,12 @@ define [
     ERROR_MESSAGE_COLLECTION = 'collection needs to be specified'
     ERROR_MESSAGE_UNSUPPORTED_METHOD = 'Unsupported Method, use getDomNodes() instead.'
 
-    before ->
-      @viewInstance =
-        $: jQuery
-        $el: $('#fixture')
-
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: null)
       @collection = new Backbone.Collection [
         value: VALUE_1, text: TEXT_1
-      , value: VALUE_2, text: TEXT_2
+      ,
+        value: VALUE_2, text: TEXT_2
       ]
 
       @select = new DropDown COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
@@ -39,10 +37,11 @@ define [
         'component-id': COMPONENT_ID
         'multiple': 'multiple'
 
-      @viewInstance.$el.append @targetNode
+      @view = new MockedItemView
+      @view.$el.append @targetNode
 
     afterEach ->
-      @viewInstance.$el.empty()
+      @view.$el.empty()
 
     it 'should be an instantce of DropDown', ->
       expect(@select).to.be.an.instanceof DropDown
@@ -60,13 +59,13 @@ define [
 
     it 'should call beforeRender and getDomNodes when rendered', ->
       #given
-      @select.setViewInstance(@viewInstance)
+      @view.add @select
 
       sinon.spy @select, 'beforeRender'
       sinon.spy @select, 'getDomNodes'
 
       #when
-      @select.render()
+      @view.render()
 
       #then
       @select.beforeRender.should.have.been.calledOnce
@@ -74,10 +73,10 @@ define [
 
     it 'should render the options from the collection', ->
       #given
-      @select.setViewInstance(@viewInstance)
+      @view.add @select
 
       #when
-      @select.render()
+      @view.render()
 
       #then
       options = @select.getDomNodes().children('option')
@@ -90,21 +89,21 @@ define [
 
     it 'should have no selected radio button', ->
       #given
-      @select.setViewInstance(@viewInstance)
+      @view.add @select
 
       #when
-      @select.render()
+      @view.render()
 
       #then
       expect(@select.getDomNodes().val()).to.be.equal null
 
     it 'should select value based on model value', ->
       #given
-      @select.setViewInstance(@viewInstance)
+      @view.add @select
       @model.set COMPONENT_PROPERTY, [VALUE_1]
 
       #when
-      @select.render()
+      @view.render()
 
       #then
       expect(@select.getDomNodes().val()).to.be.eql [VALUE_1]

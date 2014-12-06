@@ -20,6 +20,7 @@ define [
       'form/:component': 'showFormComponent'
       'view/:component': 'showViewComponent'
       'validation/:validator': 'showValidator'
+
   initialize: (module) ->
     API =
       showWelcomePage: ->

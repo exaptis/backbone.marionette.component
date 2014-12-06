@@ -5,7 +5,7 @@ define [
 ) ->
   'use strict'
 
-  ## Backbone.Marionette.Component.Markup.RadioButton
+  ## Backbone.Marionette.Component.Form.RadioButton
   ## ------------------------------------------
 
   ## Description

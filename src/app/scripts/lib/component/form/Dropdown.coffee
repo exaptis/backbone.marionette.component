@@ -5,7 +5,7 @@ define [
 ) ->
   'use strict'
 
-  ## Backbone.Marionette.Component.Markup.Dropdown
+  ## Backbone.Marionette.Component.Form.Dropdown
   ## ------------------------------------------
 
   ## Description

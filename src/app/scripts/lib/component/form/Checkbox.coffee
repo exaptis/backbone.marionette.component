@@ -5,7 +5,7 @@ define [
 ) ->
   'use strict'
 
-  ## Backbone.Marionette.Component.Markup.Checkbox
+  ## Backbone.Marionette.Component.Form.Checkbox
   ## ------------------------------------------
 
   ## Description

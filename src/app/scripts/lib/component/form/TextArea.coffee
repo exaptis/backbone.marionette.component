@@ -5,7 +5,7 @@ define [
 ) ->
   'use strict'
 
-  ## Backbone.Marionette.Component.Markup.TextArea
+  ## Backbone.Marionette.Component.Form.TextArea
   ## ------------------------------------------
 
   ## Description

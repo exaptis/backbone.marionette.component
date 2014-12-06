@@ -54,6 +54,8 @@ require.config
     i18n: '../bower_components/i18next/i18next.amd'
     spec: '../../test/spec' # lives in the test directory
     mocks: '../../test/scripts/mocks' # lives in the test directory
+    'StateManager': '../bower_components/backbone.stateful/dist/StateManager'
+    'State': '../bower_components/backbone.stateful/dist/State'
 
   hbs:
     disableI18n: true

@@ -10,24 +10,19 @@ define [
   ViewController
   HomeController
 ) ->
-  'use strict'
 
   class MainAppRouter extends Backbone.Marionette.AppRouter
-
     appRoutes:
       '':'showPage'
       'component/markup/:component': 'showMarkupComponent'
       'component/form/:component': 'showFormComponent'
       'component/view/:component': 'showViewComponent'
-
   initialize: (module) ->
     API =
       showPage: ->
         controller = new HomeController(module.app)
         controller.showWelcomePage()
       showMarkupComponent: (component) ->
-        controller = new MarkupController(module.app)
-        controller["show#{_.string.capitalize(component)}Component"]()
 
       showFormComponent: (component) ->
         controller = new FormController(module.app)

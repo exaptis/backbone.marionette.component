@@ -2,6 +2,10 @@
 build/
 out/
 
+#Created by intellij
+*.iml
+.idea/
+
 #Created by the atlassian plugin
 atlassian-ide-plugin.xml
 

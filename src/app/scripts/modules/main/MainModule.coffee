@@ -1,12 +1,16 @@
 define [
-  'modules/main/MainAppRouter'
-
+  'backbone'
+  './states/ShowMarkupComponentState'
+  './states/ShowFormComponentState'
 ], (
-  MainAppRouter
+  Backbone
+  ShowMarkupComponentState
+  ShowFormComponentState
 ) ->
   'use strict'
 
   class MainModule extends Backbone.Marionette.Module
 
     initialize: ->
-      MainAppRouter.initialize(@)
+      ShowMarkupComponentState.initialize(@)
+      ShowFormComponentState.initialize(@)

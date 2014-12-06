@@ -53,7 +53,7 @@ define [
       data = {}
 
       @_components.each (component) ->
-        component.beforeRender()
+        component.onBeforeRender()
 
       @_components.each (component) ->
         data = _.extend data, component.getModelData()
@@ -61,7 +61,7 @@ define [
       @rivetsView = rivets.bind @$el, data
 
       @_components.each (component) ->
-        component.afterRender()
+        component.onAfterRender()
 
     ###
       Unbind rivetsView when component is closed

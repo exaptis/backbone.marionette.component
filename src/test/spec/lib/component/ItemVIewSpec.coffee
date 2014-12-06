@@ -90,11 +90,11 @@ define [
       component1.getModelData.should.have.been.calledOnce
       component2.getModelData.should.have.been.calledOnce
 
-    it 'should call beforeRender and afterRender on component when render is called', ->
+    it 'should call onBeforeRender and onAfterRender on component when render is called', ->
       #given
       component = new Component("componentId")
-      sinon.spy component, 'beforeRender'
-      sinon.spy component, 'afterRender'
+      sinon.spy component, 'onBeforeRender'
+      sinon.spy component, 'onAfterRender'
 
       @itemView.add component
 
@@ -102,8 +102,8 @@ define [
       @itemView.onRender()
 
       #then
-      component.beforeRender.should.have.been.calledOnce;
-      component.afterRender.should.have.been.calledOnce;
+      component.onBeforeRender.should.have.been.calledOnce;
+      component.onAfterRender.should.have.been.calledOnce;
 
     it 'should unbind rivetsView on close', ->
       #given

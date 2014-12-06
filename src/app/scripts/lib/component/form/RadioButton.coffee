@@ -24,7 +24,7 @@ define [
 
       super @componentId
 
-    beforeRender: () ->
+    onBeforeRender: () ->
       ITEM_NAME = 'radio'
 
       repeatingElement = $('<div>')

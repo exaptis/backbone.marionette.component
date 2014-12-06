@@ -19,7 +19,7 @@ define [
 
       super @componentId, @model
 
-    beforeRender: () ->
+    onBeforeRender: () ->
       domNode = @getDomNode()
       domNode.attr('rv-value', "#{@cid}:#{@property}")
 

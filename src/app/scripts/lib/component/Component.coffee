@@ -63,12 +63,22 @@ define [
       data
 
     ###
+      Called before the component is added
+    ###
+    onBeforeAdded: ->
+
+    ###
+      Called after the component is added
+    ###
+    onAfterAdded: ->
+
+    ###
       Called before the component is rendered
     ###
-    beforeRender: ->
+    onBeforeRender: ->
 
-      ###
-        Called after the component is rendered
-      ###
-    afterRender: ->
+    ###
+      Called after the component is rendered
+    ###
+    onAfterRender: ->
 

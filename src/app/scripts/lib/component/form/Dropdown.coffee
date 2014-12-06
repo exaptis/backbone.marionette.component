@@ -23,7 +23,7 @@ define [
 
       super @componentId
 
-    beforeRender: () ->
+    onBeforeRender: () ->
       ITEM_NAME = 'option'
 
       optionNode = $('<option>')

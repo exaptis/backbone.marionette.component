@@ -67,8 +67,13 @@ define [
       Unbind rivetsView when component is closed
     ###
     onClose: () ->
+      @_components.each (component) ->
+        component.onBeforeClose()
+
       @rivetsView.unbind() if @rivetsView
 
+      @_components.each (component) ->
+        component.onAfterClose()
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.ItemView or= ItemView

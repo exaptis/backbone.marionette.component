@@ -4,12 +4,14 @@ define [
   'modules/main/views/RadioButtonItemView'
   'modules/main/views/CheckboxItemView'
   'modules/main/views/DropdownItemView'
+  'modules/main/views/ButtonItemView'
 ], (
   TextAreaItemView
   TextFieldItemView
   RadioButtonItemView
   CheckboxItemView
   DropdownItemView
+  ButtonItemView
 ) ->
   'use strict'
 
@@ -31,5 +33,8 @@ define [
 
     showDropdownComponent: ->
       @app.contentRegion.show new DropdownItemView
+
+    showButtonComponent: ->
+      @app.contentRegion.show new ButtonItemView
 
 

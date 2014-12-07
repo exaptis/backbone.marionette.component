@@ -82,3 +82,13 @@ define [
     ###
     onAfterRender: ->
 
+    ###
+     Called before the component is closed
+    ###
+    onBeforeClose: ->
+
+    ###
+      Called after the component is closed
+    ###
+    onAfterClose: ->
+

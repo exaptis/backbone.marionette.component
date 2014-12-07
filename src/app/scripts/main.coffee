@@ -10,6 +10,18 @@ require [
 
   App.on 'start', ->
     Backbone.history.start()
+    $ "a[href='##{Backbone.history.fragment}']"
+    .parents 'li:last'
+    .addClass 'active'
+
 
   App.start()
+
+  $('.nav').on 'click', 'a', ->
+    $ '.nav li'
+      .removeClass 'active'
+
+    $ @
+      .parents 'li:last'
+      .addClass 'active'
 

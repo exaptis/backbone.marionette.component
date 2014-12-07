@@ -14,9 +14,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="../bower_components/prismjs/prism.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bower_components/prismjs/prism-coy.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 <!--[if lt IE 10]>
@@ -33,30 +33,25 @@
         </button>
         <a class="navbar-brand withripple" href="javascript:void(0)">
             Backbone.Marionette.Component
-            <div class="ripple-wrapper"></div>
         </a>
     </div>
 
     <div class="navbar-collapse navbar-responsive-collapse collapse">
         <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="javascript:void(0)" class="withripple">
+            <li>
+                <a href="#" class="withripple">
                     Home
-                    <div class="ripple-wrapper"></div>
                 </a>
             </li>
 
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
                     Markup <b class="caret"></b>
-
-                    <div class="ripple-wrapper"></div>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="#component/markup/label" class="withripple">
                             Label
-                            <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                 </ul>
@@ -65,44 +60,66 @@
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
                     Form <b class="caret"></b>
-
-                    <div class="ripple-wrapper"></div>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="#component/form/textField" class="withripple">
                             TextField
-                            <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                     <li>
                         <a href="#component/form/textArea" class="withripple">
                             TextArea
-                            <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                     <li>
                         <a href="#component/form/radioButton" class="withripple">
                             RadioButton
-                            <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                     <li>
                         <a href="#component/form/checkbox" class="withripple">
                             Checkbox
-                            <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                     <li>
                         <a href="#component/form/dropdown" class="withripple">
                             Dropdown
-                            <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                     <li>
                         <a href="#component/form/button" class="withripple">
                             Button
-                            <div class="ripple-wrapper"></div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#component/form/form" class="withripple">
+                            Form
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
+                    View <b class="caret"></b>
+
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#component/view/itemView" class="withripple">
+                            ItemView
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#component/view/collectionView" class="withripple">
+                            CollectionView
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#component/view/compositeView" class="withripple">
+                            CompositeView
                         </a>
                     </li>
                 </ul>
@@ -113,48 +130,6 @@
 
 
 <div class="container">
-    <div class="page-header" id="banner">
-        <div class="row">
-            <div class="col-lg-6">
-                <h1>Backbone.Marionette.Component</h1>
-
-                <p class="lead">Based on Apache Wicket and Marionette.js</p>
-            </div>
-            <div class="col-lg-6">
-                <div class="well infobox">
-                    <p>
-                        <em>Backbone.Marionette.Component</em> is an extension library for Marionette.js which lets you use web components for handling forms.
-                    </p>
-
-                    <p>
-                        If you like this project you can support me by starring this repository, or
-                        <a href="https://github.com/exaptis/backbone.marionette.component/issues">reporting bugs and ideas</a>.
-                    </p>
-
-                    <p>
-                        Read more about <em>Marionette.Component for Backbone</em>
-                        <a href="https://github.com/exaptis/backbone.marionette.component">at the Github page</a>.
-                    </p>
-
-                    <a href="https://github.com/exaptis/backbone.marionette.component/archive/master.zip"
-                       class="btn btn-sup btn-info withripple">
-                        <i class="fa fa-download"></i>
-                        <span>DOWNLOAD</span>
-
-                        <div class="ripple-wrapper"></div>
-                    </a>
-                    <a href="https://github.com/exaptis/backbone.marionette.component/issues"
-                       class="btn btn-sup btn-danger withripple">
-                        <i class="fa fa-warning"></i>
-                        <span>ISSUES</span>
-
-                        <div class="ripple-wrapper"></div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div id="content-region">
@@ -163,6 +138,7 @@
         </div>
     </div>
 </div>
+
 
 
 <a href="https://github.com/exaptis/backbone.marionette.component">

@@ -1,0 +1,36 @@
+<h2 class="page-headline">ItemView Component</h2>
+<p>
+    The ItemView Component can be used to ...
+</p>
+<br />
+
+<div class="well">
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Example</legend>
+            <div id="content"></div>
+        </fieldset>
+    </form>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class TextFieldItemView extends Backbone.Marionette.Component.ItemView
+        initialize: ->
+            @add new TextField('textfield', 'name', @model)
+
+    model = new Backbone.Model(name: 'David')
+    view  = new TextFieldItemView(model: model);
+    view.render()
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;input class=&quot;form-control&quot; component-id=&quot;textfield&quot; placeholder=&quot;Name&quot;&gt;
+</code>
+</pre>
+<!-- @formatter:on -->

@@ -1,0 +1,51 @@
+<h2 class="page-headline">CompositeView Component</h2>
+<p>
+    The CompositeView Component can be used to ...
+</p>
+<br />
+
+<div class="well">
+    <form class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Example</legend>
+            <div id="content">
+            </div>
+    </form>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class TextFieldItemView extends Backbone.Marionette.Component.ItemView
+        initialize: ->
+            @add new TextField('textfield', 'name', @model)
+
+    class TextFieldCompositeView extends Backbone.Marionette.CompositeView
+        childView: TextFieldItemView
+        childViewContainer: '#formContent'
+
+    # Initialize collection and composite view
+    collection = new Backbone.Collection [
+        { id:1, name: 'David' }
+        { id:2, name: 'Thomas' }
+        { id:3, name: 'Markus' }
+    ]
+
+    view = new TextFieldCompositeView(collection: collection);
+    view.render()
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;!-- CompositeViw --&gt;
+    &lt;strong&gt;List of Names&lt;/strong&gt;
+    &lt;div id='formContent'&gt;&lt;/div&gt;
+
+    &lt;!-- ItemView --&gt;
+    &lt;input class=&quot;form-control&quot; component-id=&quot;textfield&quot; placeholder=&quot;Name&quot;&gt;
+</code>
+</pre>
+<!-- @formatter:on -->

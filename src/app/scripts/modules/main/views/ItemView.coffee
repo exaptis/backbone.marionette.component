@@ -34,7 +34,7 @@ define [
 
     onRender: ->
       model = new Backbone.Model(name: 'David')
-      view  = new TextFieldItemView(model: model);
+      view = new TextFieldItemView(model: model)
       view.render()
       view.$el.appendTo @ui.content
 

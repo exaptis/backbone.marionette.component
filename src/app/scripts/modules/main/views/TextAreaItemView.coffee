@@ -1,10 +1,12 @@
 define [
   'lib/component/ItemView'
+  'lib/component/markup/Label'
   'lib/component/form/TextArea'
   'modules/main/behavior/CodeHighlightBehavior'
   'hbs!/templates/modules/main/views/TextAreaItemViewTemplate'
 ], (
   ItemView
+  Label
   TextArea
   CodeHighlightBehavior
   TextAreaItemViewTemplate
@@ -20,4 +22,7 @@ define [
         behaviorClass: CodeHighlightBehavior
 
     initialize: ->
-      @add(new TextArea('textarea1', 'comment', new Backbone.Model(comment: 'This is my first comment...')))
+      commentModel = new Backbone.Model(comment: 'This is my first comment...')
+
+      @add(new TextArea('textarea1', 'comment', commentModel))
+      @add(new Label('label', 'comment', commentModel))

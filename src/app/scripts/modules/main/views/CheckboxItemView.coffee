@@ -1,11 +1,13 @@
 define [
   'lib/component/ItemView'
+  'lib/component/markup/Label'
   'lib/component/form/Checkbox'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/CheckboxItemViewTemplate'
 ], (
   ItemView
+  Label
   Checkbox
   CodeHighlightBehavior
   MaterializeBehavior
@@ -25,5 +27,11 @@ define [
 
 
     initialize: ->
-      @add(new Checkbox('checkboxApple', 'isChecked', new Backbone.Model(isChecked: true)))
-      @add(new Checkbox('checkboxOrange', 'isChecked', new Backbone.Model(isChecked: false)))
+      appleModel = new Backbone.Model(isChecked: true)
+      orangeModel = new Backbone.Model(isChecked: false)
+
+      @add(new Checkbox('checkboxApple', 'isChecked', appleModel))
+      @add(new Checkbox('checkboxOrange', 'isChecked', orangeModel))
+
+      @add(new Label('labelApple', 'isChecked', appleModel))
+      @add(new Label('labelOrange', 'isChecked', orangeModel))

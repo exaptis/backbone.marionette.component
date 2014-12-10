@@ -52,10 +52,10 @@ define [
 
     onRender: ->
       collection = new Backbone.Collection [
-        { id:1, name: 'David' }
-        { id:2, name: 'Thomas' }
-        { id:3, name: 'Markus' }
+        {id: 1, name: 'David'}
+        {id: 2, name: 'Thomas'}
+        {id: 3, name: 'Markus'}
       ]
-      view = new TextFieldCompositeView(collection: collection);
+      view = new TextFieldCompositeView(collection: collection)
       view.render()
       view.$el.appendTo @ui.content

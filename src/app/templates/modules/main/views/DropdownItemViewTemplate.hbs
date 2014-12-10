@@ -9,9 +9,11 @@
     <form class="form-horizontal" role="form">
         <fieldset>
             <legend>Example</legend>
-            <select component-id="fruitChoice"/>
-            <em>Selected Value:</em>
-            <label component-id="fruitValue" />
+            <select component-id="fruitChoice" name="fruitChoices"/>
+            <em>
+                Selected Value:
+                <label component-id="fruitValue" />
+            </em>
         </fieldset>
     </form>
 </div>
@@ -23,7 +25,7 @@
     class DropdownItemView extends Backbone.Marionette.Component.ItemView
 
         initialize: ->
-            model = new Backbone.Model(gender: 'm')
+            model = new Backbone.Model(fruit: '2')
             collection = new Backbone.Collection [
               value: '1', text: 'Orange'
             ,
@@ -39,7 +41,7 @@
 <h3 class="page-subline">Markup</h3>
 <pre>
 <code class="language-markup">
-    &lt;input component-id=&quot;radioButtonGender&quot; type=&quot;radio&quot; name=&quot;gender&quot;&gt;
+    &lt;select component-id=&quot;fruitChoice&quot; name=&quot;fruitChoices&quot;&gt;
 </code>
 </pre>
 <!-- @formatter:on -->

@@ -1,11 +1,13 @@
 define [
   'lib/component/ItemView'
+  'lib/component/markup/Label'
   'lib/component/form/RadioButton'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/RadioButtonItemViewTemplate'
 ], (
   ItemView
+  Label
   RadioButton
   CodeHighlightBehavior
   MaterializeBehavior
@@ -31,3 +33,4 @@ define [
       ])
 
       @add(new RadioButton('radioButtonGender', 'gender', model, collection))
+      @add(new Label('labelGender', 'gender', model, collection))

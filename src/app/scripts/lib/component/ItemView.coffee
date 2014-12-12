@@ -1,14 +1,14 @@
 define [
-  'lib/component/Component'
-  'lib/component/generics/Map'
+  'lib/component/utils/ComponentStore'
+  'lib/component/adapter/rivets'
 ], (
-  Component
-  Map
+  ComponentStore
+  rivets
 ) ->
   'use strict'
 
   ## Backbone.Marionette.Component.ItemView
-  ## ------------------------------------------
+  ## --------------------------------------
 
   ## Description
   ##
@@ -17,34 +17,20 @@ define [
   class ItemView extends Backbone.Marionette.ItemView
 
     constructor: () ->
-      @_components = new Map
+      @_componentStore = new ComponentStore
       super
 
-    ###
-      Adds a child component to this view
-    ###
     add: (components...) ->
+      @_componentStore.add.apply @_componentStore, components
+
       for component in components
-
-        unless component instanceof Component
-          throw new Error "#{component.constructor.name} has to be an instance of Component"
-
-        if @_components.has component.getComponentId()
-          throw new Error "#{component.getComponentId()} has already been added"
-
         component.setViewInstance @
 
-        @_components.put component.getComponentId(), component
-
     contains: (component) ->
-      @_components.has component.getComponentId()
-
-    ###
-      Binding the model data to the view instance
-    ###
+      @_componentStore.contains component
 
     removeComponent: (component) ->
-      @_components.remove component.getComponentId()
+      @_componentStore.remove component
 
     ###
       Binding the model data to the view instance
@@ -52,27 +38,27 @@ define [
     onRender: ->
       data = {}
 
-      @_components.each (component) ->
+      @_componentStore.each (component) ->
         component.onBeforeRender()
 
-      @_components.each (component) ->
+      @_componentStore.each (component) ->
         data = _.extend data, component.getModelData()
 
       @rivetsView = rivets.bind @$el, data
 
-      @_components.each (component) ->
+      @_componentStore.each (component) ->
         component.onAfterRender()
 
     ###
       Unbind rivetsView when component is closed
     ###
     onClose: () ->
-      @_components.each (component) ->
+      @_componentStore.each (component) ->
         component.onBeforeClose()
 
       @rivetsView.unbind() if @rivetsView
 
-      @_components.each (component) ->
+      @_componentStore.each (component) ->
         component.onAfterClose()
 
   Backbone.Marionette.Component or= {}

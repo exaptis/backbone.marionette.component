@@ -15,4 +15,5 @@ define ->
     'spec/lib/component/generics/MapSpec'
     'spec/lib/component/adapter/RivetsSpec'
     'spec/lib/component/utils/InstanceCounterSpec'
+    'spec/lib/component/utils/ComponentStoreSpec'
   ]

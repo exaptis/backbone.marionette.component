@@ -23,7 +23,7 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instantce of Label', ->
+    it 'should be an instance of Label', ->
       label = new Label COMPONENT_ID, COMPONENT_VALUE
 
       expect(label).to.be.an.instanceof Label

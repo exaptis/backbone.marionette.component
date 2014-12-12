@@ -26,7 +26,7 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instantce of TextArea', ->
+    it 'should be an instance of TextArea', ->
       expect(@textArea).to.be.an.instanceof TextArea
       expect(@textArea).to.be.an.instanceof Component
       expect(@textArea.constructor.name).to.be.equal 'TextArea'

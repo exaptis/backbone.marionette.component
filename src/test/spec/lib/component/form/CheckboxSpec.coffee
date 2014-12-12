@@ -29,7 +29,7 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instantce of Checkbox', ->
+    it 'should be an instance of Checkbox', ->
       expect(@checkbox).to.be.an.instanceof Checkbox
       expect(@checkbox).to.be.an.instanceof Component
       expect(@checkbox.constructor.name).to.be.equal 'Checkbox'

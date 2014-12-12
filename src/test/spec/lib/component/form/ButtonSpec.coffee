@@ -30,7 +30,7 @@ define [
       jQuery.fn.on.restore()
       jQuery.fn.off.restore()
 
-    it 'should be an instantce of Button', ->
+    it 'should be an instance of Button', ->
       expect(@button).to.be.an.instanceof Button
       expect(@button).to.be.an.instanceof Component
       expect(@button.constructor.name).to.be.equal 'Button'

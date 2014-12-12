@@ -26,7 +26,7 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instantce of TextField', ->
+    it 'should be an instance of TextField', ->
       expect(@textField).to.be.an.instanceof TextField
       expect(@textField).to.be.an.instanceof Component
       expect(@textField.constructor.name).to.be.equal 'TextField'

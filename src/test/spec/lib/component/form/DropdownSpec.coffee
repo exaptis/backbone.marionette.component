@@ -43,7 +43,7 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instantce of DropDown', ->
+    it 'should be an instance of DropDown', ->
       expect(@select).to.be.an.instanceof DropDown
       expect(@select).to.be.an.instanceof Component
       expect(@select.constructor.name).to.be.equal 'Dropdown'

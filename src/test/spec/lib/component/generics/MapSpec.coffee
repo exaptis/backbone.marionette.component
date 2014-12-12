@@ -13,7 +13,7 @@ define [
     beforeEach ->
       TEST_MAP = new Map
 
-    it 'should be an instantce of Map', ->
+    it 'should be an instance of Map', ->
       expect(TEST_MAP).to.be.an.instanceof Map
       expect(TEST_MAP.constructor.name).to.be.equal 'Map'
 

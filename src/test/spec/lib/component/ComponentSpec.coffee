@@ -10,7 +10,7 @@ define [
         $: jQuery
         $el: $('<div>')
 
-    it 'should be an instantce of Component', ->
+    it 'should be an instance of Component', ->
       expect(@component).to.be.an.instanceof Component
       expect(@component.constructor.name).to.be.equal 'Component'
 
@@ -19,13 +19,13 @@ define [
 
     it 'should set and get componentId', ->
       #given
-      newComponentid = "newComponentid"
+      newComponentId = "newComponentId"
 
       #when
-      @component.setComponentId(newComponentid)
+      @component.setComponentId(newComponentId)
 
       #then
-      expect(@component.getComponentId()).to.be.equal(newComponentid)
+      expect(@component.getComponentId()).to.be.equal(newComponentId)
 
     it 'should set and get viewInstance', ->
       #when

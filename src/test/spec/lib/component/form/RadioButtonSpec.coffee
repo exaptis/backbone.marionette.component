@@ -43,7 +43,7 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instantce of RadioButton', ->
+    it 'should be an instance of RadioButton', ->
       expect(@radioButton).to.be.an.instanceof RadioButton
       expect(@radioButton).to.be.an.instanceof Component
       expect(@radioButton.constructor.name).to.be.equal 'RadioButton'

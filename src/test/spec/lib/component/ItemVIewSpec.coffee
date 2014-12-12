@@ -11,8 +11,8 @@ define [
     beforeEach ->
       @itemView = new ItemView
 
-    it 'should be an instantce of Component', ->
-      expect(@itemView).to.be.an.instanceof ItemView
+    it 'should be an instance of Component', ->
+      expect(@itemView).to.be.an.instanceof Backbone.Marionette.ItemView
       expect(@itemView.constructor.name).to.be.equal 'ItemView'
 
     it 'should add one component to the view', ->

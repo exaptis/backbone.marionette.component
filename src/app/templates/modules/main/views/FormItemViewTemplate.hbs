@@ -1,0 +1,163 @@
+<h2 class="page-headline">TextField Component</h2>
+<p>
+    The TextField Component can be used to ...
+</p>
+<br/>
+
+<div class="well">
+    <div class="row">
+        <div class="col-sm-7">
+            <form class="form-horizontal" role="form">
+                <fieldset>
+                    <legend>Person Data</legend>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="name" class="col-sm-2 control-label">Name</label>
+
+                        <div class="col-sm-10">
+                            <input component-id="nameComponent" id="name" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="email" class="col-sm-2 control-label">E-Mail</label>
+
+                        <div class="col-sm-10">
+                            <div class="form-control-wrapper ">
+                                <input component-id="emailComponent" id="email" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <label class="col-sm-2 control-label">Gender</label>
+
+                        <div class="col-sm-10">
+                            <div class="radio radio-material-purple">
+                                <input component-id="genderComponent" type="radio" name="genders">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="salutation" class="col-sm-2 control-label">Salutation</label>
+
+                        <div class="col-sm-10">
+                                <select component-id="salutationComponent" id="salutation" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <label class="col-sm-2 control-label">Newsletter</label>
+
+                        <div class="col-sm-10">
+                            <div class="checkbox checkbox-material-purple">
+                                <label>
+                                    <input component-id="newsletterComponent" type="checkbox" value="subscribe">
+                                    Subscribe
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="description" class="col-sm-2 control-label">Description</label>
+
+                        <div class="col-sm-10">
+                            <textarea component-id="descriptionComponent" id="description" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-default btn-raised" component-id="buttonComponent">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>
+        <div class="col-sm-5">
+            <div class="legend">Model Data</div>
+           <!-- @formatter:off -->
+            <pre><code id="formOutput">Submit the form to see results</code></pre>
+            <!-- @formatter:on -->
+
+        </div>
+    </div>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class FormItemView extends Backbone.Marionette.Component.ItemView
+
+        ui:
+            formOutput: '#formOutput'
+
+        initialize: ->
+            # Initialize person model
+            @personModel = new Backbone.Model
+                name: 'David'
+                email: 'david@gmail.com'
+                gender: 'm'
+                salutation: 'mr'
+                newsletter: true
+                description: ''
+
+            # Initialize gender collection
+            genderCollection = new Backbone.Collection [
+                value: 'm', text: 'Male'
+                ,
+                value: 'f', text: 'Female'
+                ]
+
+            # Initialize salutation collection
+            salutationCollection = new Backbone.Collection [
+                value: 'mr', text: 'Mr.'
+                ,
+                value: 'mrs', text: 'Mrs.'
+                ]
+
+            # Create form and add components
+            form = new Form('form')
+
+            form.add new TextField 'nameComponent', 'name', @personModel
+            form.add new TextField 'emailComponent', 'email', @personModel
+            form.add new RadioButton 'genderComponent', 'gender', @personModel, genderCollection
+            form.add new Dropdown 'salutationComponent', 'salutation', @personModel, salutationCollection
+            form.add new Checkbox 'newsletterComponent', 'newsletter', @personModel
+            form.add new TextArea 'descriptionComponent', 'description', @personModel
+            form.add new Button 'buttonComponent', @onButtonClick
+
+            @add form
+
+        onButtonClick: (e) ->
+            e.preventDefault()
+            @ui.formOutput.text JSON.stringify @personModel.toJSON(), null, 4
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;input component-id=&quot;nameComponent&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;
+
+    &lt;input component-id=&quot;emailComponent&quot; id=&quot;email&quot; type=&quot;text&quot; &gt;
+
+    &lt;input component-id=&quot;genderComponent&quot; id=&quot;gender&quot; type=&quot;radio&quot; name=&quot;genders&quot;&gt;
+
+    &lt;select component-id=&quot;salutationComponent&quot; id=&quot;salutation&quot; /&gt;
+
+    &lt;input component-id=&quot;newsletterComponent&quot; id=&quot;newsletter&quot; type=&quot;checkbox&quot; value=&quot;subscribe&quot;&gt; Subscribe
+
+    &lt;textarea component-id=&quot;descriptionComponent&quot; id=&quot;description&quot;&gt;&lt;/textarea&gt;
+
+    &lt;button component-id=&quot;buttonComponent&quot;&gt; Submit &lt;/button&gt;
+</code>
+</pre>
+<!-- @formatter:on -->

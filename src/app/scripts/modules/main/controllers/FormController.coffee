@@ -5,6 +5,7 @@ define [
   'modules/main/views/CheckboxItemView'
   'modules/main/views/DropdownItemView'
   'modules/main/views/ButtonItemView'
+  'modules/main/views/FormItemView'
 ], (
   TextAreaItemView
   TextFieldItemView
@@ -12,6 +13,7 @@ define [
   CheckboxItemView
   DropdownItemView
   ButtonItemView
+  FormItemView
 ) ->
   'use strict'
 
@@ -36,5 +38,8 @@ define [
 
     showButtonComponent: ->
       @app.contentRegion.show new ButtonItemView
+
+    showFormComponent: ->
+      @app.contentRegion.show new FormItemView
 
 

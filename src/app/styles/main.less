@@ -1,10 +1,11 @@
 //noinspection CssUnknownTarget
 @import '../bower_components/bootstrap/less/bootstrap';
-@import '../bower_components/bootstrap-material-design/less/material';
+@import '../bower_components/bootstrap-material-design/less/ripples';
+@import '../bower_components/bootstrap-material-design/less/material-wfont';
 
 body {
     background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
     margin-bottom: 2em;
 }
@@ -24,20 +25,24 @@ body {
     padding: 0.2em 0;
 }
 
-legend {
+legend, .legend {
     margin-bottom: 10px;
     font-size: 12px;
     font-weight: 700;
     color: #959595;
     text-transform: uppercase;
     letter-spacing: 1px;
-    content: "Example";
 }
 
-code[class*="language"] {
-    overflow: hidden;
+
+pre[class*="language-"] {
+    border-left-color: #9c27b0;
 }
 
-em {
-    font-size: 0.8em;
+.selectize-control.single {
+    .selectize-input::after,
+    .selectize-input.input-active::after {
+        font-size: 20px;
+        line-height: 30px;
+    }
 }

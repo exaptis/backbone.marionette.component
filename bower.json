@@ -35,7 +35,7 @@
     "sightglass": "~0.2.3",
     "underscore": "1.4.4 - 1.7.0",
     "bootstrap": "~3.3.1",
-    "bootstrap-material-design": "~0.1.5",
+    "bootstrap-material-design": "~0.2.1",
     "prismjs": "*"
   },
   "devDependencies": {
@@ -48,6 +48,7 @@
     "sinon": "http://sinonjs.org/releases/sinon-1.12.0.js",
     "blanket": "~1.1.5",
     "underscore.string": "~2.4.0",
-    "fontawesome": "~4.2.0"
+    "fontawesome": "~4.2.0",
+    "selectize": "~0.11.2"
   }
 }

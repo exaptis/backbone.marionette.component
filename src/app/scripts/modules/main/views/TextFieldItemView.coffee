@@ -3,12 +3,14 @@ define [
   'lib/component/markup/Label'
   'lib/component/form/TextField'
   'modules/main/behavior/CodeHighlightBehavior'
+  'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/TextFieldItemViewTemplate'
 ], (
   ItemView
   Label
   TextField
   CodeHighlightBehavior
+  MaterializeBehavior
   TextFieldItemViewTemplate
 ) ->
   'use strict'
@@ -20,6 +22,8 @@ define [
     behaviors:
       codeHighlight:
         behaviorClass: CodeHighlightBehavior
+      materialize:
+        behaviorClass: MaterializeBehavior
 
     initialize: ->
       model = new Backbone.Model(name: 'David')

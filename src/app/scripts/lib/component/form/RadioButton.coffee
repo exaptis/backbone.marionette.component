@@ -27,10 +27,6 @@ define [
     onBeforeRender: () ->
       ITEM_NAME = 'radio'
 
-      repeatingElement = $('<div>')
-      repeatingElement.attr('class', 'radio')
-      repeatingElement.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}.models")
-
       labelNode = $('<label>')
 
       optionNode = @getDomNodes()
@@ -38,12 +34,17 @@ define [
       optionNode.attr('rv-value', "#{ITEM_NAME}:value")
       optionNode.attr('rv-checked', "model#{@cid}:#{@property}")
 
+      repeatingElement = $('<div>')
+      repeatingElement.attr('class', optionNode.parent().attr('class'))
+      repeatingElement.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}.models")
+
+      optionNode.parent().attr('class','')
+
       textNode = $('<div>')
       textNode.attr('rv-text', "#{ITEM_NAME}:text")
 
       optionNode.wrap(labelNode)
       optionNode.parent().wrap(repeatingElement)
-
 
       textNode.insertAfter(optionNode)
 

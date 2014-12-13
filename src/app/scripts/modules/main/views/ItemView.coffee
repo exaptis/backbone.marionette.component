@@ -3,12 +3,14 @@ define [
   'lib/component/markup/Label'
   'lib/component/form/TextField'
   'modules/main/behavior/CodeHighlightBehavior'
+  'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/ItemViewTemplate'
 ], (
   ItemView
   Label
   TextField
   CodeHighlightBehavior
+  MaterializeBehavior
   ItemViewTemplate
 ) ->
   'use strict'
@@ -28,6 +30,7 @@ define [
     behaviors:
       codeHighlight:
         behaviorClass: CodeHighlightBehavior
+
 
     ui:
       content: '#content'

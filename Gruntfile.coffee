@@ -93,11 +93,12 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-      less:
+      styles:
         files: ["<%= dirs.srcApp %>/styles/{,**/}*.less"]
         tasks: [
           "newer:copy:dev"
           "less:dev"
+          "autoprefixer:dev"
         ]
         options:
           livereload: true
@@ -140,6 +141,12 @@ module.exports = (grunt) ->
           cwd: "node_modules"
           dest: "<%= dirs.buildApp %>/node_modules"
           src: ["grunt-blanket-mocha/**"]
+        ,
+          expand: true
+          dot: true
+          cwd: "bower_components/bootstrap-material-design/fonts"
+          dest: "<%= dirs.buildApp %>/fonts"
+          src: ["**"]
         ]
 
       test:
@@ -243,18 +250,25 @@ module.exports = (grunt) ->
           logLevel: 0
     less:
       dev:
-        options:
-          paths: ["<%= dirs.buildApp %>/styles"]
-
         files:
           "<%= dirs.buildApp %>/styles/main.css": "<%= dirs.buildApp %>/styles/main.less"
 
       dist:
-        options:
-          paths: ["<%= dirs.buildApp %>/styles"]
-
         files:
-          "<%= dirs.buildApp %>/styles/main.css": "<%= dirs.buildApp %>/styles/main.less"
+          "<%= dirs.dist %>/styles/main.css": "<%= dirs.dist %>/styles/main.less"
+
+    autoprefixer:
+      options:
+        map: true
+        browsers: ["last 3 versions", "ie 8", "ie 9", "ie 10", "ie 11"]
+
+      dev:
+        files:
+          "<%= dirs.buildApp %>/styles/main.css": "<%= dirs.buildApp %>/styles/main.css"
+
+      dist:
+        files:
+          "<%= dirs.dist %>/styles/main.css": "<%= dirs.dist %>/styles/main.css"
 
     htmlmin:
       dist:
@@ -408,6 +422,7 @@ module.exports = (grunt) ->
     "copy:dev"
     "copy:test"
     "less:dev"
+    "autoprefixer:dev"
     "coffee:dev"
     "coffee:initjsforintellij"
     "coffee:test"
@@ -430,6 +445,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask "dist", [
     "less:dist"
+    "autoprefixer:dist"
     "useminPrepare"
     "requirejs"
     "copy:dist"

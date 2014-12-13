@@ -3,12 +3,14 @@ define [
   'lib/component/markup/Label'
   'lib/component/form/Button'
   'modules/main/behavior/CodeHighlightBehavior'
+  'modules/main/behavior/MaterializeBehavior'
   'hbs!/templates/modules/main/views/ButtonItemViewTemplate'
 ], (
   ItemView
   Label
   Button
   CodeHighlightBehavior
+  MaterializeBehavior
   ButtonItemViewTemplate
 ) ->
   'use strict'
@@ -20,6 +22,9 @@ define [
     behaviors:
       codeHighlight:
         behaviorClass: CodeHighlightBehavior
+      materialize:
+        behaviorClass: MaterializeBehavior
+
 
     initialize: ->
       @model = new Backbone.Model(counter: 0)

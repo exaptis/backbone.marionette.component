@@ -16,12 +16,10 @@ require.config
       exports: "Prism"
 
     'prism-coffeescript':
-      deps: [
-        'prism'
-      ]
+      deps: [ 'prism' ]
 
     ripples:
-      deps: ['jquery']
+      deps: ['jquery', 'material']
 
     material:
       deps: ['jquery']
@@ -41,6 +39,7 @@ require.config
     sightglass: '../bower_components/sightglass/index'
     prism: '../bower_components/prismjs/prism'
     'prism-coffeescript': '../bower_components/prismjs/components/prism-coffeescript'
+    selectize: '../bower_components/selectize/dist/js/standalone/selectize'
     templates: '../templates'
     handlebars: '../bower_components/require-handlebars-plugin/Handlebars'
     json2: '../bower_components/require-handlebars-plugin/hbs/json2'

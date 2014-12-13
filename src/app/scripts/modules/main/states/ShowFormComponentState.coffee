@@ -1,7 +1,7 @@
 define [
   'State'
   'modules/main/controllers/FormController'
-  'ApplicationState'
+  './ApplicationState'
   'underscore.string'
 ], (State, FormController, ApplicationState)->
   new class ShowFormComponent extends State

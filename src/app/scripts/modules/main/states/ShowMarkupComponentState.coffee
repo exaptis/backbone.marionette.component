@@ -1,7 +1,7 @@
 define [
   'State'
   'modules/main/controllers/MarkupController'
-  'ApplicationState'
+  './ApplicationState'
   'underscore.string'
 ], (State, MarkupController, ApplicationState)->
   new class ShowMarkupComponent extends State

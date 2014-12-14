@@ -4,7 +4,7 @@ define [
   'lib/component/form/TextArea'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/TextAreaItemViewTemplate'
+  'hbs!templates/modules/main/views/TextAreaItemViewTemplate'
 ], (
   ItemView
   Label

@@ -4,7 +4,7 @@ define [
   'lib/component/form/Checkbox'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/CheckboxItemViewTemplate'
+  'hbs!templates/modules/main/views/CheckboxItemViewTemplate'
 ], (
   ItemView
   Label

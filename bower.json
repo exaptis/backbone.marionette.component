@@ -49,6 +49,7 @@
     "blanket": "~1.1.5",
     "underscore.string": "~2.4.0",
     "fontawesome": "~4.2.0",
-    "selectize": "~0.11.2"
+    "selectize": "~0.11.2",
+    "almond": "~0.3.0"
   }
 }

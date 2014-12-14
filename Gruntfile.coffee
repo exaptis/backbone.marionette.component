@@ -75,26 +75,16 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-      coffeeInitJsForIntelliJ:
-        files: ["<%= dirs.srcApp %>/scripts/init.coffee"]
-        tasks: ["newer:coffee:initjsforintellij"]
-        options:
-          livereload: true
-
       coffeeTest:
         files: ["<%= dirs.srcTest %>/{,**/}*.coffee"]
         tasks: ["newer:coffee:test"]
         options:
           livereload: true
 
-      coffeeServer:
-        files: ["<%= dirs.srcServer %>/{,**/}*.coffee"]
-        tasks: ["newer:coffee:server"]
-        options:
-          livereload: true
-
       styles:
-        files: ["<%= dirs.srcApp %>/styles/{,**/}*.less"]
+        files: [
+          "<%= dirs.srcApp %>/styles/{,**/}*.less"
+        ]
         tasks: [
           "newer:copy:dev"
           "less:dev"
@@ -108,10 +98,6 @@ module.exports = (grunt) ->
           "<%= dirs.buildTest %>/{,**/}*.js"
         ]
         tasks: ["exec:mocha"]
-
-      dist:
-        files: ["<%= dirs.dist %>"]
-
 
   # copying all kind of files - no processing
     copy:
@@ -168,11 +154,32 @@ module.exports = (grunt) ->
             "*.{ico,txt}"
             "scripts/appConf.js"
             ".htaccess"
+            "styles/**"
             "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
           ]
+        ,
+          expand: true
+          dot: true
+          cwd: "bower_components/almond"
+          dest: "<%= dirs.dist %>/scripts"
+          src: ['almond.js']
+        ,
+          expand: true
+          dot: true
+          cwd: "bower_components/bootstrap-material-design/fonts"
+          dest: "<%= dirs.dist %>/fonts"
+          src: ['**']
+        ,
+          expand: true
+          dot: true
+          cwd: "bower_components/prismjs"
+          dest: "<%= dirs.dist %>/styles"
+          src: ['prism-coy.css']
         ]
+
     coffee:
       options:
+        bare: true
         sourceMap: true
 
       dev:
@@ -181,15 +188,6 @@ module.exports = (grunt) ->
           cwd: "<%= dirs.srcApp %>/scripts"
           src: ["**/*.coffee"]
           dest: "<%= dirs.buildApp %>/scripts"
-          ext: ".js"
-        ]
-
-      initjsforintellij:
-        files: [
-          expand: true
-          cwd: "<%= dirs.srcApp %>/scripts"
-          src: ["init.coffee"]
-          dest: "<%= dirs.srcApp %>/scripts/"
           ext: ".js"
         ]
 
@@ -211,26 +209,38 @@ module.exports = (grunt) ->
           ext: ".js"
         ]
 
+      initjsforintellij:
+        files: [
+          expand: true
+          cwd: "<%= dirs.srcApp %>/scripts"
+          src: ["init.coffee"]
+          dest: "<%= dirs.srcApp %>/scripts/"
+          ext: ".js"
+        ]
+
     coffeelint:
       options:
         max_line_length:
           value: 180
 
-      dev: ["<%= dirs.srcApp %>/scripts/**/*.coffee"]
-      test: ["<%= dirs.srcTest %>/**/*.coffee"]
-      server: ["<%= dirs.srcServer %>/**/*.coffee"]
-
+      dev: [
+        "<%= dirs.srcApp %>/scripts/**/*.coffee"
+      ]
+      test: [
+        "<%= dirs.srcTest %>/**/*.coffee"
+      ]
+      server: [
+        "<%= dirs.srcServer %>/**/*.coffee"
+      ]
 
     requirejs:
       dist:
         options:
           baseUrl: "<%= dirs.buildApp %>/scripts"
           mainConfigFile: "<%= dirs.buildApp %>/scripts/init.js"
-          paths:
-            templates: "templates"
-
           wrapShim: true
-          optimize: "uglify"
+#          optimize: "uglify"
+          optimize: "none"
           useStrict: true
           pragmasOnSave:
             excludeHbsParser: true
@@ -239,23 +249,29 @@ module.exports = (grunt) ->
 
           findNestedDependencies: true
           removeCombined: false
-          include: ["../bower_components/requirejs/require"]
+          include: [
+            "../bower_components/requirejs/require"
+          ]
           out: "<%= dirs.dist %>/scripts/main.js"
           wrap: true
-          preserveLicenseComments: false
-          onBuildRead: (moduleName, path, contents) ->
-            # remove all console logs
-            contents.replace(/console\.log\((.*)\);?/g, "")
-
+          preserveLicenseComments: true
           logLevel: 0
     less:
       dev:
-        files:
+        options:
+          paths: ["<%= dirs.buildApp %>/styles"]
+
+        files: [
           "<%= dirs.buildApp %>/styles/main.css": "<%= dirs.buildApp %>/styles/main.less"
+        ]
 
       dist:
-        files:
-          "<%= dirs.dist %>/styles/main.css": "<%= dirs.dist %>/styles/main.less"
+        options:
+          paths: ["<%= dirs.buildApp %>/styles"]
+
+        files: [
+          "<%= dirs.dist %>/styles/main.css": "<%= dirs.buildApp %>/styles/main.less"
+        ]
 
     autoprefixer:
       options:
@@ -269,36 +285,6 @@ module.exports = (grunt) ->
       dist:
         files:
           "<%= dirs.dist %>/styles/main.css": "<%= dirs.dist %>/styles/main.css"
-
-    htmlmin:
-      dist:
-        options: {}
-        files: [
-          expand: true
-          cwd: "<%= dirs.srcApp %>"
-          src: "*.html"
-          dest: "<%= dirs.dist %>"
-        ]
-
-    cssmin:
-      dist:
-        options:
-          keepSpecialComments: "0"
-
-        files:
-          "<%= dirs.dist %>/styles/main.css": ["<%= dirs.buildApp %>/styles/{,*/}*.css"]
-
-    useminPrepare:
-      html: "<%= dirs.srcApp %>/index.html"
-      options:
-        staging: "<%= dirs.build %>/staging"
-        dest: "<%= dirs.dist %>"
-
-    usemin:
-      html: ["<%= dirs.dist %>/{,*/}*.html"]
-      css: ["<%= dirs.dist %>/styles/{,*/}*.css"]
-      options:
-        dirs: ["<%= dirs.dist %>"]
 
 
     express:
@@ -341,47 +327,6 @@ module.exports = (grunt) ->
       dist:
         path: "http://localhost:<%= ports.dist %>"
 
-
-  # linting
-    jshint:
-      options:
-        jshintrc: ".jshintrc"
-        reporter: require("jshint-stylish")
-
-      all: [
-        "Gruntfile.js"
-        "<%= dirs.srcApp %>/scripts/{,*/}*.js"
-        "test/spec/{,*/}*.js"
-      ]
-
-
-  # preprocess
-    csslint:
-      options:
-        csslintrc: ".csslintrc"
-        formatters: [
-          {
-            id: "junit-xml"
-            dest: "report/csslint_junit.xml"
-          }
-          {
-            id: "csslint-xml"
-            dest: "report/csslint.xml"
-          }
-        ]
-
-      strict:
-        options:
-          import: 2
-
-        src: ["<%= dirs.buildApp %>/styles/main.css"]
-
-      lax:
-        options:
-          import: false
-
-        src: ["<%= dirs.buildApp %>/styles/main.css"]
-
     preprocess:
       dist:
         options:
@@ -406,75 +351,58 @@ module.exports = (grunt) ->
         run: false
 
 
-  # starts express server with live testing via testserver
-  grunt.registerTask "default", ->
-    grunt.option "force", true
-    grunt.task.run [
-      "clean"
-      "compile"
-      "express:dev"
-      "test:dev"
-      "open:dev"
-      "watch"
+    grunt.registerTask 'default', ->
+      grunt.option 'force', true
+      grunt.task.run [
+        'clean'
+        'compile'
+        'express:dev'
+        'express:test'
+        'blanket_mocha'
+        'open:dev'
+        'watch'
+      ]
+
+    grunt.registerTask 'compile', [
+      'copy:dev'
+      'copy:test'
+      'less:dev'
+      'autoprefixer:dev'
+      'coffee:dev'
+      'coffee:initjsforintellij'
+      'coffee:test'
+      'coffee:server'
+      'coffeelint:dev'
+      'coffeelint:server'
+      'preprocess:dev'
     ]
 
-  grunt.registerTask "compile", [
-    "copy:dev"
-    "copy:test"
-    "less:dev"
-    "autoprefixer:dev"
-    "coffee:dev"
-    "coffee:initjsforintellij"
-    "coffee:test"
-    "coffee:server"
-    "coffeelint:dev"
-    "coffeelint:server"
-    "preprocess:dev"
-  ]
+    grunt.registerTask 'dist', [
+      'copy:dist'
+      'less:dist'
+      'autoprefixer:dist'
+      'requirejs'
+      'preprocess:dist'
+    ]
 
-  grunt.registerTask "test:dev", [
-    "express:test"
-    "blanket_mocha"
-  ]
+    grunt.registerTask 'run:dev', [
+      'express:dev'
+      'open:dev'
+      'watch'
+    ]
 
-  grunt.registerTask "test:dist", [
-    "express:test"
-    "blanket_mocha"
-    "express:dist"
-  ]
+    grunt.registerTask 'run:dist', [
+      'express:dist'
+      'open:dist'
+      'watch:dist'
+    ]
 
-  grunt.registerTask "dist", [
-    "less:dist"
-    "autoprefixer:dist"
-    "useminPrepare"
-    "requirejs"
-    "copy:dist"
-    "htmlmin"
-    "concat"
-    "cssmin"
-    "replace:dist"
-    "preprocess:dist"
-    "usemin"
-    "uglify:generated"
-  ]
-
-  grunt.registerTask "run:dev", [
-    "express:dev"
-    "open:dev"
-    "watch"
-  ]
-
-  grunt.registerTask "run:dist", [
-    "express:dist"
-    "open:dist"
-    "watch:dist"
-  ]
-
-  grunt.registerTask "build", [
-    # no clean inside build tasks! this task is meant to be used from gradle and gradle will execute clean separately
-    "compile"
-    "dist"
-    "test:dist"
-  ]
+    grunt.registerTask 'build', [
+      'clean'
+      'compile'
+      'dist'
+      'express:test'
+      'blanket_mocha'
+    ]
 
   return

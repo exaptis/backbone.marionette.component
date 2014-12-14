@@ -3,7 +3,7 @@ define [
   'lib/component/markup/Label'
   'lib/component/form/TextField'
   'modules/main/behavior/CodeHighlightBehavior'
-  'hbs!/templates/modules/main/views/CompositeItemViewTemplate'
+  'hbs!templates/modules/main/views/CompositeItemViewTemplate'
 ], (
   ItemView
   Label

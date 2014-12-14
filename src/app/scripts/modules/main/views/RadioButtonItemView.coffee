@@ -4,7 +4,7 @@ define [
   'lib/component/form/RadioButton'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/RadioButtonItemViewTemplate'
+  'hbs!templates/modules/main/views/RadioButtonItemViewTemplate'
 ], (
   ItemView
   Label

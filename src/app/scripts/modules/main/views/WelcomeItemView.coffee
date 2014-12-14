@@ -1,6 +1,6 @@
 define [
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/WelcomeItemViewTemplate'
+  'hbs!templates/modules/main/views/WelcomeItemViewTemplate'
 ], (
   MaterializeBehavior
   WelcomeItemViewTemplate

@@ -4,7 +4,7 @@ define [
   'lib/component/form/Dropdown'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/DropdownItemViewTemplate'
+  'hbs!templates/modules/main/views/DropdownItemViewTemplate'
 ], (
   ItemView
   Label

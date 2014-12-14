@@ -15,7 +15,13 @@
     <meta name="viewport" content="width=device-width">
     <link href='//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- @if BUILD=false -->
     <link rel="stylesheet" href="../bower_components/prismjs/prism-coy.css">
+    <!-- @endif -->
+    <!-- @if BUILD=true -->
+    <link rel="stylesheet" href="styles/prism-coy.css">
+    <!-- @endif -->
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
@@ -140,15 +146,21 @@
 </div>
 
 
-
 <a href="https://github.com/exaptis/backbone.marionette.component">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
-         src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+         src="http://mediacrush.net/W/W2syMxU_7KUK.png"
          alt="Fork me on GitHub"
          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
 </a>
 
-<script src="../bower_components/requirejs/require.js" data-main="../scripts/init"></script>
+<!-- @if BUILD=false -->
+<script data-main="../scripts/init" src="../bower_components/requirejs/require.js"></script>
+<!-- @endif -->
+
+<!-- @if BUILD=true -->
+<script src="scripts/almond.js"></script>
+<script src="scripts/main.js"></script>
+<!-- @endif -->
 
 <!-- @if BUILD=false -->
 <script>

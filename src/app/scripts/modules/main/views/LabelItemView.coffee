@@ -2,7 +2,7 @@ define [
   'lib/component/markup/Label'
   'lib/component/ItemView'
   'modules/main/behavior/CodeHighlightBehavior'
-  'hbs!/templates/modules/main/views/LabelItemViewTemplate'
+  'hbs!templates/modules/main/views/LabelItemViewTemplate'
 ], (
   Label
   ItemView

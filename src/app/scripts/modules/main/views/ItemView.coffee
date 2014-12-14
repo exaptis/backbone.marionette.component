@@ -4,7 +4,7 @@ define [
   'lib/component/form/TextField'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/ItemViewTemplate'
+  'hbs!templates/modules/main/views/ItemViewTemplate'
 ], (
   ItemView
   Label

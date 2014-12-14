@@ -10,7 +10,7 @@ define [
   'lib/component/form/Button'
   'modules/main/behavior/CodeHighlightBehavior'
   'modules/main/behavior/MaterializeBehavior'
-  'hbs!/templates/modules/main/views/FormItemViewTemplate'
+  'hbs!templates/modules/main/views/FormItemViewTemplate'
 ], (
   ItemView
   Label

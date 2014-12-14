@@ -1,6 +1,7 @@
 require [
   'Application'
   'modules/main/MainModule'
+  'bootstrap'
 ], (Application, MainModule) ->
   'use strict'
 

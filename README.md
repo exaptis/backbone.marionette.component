@@ -1,6 +1,6 @@
 <h1 align="center">Backbone.Marionette.Component</h1>
 <p align="center">
-  <img title="backbone marionette" src='https://cdn.mediacru.sh/6sNqngKFuqft.svg' />
+  <img title="backbone marionette" src='http://mediacrush.net/skm1LxaunCbv.svg' />
 </p>
 <p align="center">The WebCompononent Extension</p>
 

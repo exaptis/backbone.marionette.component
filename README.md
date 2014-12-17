@@ -9,7 +9,7 @@
 Backbone.Marionette.Component is an extension for Marionette.js that
 aims at simplifying the application of reusabele view components.
 
-It comes with a collection of common view components. Its functionality is influenced by the great [Apache Wicket Framework](https://wicket.apache.org/).
+It comes with a collection of common view components. Its functionality is inspired by the great [Apache Wicket Framework](https://wicket.apache.org/).
 
 ## Documentation
 

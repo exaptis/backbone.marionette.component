@@ -17,4 +17,8 @@ define ->
     'spec/lib/component/adapter/RivetsSpec'
     'spec/lib/component/utils/InstanceCounterSpec'
     'spec/lib/component/utils/ComponentStoreSpec'
+    'spec/lib/component/validation/ValidationErrorSpec'
+    'spec/lib/component/validation/validator/BaseValidatorSpec'
+    'spec/lib/component/validation/validator/EmailAddressValidatorSpec'
+    'spec/lib/component/validation/validator/StringValidatorSpec'
   ]

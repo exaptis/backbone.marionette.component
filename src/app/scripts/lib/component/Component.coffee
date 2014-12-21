@@ -30,18 +30,21 @@ define [
 
     setComponentId: (@componentId) ->
 
-    getComponentId: () ->
-      @componentId
+    getComponentId: () -> @componentId
 
     setModel: (@model) ->
 
-    getModel: () ->
-      @model
+    getModel: () -> @model
+
+    setProperty: (@property) ->
+
+    getProperty: () -> @property
+
+    getValue: () -> @model.get @property
 
     setViewInstance: (@viewInstance) ->
 
-    getViewInstance: () ->
-      @viewInstance
+    getViewInstance: () -> @viewInstance
 
     ###
       Retrieve dom node from viewInstance

@@ -11,8 +11,8 @@ define [
         $el: $('<div>')
 
     it 'should be an instance of Component', ->
-      expect(@component).to.be.an.instanceof Component
-      expect(@component.constructor.name).to.be.equal 'Component'
+      @component.should.be.an.instanceof Component
+      @component.constructor.name.should.be.equal 'Component'
 
     it 'should throw an error if no Id is provided', ->
       expect(-> new Component()).to.throw(Error)
@@ -22,27 +22,48 @@ define [
       newComponentId = "newComponentId"
 
       #when
-      @component.setComponentId(newComponentId)
+      @component.setComponentId newComponentId
 
       #then
-      expect(@component.getComponentId()).to.be.equal(newComponentId)
+      @component.getComponentId().should.be.equal newComponentId
 
     it 'should set and get viewInstance', ->
       #when
-      @component.setViewInstance(@viewInstance)
+      @component.setViewInstance @viewInstance
 
       #then
-      expect(@component.getViewInstance()).to.be.equal(@viewInstance)
+      @component.getViewInstance().should.be.equal @viewInstance
 
     it 'should set and get model', ->
       #given
       model = new Backbone.Model()
 
       #when
-      @component.setModel(model)
+      @component.setModel model
 
       #then
-      expect(@component.getModel()).to.be.equal(model)
+      @component.getModel().should.be.equal model
+
+    it 'should set and get property', ->
+      #given
+      PROPERTY = 'PROPERTY'
+
+      #when
+      @component.setProperty PROPERTY
+
+      #then
+      @component.getProperty().should.be.equal PROPERTY
+
+    it 'should return component value', ->
+      #given
+      model = new Backbone.Model key: 'value'
+
+      #when
+      @component.setModel model
+      @component.setProperty 'key'
+
+      #then
+      @component.getValue().should.be.equal 'value'
 
     it 'should increase bindingId per instance', ->
       #given
@@ -50,11 +71,11 @@ define [
       component2 = new Component 'componentId2'
 
       #when
-      counter1 = parseInt(component1.cid.slice -1) + 1
-      counter2 = parseInt(component2.cid.slice -1)
+      counter1 = parseInt component1.cid.slice 1
+      counter2 = parseInt component2.cid.slice 1
 
       #then
-      expect(counter1).to.be.equal counter2
+      counter1.should.be.equal counter2 - 1
 
     it 'should return cid:model object for binding', ->
       #given
@@ -66,7 +87,7 @@ define [
       @component.setModel model
 
       #then
-      expect(@component.getModelData()).to.be.eql expectedModelData
+      @component.getModelData().should.be.eql expectedModelData
 
 
     it 'should throw an error if the element can not be found inside the view', ->
@@ -79,7 +100,7 @@ define [
         @component.getDomNode()
 
       #then
-      expect(getMissingDomNode).to.throw errorMessage
+      getMissingDomNode.should.throw errorMessage
 
 
 

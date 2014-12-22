@@ -1,7 +1,9 @@
 define [
   'lib/component/validation/validator/EmailAddressValidator'
+  'mocks/component/MockedComponent'
 ], (
   EmailAddressValidator
+  MockedComponent
 ) ->
   'use strict'
 
@@ -13,48 +15,54 @@ define [
     beforeEach ->
       @validator = new EmailAddressValidator()
 
-    it 'should match valid email address', ->
-      #given
-      regex = new RegExp @validator.pattern, @validator.mode
+    describe 'regular expression', ->
 
-      #when
-      result = regex.test VALID_EMAIL_ADDRESS
+      it 'should match valid email address', ->
+        #given
+        regex = new RegExp @validator.pattern, @validator.mode
 
-      #then
-      result.should.be.true
+        #when
+        result = regex.test VALID_EMAIL_ADDRESS
 
-    it 'should match invalid email address', ->
-      #given
-      regex = new RegExp @validator.pattern, @validator.mode
+        #then
+        result.should.be.true
 
-      #when
-      result = regex.test INVALID_EMAIL_ADDRESS
+      it 'should match invalid email address', ->
+        #given
+        regex = new RegExp @validator.pattern, @validator.mode
 
-      #then
-      result.should.be.false
+        #when
+        result = regex.test INVALID_EMAIL_ADDRESS
 
-    it 'should call addError on invalid email address', ->
-      #given
-      @component =
-        getValue: -> INVALID_EMAIL_ADDRESS
-        addError: new sinon.spy
+        #then
+        result.should.be.false
 
-      #when
-      @validator.validate @component
+    describe 'validation', ->
 
-      #then
-      @component.addError.should.have.been.calledOnce
-      @component.addError.args[0][0].get('pattern').should.be.equal @validator.pattern
+      beforeEach ->
+        @component = new MockedComponent 'MockedComponent1'
+
+      afterEach ->
+        @component.getValue.restore()
+
+      it 'should call add on invalid email address', ->
+        #given
+        sinon.stub @component, 'getValue', -> INVALID_EMAIL_ADDRESS
+
+        #when
+        @validator.validate @component
+
+        #then
+        @component.add.should.have.been.calledOnce
+        @component.add.args[0][0].get('pattern').should.be.equal @validator.pattern
 
 
-    it 'should not call addError on valid email address', ->
-      #given
-      @component =
-        getValue: -> VALID_EMAIL_ADDRESS
-        addError: new sinon.spy
+      it 'should not call add on valid email address', ->
+        #given
+        sinon.stub @component, 'getValue', -> VALID_EMAIL_ADDRESS
 
-      #when
-      @validator.validate @component
+        #when
+        @validator.validate @component
 
-      #then
-      @component.addError.should.have.been.calledNever
+        #then
+        @component.add.should.have.been.calledNever

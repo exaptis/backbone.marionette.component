@@ -9,18 +9,23 @@ define [
 
   class StringValidator extends BaseValidator
 
+    NAME: 'StringValidator'
+
     constructor: (@minimum = null, @maximum = null) ->
 
     validate: (component) ->
       value = component.getValue()
 
       if (@minimum and @minimum > value) or (@maximum and @maximum < value)
-        error = new ValidationError @
+        options =
+          validatorName: @NAME
+          componentId: component.getComponentId()
 
-        error.set 'minimum', @minimum unless @minimum
-        error.set 'maximum', @maximum unless @maximum
+        error = new ValidationError null, options
+        error.set 'minimum', @minimum if @minimum
+        error.set 'maximum', @maximum if @maximum
 
-        component.addError error
+        component.add error
 
     onComponentTag: (component, tag) ->
       tag.attr 'minlength', @minimum unless tag.attr 'minlength'

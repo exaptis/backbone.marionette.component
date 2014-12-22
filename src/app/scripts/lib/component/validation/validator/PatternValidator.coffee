@@ -9,6 +9,8 @@ define [
 
   class PatternValidator extends BaseValidator
 
+    NAME: 'PatternValidator'
+
     constructor: (@pattern, @mode = 'ig') ->
 
     validate: (component) ->
@@ -17,5 +19,11 @@ define [
       regex = new RegExp @pattern, @mode
 
       unless (regex.test value)
-        error = new ValidationError pattern: @pattern
-        component.addError error
+        options =
+          validatorName: @NAME
+          componentId: component.getComponentId()
+
+        error = new ValidationError null, options
+        error.set 'pattern', @pattern
+
+        component.add error

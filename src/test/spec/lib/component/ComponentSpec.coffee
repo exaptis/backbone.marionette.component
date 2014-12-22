@@ -1,6 +1,10 @@
 define [
   'lib/component/Component'
-], (Component) ->
+  'mocks/component/validation/validator/MockedBaseValidator'
+], (
+  Component
+  MockedBaseValidator
+) ->
   'use strict'
 
   describe 'Component', ->
@@ -54,6 +58,16 @@ define [
       #then
       @component.getProperty().should.be.equal PROPERTY
 
+    it 'should set and get parent component', ->
+      #given
+      PARENT = 'PARENT'
+
+      #when
+      @component.setParent PARENT
+
+      #then
+      @component.getParent().should.be.equal PARENT
+
     it 'should return component value', ->
       #given
       model = new Backbone.Model key: 'value'
@@ -101,6 +115,24 @@ define [
 
       #then
       getMissingDomNode.should.throw errorMessage
+
+    describe 'validation', ->
+
+      beforeEach ->
+        @successfulValidator = MockedBaseValidator::successfulValidator()
+        @unsuccessfulValidator = MockedBaseValidator::unsuccessfulValidator()
+
+      it 'should validate all validators', ->
+        #given
+        @component.add @successfulValidator, @unsuccessfulValidator
+
+        #when
+        @component.validate()
+
+        #then
+        @successfulValidator.validate.should.have.been.calledOnce
+#        @unsuccessfulValidator.validate.should.have.been.calledOnce
+
 
 
 

@@ -24,7 +24,7 @@ define [
 
       super @componentId
 
-    onBeforeRender: () ->
+    render: () ->
       ITEM_NAME = 'radio'
 
       labelNode = $('<label>')

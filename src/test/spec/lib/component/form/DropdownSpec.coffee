@@ -57,18 +57,18 @@ define [
     it 'should throw an error if getDomNode is called', ->
       expect(=> @select.getDomNode()).to.throw ERROR_MESSAGE_UNSUPPORTED_METHOD
 
-    it 'should call onBeforeRender and getDomNodes when rendered', ->
+    it 'should call render and getDomNodes when rendered', ->
       #given
       @view.add @select
 
-      sinon.spy @select, 'onBeforeRender'
+      sinon.spy @select, 'render'
       sinon.spy @select, 'getDomNodes'
 
       #when
       @view.render()
 
       #then
-      @select.onBeforeRender.should.have.been.calledOnce
+      @select.render.should.have.been.calledOnce
       @select.getDomNodes.should.have.been.calledOnce
 
     it 'should render the options from the collection', ->

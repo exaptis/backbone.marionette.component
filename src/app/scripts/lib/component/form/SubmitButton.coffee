@@ -12,15 +12,14 @@ define [
   ##
   ##
 
-  class Button extends Component
+  class SubmitButton extends Component
 
-    constructor: (@componentId, @callback) ->
-      unless @callback
-        throw new Error "no callback specified"
-
+    constructor: (@componentId) ->
       super @componentId
 
     render: () ->
+      tag = @getDomNode()
+      @getDomNode().attr 'type', 'submit'
       @getDomNode().on 'click', (event) =>
         @callback.call(@viewInstance, event)
 

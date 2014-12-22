@@ -70,12 +70,10 @@ define [
     it 'should call {methods} on every component', ->
       #given
       methods = [
-        'onBeforeAdded'
-        'onAfterAdded'
-        'onBeforeRender'
-        'onAfterRender'
-        'onBeforeClose'
-        'onAfterClose'
+        'render'
+        'close'
+        'destroy'
+        'validate'
         'setViewInstance'
       ]
 
@@ -91,4 +89,34 @@ define [
       #then
       for method in methods
         expect(@component[method]).to.be.calledOnce
-#
+
+    describe 'form submit', ->
+
+      beforeEach ->
+        @form.onSubmit = new sinon.spy
+        @form.onError = new sinon.spy
+
+      afterEach ->
+        delete @form.onSubmit
+        delete @form.onError
+
+      it 'should call onSubmit after successful validation', ->
+        #given
+
+        #when
+
+        #then
+        @form.onSubmit.should.have.been.calledOnce
+        @form.onError.should.have.been.calledNever
+
+
+      it 'should call onError after unsuccessful validation', ->
+        #given
+
+        #when
+
+        #then
+        @form.onError.should.have.been.calledOnce
+        @form.onSubmit.should.have.been.calledNever
+
+

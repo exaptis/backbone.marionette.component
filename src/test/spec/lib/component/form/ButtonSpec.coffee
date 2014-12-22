@@ -40,14 +40,14 @@ define [
 
     it 'should register click callback on before render', ->
       #when
-      @button.onBeforeRender()
+      @button.render()
 
       #then
       jQuery.fn.on.should.have.been.calledOnce
 
     it 'should unregister click callback on before close', ->
       #when
-      @button.onBeforeClose()
+      @button.close()
 
       #then
       jQuery.fn.off.should.have.been.calledOnce

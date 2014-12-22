@@ -21,7 +21,7 @@ define [
 
       super @componentId, @model
 
-    onBeforeRender: () ->
+    render: () ->
       domNode = @getDomNode()
 
       unless domNode.attr('type')

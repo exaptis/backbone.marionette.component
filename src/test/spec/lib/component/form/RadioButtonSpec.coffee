@@ -57,18 +57,18 @@ define [
     it 'should throw an error if getDomNode is called', ->
       expect(=> @radioButton.getDomNode()).to.throw ERROR_MESSAGE_UNSUPPORTED_METHOD
 
-    it 'should call onBeforeRender and getDomNodes when rendered', ->
+    it 'should call render and getDomNodes when rendered', ->
       #given
       @view.add @radioButton
 
-      sinon.spy @radioButton, 'onBeforeRender'
+      sinon.spy @radioButton, 'render'
       sinon.spy @radioButton, 'getDomNodes'
 
       #when
       @view.render()
 
       #then
-      @radioButton.onBeforeRender.should.have.been.calledOnce
+      @radioButton.render.should.have.been.calledOnce
       @radioButton.getDomNodes.should.have.been.calledOnce
 
     it 'should have no selected radio button', ->

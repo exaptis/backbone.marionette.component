@@ -21,7 +21,7 @@ define [
 
       super @componentId
 
-    onBeforeRender: () ->
+    render: () ->
       domNode = @getDomNode()
       domNode.attr('type', defaultInputType)
       domNode.attr('rv-checked', "#{@cid}:#{@property}")

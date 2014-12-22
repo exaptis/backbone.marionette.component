@@ -1,19 +1,19 @@
 define [
-  'lib/component/ItemView'
+  'mocks/component/MockedItemView'
   'lib/component/Component'
 ], (
-  ItemView
+  MockedItemView
   Component
 ) ->
   'use strict'
 
   describe 'ItemView', ->
     beforeEach ->
-      @itemView = new ItemView
+      @itemView = new MockedItemView
+
 
     it 'should be an instance of Component', ->
       expect(@itemView).to.be.an.instanceof Backbone.Marionette.ItemView
-      expect(@itemView.constructor.name).to.be.equal 'ItemView'
 
     it 'should add one component to the view', ->
       #given
@@ -84,37 +84,35 @@ define [
       @itemView.add component1, component2
 
       #when
-      @itemView.onRender()
+      @itemView.render()
 
       #then
       component1.getModelData.should.have.been.calledOnce
       component2.getModelData.should.have.been.calledOnce
 
-    it 'should call onBeforeRender and onAfterRender on component when render is called', ->
+    it 'should call render on component when render is called', ->
       #given
       component = new Component("componentId")
-      sinon.spy component, 'onBeforeRender'
-      sinon.spy component, 'onAfterRender'
+      sinon.spy component, 'render'
 
       @itemView.add component
 
       #when
-      @itemView.onRender()
+      @itemView.render()
 
       #then
-      component.onBeforeRender.should.have.been.calledOnce;
-      component.onAfterRender.should.have.been.calledOnce;
+      component.render.should.have.been.calledOnce;
 
     it 'should unbind rivetsView on close', ->
       #given
       component = new Component("componentId")
       @itemView.add component
-      @itemView.onRender()
+      @itemView.render()
 
       sinon.spy @itemView.rivetsView, 'unbind'
 
       #when
-      @itemView.onClose()
+      @itemView.close()
 
       #then
       @itemView.rivetsView.unbind.should.have.been.calledOnce;

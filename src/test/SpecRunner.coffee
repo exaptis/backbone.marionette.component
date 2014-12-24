@@ -1,6 +1,7 @@
 require.config
   baseUrl: '../app/scripts'
   deps: [
+    'backbone'
     'backbone.marionette'
   ]
 

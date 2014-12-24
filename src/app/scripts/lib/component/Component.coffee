@@ -1,9 +1,15 @@
 define [
   'lib/component/adapter/rivets'
   'lib/component/utils/InstanceCounter'
+  'lib/component/generics/Map'
+  'lib/component/validation/ValidationError'
+  'lib/component/validation/validator/BaseValidator'
 ], (
   rivets
   InstanceCounter
+  Map
+  ValidationError
+  BaseValidator
 ) ->
   'use strict'
 
@@ -21,6 +27,8 @@ define [
     ###
     compentInstanceCounter = new InstanceCounter
 
+    triggerMethod: Marionette.triggerMethod
+
     constructor: (@componentId) ->
       unless @componentId
         throw new Error "componentId needs to be specified"
@@ -28,23 +36,43 @@ define [
       # Generate unique ID
       @cid = 'c' + compentInstanceCounter.incrementCounter()
 
+      # Validator Store
+      @_validators = []
+
+      # Errors Store
+      @_validationErrors = []
+
+      @parentComponent = null
+
+    # ComponentId
     setComponentId: (@componentId) ->
 
     getComponentId: () -> @componentId
 
+    # Model
     setModel: (@model) ->
 
     getModel: () -> @model
 
+    # Property
     setProperty: (@property) ->
 
     getProperty: () -> @property
 
-    getValue: () -> @model.get @property
-
+    # View Instance
     setViewInstance: (@viewInstance) ->
 
     getViewInstance: () -> @viewInstance
+
+    # Parent
+    setParent: (@parent) ->
+
+    getParent: () -> @parent
+
+    # Component Value
+    getValue: () -> @model.get @property
+
+    getValidationErrors: () -> @_validationErrors
 
     ###
       Retrieve dom node from viewInstance
@@ -66,32 +94,37 @@ define [
       data
 
     ###
-      Called before the component is added
+      Add validators to the component
     ###
-    onBeforeAdded: ->
+    add: (components...) ->
+      for component in components
+        if component instanceof BaseValidator
+          @_validators.push component
+        if component instanceof ValidationError
+          @_validationErrors.push component
+    ###
+      Called when the component is rendered
+    ###
+    render: ->
 
     ###
-      Called after the component is added
+      Called when the component is closed
     ###
-    onAfterAdded: ->
+    close: ->
 
     ###
-      Called before the component is rendered
+      Called when the component is validated
     ###
-    onBeforeRender: ->
+    validate: ->
+      @_validationErrors = []
+
+      for validator in @_validators
+        validator.validate @
 
     ###
-      Called after the component is rendered
+      Called when the component is destroyed
     ###
-    onAfterRender: ->
+    destroy: ->
+      delete @parent if @parent
 
-    ###
-     Called before the component is closed
-    ###
-    onBeforeClose: ->
-
-    ###
-      Called after the component is closed
-    ###
-    onAfterClose: ->
-
+    _.extend Component::, Backbone.Events

@@ -27,7 +27,7 @@ define [
       ITEM_NAME = 'option'
 
       optionNode = $('<option>')
-      optionNode.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}.models")
+      optionNode.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}:models")
       optionNode.attr('rv-value', "#{ITEM_NAME}:value")
       optionNode.attr('rv-text', "#{ITEM_NAME}:text")
 

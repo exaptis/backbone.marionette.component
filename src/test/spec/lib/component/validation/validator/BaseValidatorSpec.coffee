@@ -6,5 +6,6 @@ define [
   'use strict'
 
   describe 'BaseValidator', ->
-
-    it '', ->
+    it 'has validate and onComponentTag function', ->
+      BaseValidator::validate.should.be.a 'function'
+      BaseValidator::onComponentTag.should.be.a 'function'

@@ -3,16 +3,24 @@ define [], () ->
 
   class ValidationError extends Backbone.Model
 
-    initialize: (attributes, options = {}) ->
+    defaults:
+      errorMessage: ''
+
+    initialize: (attributes, options) ->
       { @validatorName, @componentId } = options
 
-    getErrorMessage: () ->
+      @on 'change', =>
+        @set 'errorMessage', @getErrorMessage()
 
+      @trigger 'change'
+
+    getErrorMessage: () ->
       errorKey = []
       errorKey.push @validatorName
       errorKey.push @componentId
 
       for key, value of @attributes
-        errorKey.push key
+        unless key is 'errorMessage'
+          errorKey.push key
 
       errorKey.join '.'

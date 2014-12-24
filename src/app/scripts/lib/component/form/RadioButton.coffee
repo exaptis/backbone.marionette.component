@@ -36,7 +36,7 @@ define [
 
       repeatingElement = $('<div>')
       repeatingElement.attr('class', optionNode.parent().attr('class'))
-      repeatingElement.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}.models")
+      repeatingElement.attr("rv-each-#{ITEM_NAME}", "collection#{@cid}:models")
 
       optionNode.parent().attr('class','')
 

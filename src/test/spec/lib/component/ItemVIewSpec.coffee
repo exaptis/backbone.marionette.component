@@ -8,9 +8,9 @@ define [
   'use strict'
 
   describe 'ItemView', ->
+
     beforeEach ->
       @itemView = new MockedItemView
-
 
     it 'should be an instance of Component', ->
       expect(@itemView).to.be.an.instanceof Backbone.Marionette.ItemView
@@ -101,7 +101,21 @@ define [
       @itemView.render()
 
       #then
-      component.render.should.have.been.calledOnce;
+      component.render.should.have.been.calledOnce
+
+
+    it 'should call destroy on every component', ->
+      #given
+      component = new Component("componentId")
+      @itemView.add component
+
+      sinon.spy component, 'destroy'
+
+      #when
+      @itemView.destroy()
+
+      #then
+      component.destroy.should.have.been.calledOnce
 
     it 'should unbind rivetsView on close', ->
       #given
@@ -115,4 +129,5 @@ define [
       @itemView.close()
 
       #then
-      @itemView.rivetsView.unbind.should.have.been.calledOnce;
+      @itemView.rivetsView.unbind.should.have.been.calledOnce
+

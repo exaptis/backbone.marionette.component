@@ -121,5 +121,15 @@ define [
       #then
       expect(results).to.be.eql [TEST_OBJECT_1, TEST_OBJECT_2]
 
+    it 'should remove an entry from the map', ->
+      #given
+      TEST_MAP.put TEST_ID_1, TEST_OBJECT_1
+
+      #when
+      TEST_MAP.remove TEST_ID_1
+
+      #then
+      expect(TEST_MAP.has(TEST_ID_1)).to.be.false
+
 
 

@@ -33,3 +33,12 @@ define [
 
       #then
       errorMessage.should.be.equal "#{VALIDATOR_NAME}.#{COMPONENT_ID}.#{PROPERTY1}.#{PROPERTY2}"
+
+    it 'should update errorMessage attribute automatically', ->
+      #when
+      @error.set
+        PROPERTY1: PROPERTY1
+        PROPERTY2: PROPERTY2
+
+      #then
+      @error.get('errorMessage').should.be.equal "#{VALIDATOR_NAME}.#{COMPONENT_ID}.#{PROPERTY1}.#{PROPERTY2}"

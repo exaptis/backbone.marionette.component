@@ -23,7 +23,7 @@ define [
           validatorName: @NAME
           componentId: component.getComponentId()
 
-        error = new ValidationError null, options
-        error.set 'pattern', @pattern
+        properties =
+          pattern : @pattern
 
-        component.add error
+        component.add new ValidationError properties, options

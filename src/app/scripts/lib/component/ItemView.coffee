@@ -1,8 +1,10 @@
 define [
   'lib/component/utils/ComponentStore'
+  'lib/component/panel/BasePanel'
   'lib/component/adapter/rivets'
 ], (
   ComponentStore
+  BasePanel
   rivets
 ) ->
   'use strict'
@@ -18,13 +20,20 @@ define [
 
     constructor: () ->
       @_componentStore = new ComponentStore
+      @_feedbackList = new Backbone.Collection
       super
+
+    getFeedbackList: -> @_feedbackList
 
     add: (components...) ->
       @_componentStore.add.apply @_componentStore, components
 
       for component in components
+        component.setParent @
         component.setViewInstance @
+
+        if component instanceof BasePanel
+          component.setFeedbackList @_feedbackList
 
     contains: (component) ->
       @_componentStore.contains component
@@ -35,31 +44,38 @@ define [
     ###
       Binding the model data to the view instance
     ###
-    onRender: ->
+    render: ->
+      super
+
       data = {}
 
       @_componentStore.each (component) ->
-        component.onBeforeRender()
+        component.render()
 
       @_componentStore.each (component) ->
         data = _.extend data, component.getModelData()
 
       @rivetsView = rivets.bind @$el, data
 
-      @_componentStore.each (component) ->
-        component.onAfterRender()
 
     ###
       Unbind rivetsView when component is closed
     ###
-    onClose: () ->
+    close: () ->
       @_componentStore.each (component) ->
-        component.onBeforeClose()
+        component.close()
 
       @rivetsView.unbind() if @rivetsView
 
+    ###
+      Destroy components
+    ###
+    destroy: () ->
       @_componentStore.each (component) ->
-        component.onAfterClose()
+        component.destroy()
+
+      super
+
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.ItemView or= ItemView

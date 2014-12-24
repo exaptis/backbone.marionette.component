@@ -7,5 +7,4 @@ define [
 
   class MockedItemView extends ItemView
     template: false
-    el: '#fixture'
-    $el: $('#fixture')
+    $el: $('<div>')

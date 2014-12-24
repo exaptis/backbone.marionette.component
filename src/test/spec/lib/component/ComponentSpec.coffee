@@ -123,7 +123,7 @@ define [
         @unsuccessfulValidator = MockedBaseValidator::unsuccessfulValidator()
 
       it 'should validate all validators', ->
-        #given
+          #given
         @component.add @successfulValidator, @unsuccessfulValidator
 
         #when
@@ -131,7 +131,20 @@ define [
 
         #then
         @successfulValidator.validate.should.have.been.calledOnce
-#        @unsuccessfulValidator.validate.should.have.been.calledOnce
+        @unsuccessfulValidator.validate.should.have.been.calledOnce
+
+      it 'should clear validationErrors before validation', ->
+        #given
+        @component.add @unsuccessfulValidator
+
+        #when
+        @component.validate()
+        @component.validate()
+        @component.validate()
+
+        #then
+        @unsuccessfulValidator.validate.should.have.been.calledThrice
+        @component.getValidationErrors().length.should.be.equal 1
 
 
 

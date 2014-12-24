@@ -1,10 +1,14 @@
 define [
   'lib/component/Form'
   'lib/component/Component'
+  'lib/component/validation/ValidationError'
+  'mocks/component/MockedItemView'
   'mocks/component/utils/MockedComponentStore'
 ], (
   Form
   Component
+  ValidationError
+  MockedItemView
   MockedComponentStore
 ) ->
   'use strict'
@@ -20,6 +24,18 @@ define [
       @component = new Component("componentId")
       @component.model = new Backbone.Model()
 
+      @targetNode = $("<form>").attr 'component-id', COMPONENT_ID
+
+      @view = new MockedItemView
+      @view.$el.append @targetNode
+      @view.add @form
+
+
+      @feedbackList = @view._feedbackList
+      sinon.spy @feedbackList, 'reset'
+
+    afterEach ->
+      @view.$el.empty()
 
     it 'should be an instance of Component', ->
       expect(@form).to.be.an.instanceof Component
@@ -73,7 +89,6 @@ define [
         'render'
         'close'
         'destroy'
-        'validate'
         'setViewInstance'
       ]
 
@@ -95,27 +110,44 @@ define [
       beforeEach ->
         @form.onSubmit = new sinon.spy
         @form.onError = new sinon.spy
+        @validationError = new ValidationError [],
+          validatorName: 'VALIDATOR_NAME'
+          componentId: 'COMPONENT_ID'
 
       afterEach ->
+        @component.getValidationErrors.restore()
+
         delete @form.onSubmit
         delete @form.onError
 
-      it 'should call onSubmit after successful validation', ->
+      it 'should call submit after successful validation', ->
         #given
+        @form.add @component
+        sinon.stub @component, 'getValidationErrors', -> []
 
         #when
+        @form.process()
 
         #then
+        @feedbackList.length.should.be.equal 0
+        @feedbackList.reset.should.have.been.calledOnce
+
         @form.onSubmit.should.have.been.calledOnce
         @form.onError.should.have.been.calledNever
 
 
-      it 'should call onError after unsuccessful validation', ->
+      it 'should call error after unsuccessful validation', ->
         #given
+        @form.add @component
+        sinon.stub @component, 'getValidationErrors', => [ @validationError ]
 
         #when
+        @form.process()
 
         #then
+        @feedbackList.length.should.be.equal 1
+        @feedbackList.reset.should.have.been.calledOnce
+
         @form.onError.should.have.been.calledOnce
         @form.onSubmit.should.have.been.calledNever
 

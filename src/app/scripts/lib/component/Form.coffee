@@ -18,42 +18,10 @@ define [
 
   class Form extends Component
 
-    constructor: () ->
-      @_componentStore = new ComponentStore
+    constructor: (@componentId, options = {}) ->
       super
-
-    add: (components...) ->
-      @_componentStore.add.apply @_componentStore, components
-
-    contains: (component) ->
-      @_componentStore.contains.call @_componentStore, component
-
-    remove: (component) ->
-      @_componentStore.remove.call @_componentStore, component
-
-    onBeforeAdded: ->
-      @_componentStore.each (component) ->
-        component.onBeforeAdded()
-
-    onAfterAdded: ->
-      @_componentStore.each (component) ->
-        component.onAfterAdded()
-
-    onBeforeRender: ->
-      @_componentStore.each (component) ->
-        component.onBeforeRender()
-
-    onAfterRender: ->
-      @_componentStore.each (component) ->
-        component.onAfterRender()
-
-    onBeforeClose: ->
-      @_componentStore.each (component) ->
-        component.onBeforeClose()
-
-    onAfterClose: ->
-      @_componentStore.each (component) ->
-        component.onAfterClose()
+      { @onSubmit, @onError } = options
+      @_componentStore = new ComponentStore
 
     setViewInstance: (viewInstance) ->
       super
@@ -68,6 +36,50 @@ define [
         data = _.extend data, component.getModelData()
 
       return data
+
+    add: (components...) ->
+      @_componentStore.add.apply @_componentStore, components
+      for component in components then component.setParent @
+
+    contains: (component) ->
+      @_componentStore.contains.call @_componentStore, component
+
+    remove: (component) ->
+      @_componentStore.remove.call @_componentStore, component
+
+    render: ->
+      @_componentStore.each (component) ->
+        component.render()
+
+      form = @getDomNode()
+      form.on 'submit', @process
+
+    close: ->
+      @_componentStore.each (component) ->
+        component.close()
+
+      form = @getDomNode()
+      form.off 'submit'
+
+    destroy: ->
+      @_componentStore.each (component) ->
+        component.destroy()
+
+    ###
+      Validate all nested components
+    ###
+    process: ->
+      feedbackList = @getParent().getFeedbackList()
+      feedbackList.reset()
+
+      @_componentStore.each (component) ->
+        component.validate()
+        feedbackList.add component.getValidationErrors()
+
+      if feedbackList.length
+        @triggerMethod 'error', feedbackList
+      else
+        @triggerMethod 'submit'
 
 
   Backbone.Marionette.Component or= {}

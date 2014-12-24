@@ -1,31 +1,26 @@
 define [
   'lib/component/Component'
+  'lib/component/form/Button'
 ], (
   Component
+  Button
 ) ->
   'use strict'
 
-  ## Backbone.Marionette.Component.Form.Button
+  ## Backbone.Marionette.Component.Form.SubmitButton
   ## ------------------------------------------
 
   ## Description
   ##
   ##
 
-  class SubmitButton extends Component
+  class SubmitButton extends Button
 
     constructor: (@componentId) ->
-      super @componentId
-
-    render: () ->
-      tag = @getDomNode()
-      @getDomNode().attr 'type', 'submit'
-      @getDomNode().on 'click', (event) =>
-        @callback.call(@viewInstance, event)
-
-    close: () ->
-      @getDomNode().off 'click'
-
+      super @componentId, (event) =>
+        event.preventDefault()
+        form = @getParent()
+        form.process()
 
   Backbone.Marionette.Component or= {}
-  Backbone.Marionette.Component.Button or= Button
+  Backbone.Marionette.Component.SubmitButton or= SubmitButton

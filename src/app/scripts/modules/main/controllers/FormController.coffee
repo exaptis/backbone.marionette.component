@@ -6,6 +6,7 @@ define [
   'modules/main/views/DropdownItemView'
   'modules/main/views/ButtonItemView'
   'modules/main/views/FormItemView'
+  'modules/main/views/FormValidationItemView'
 ], (
   TextAreaItemView
   TextFieldItemView
@@ -14,6 +15,7 @@ define [
   DropdownItemView
   ButtonItemView
   FormItemView
+  FormValidationItemView
 ) ->
   'use strict'
 
@@ -41,5 +43,8 @@ define [
 
     showFormComponent: ->
       @app.contentRegion.show new FormItemView
+
+    showFormValidationComponent: ->
+      @app.contentRegion.show new FormValidationItemView
 
 

@@ -53,6 +53,7 @@ define [
 
       textFieldComponent = new TextField 'nameComponent', 'name', @personModel
       textFieldComponent.add new StringValidator::minimumLength 2
+      textFieldComponent.add new StringValidator::maximumLength 5
       @add new FeedbackPanel 'nameFeedbackPanel', textFieldComponent
       form.add textFieldComponent
 

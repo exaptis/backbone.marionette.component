@@ -16,7 +16,7 @@ define [
     validate: (component) ->
       value = component.getValue()
 
-      if (@minimum and @minimum > value) or (@maximum and @maximum < value)
+      if (@minimum and @minimum > value?.length) or (@maximum and @maximum < value?.length)
         options =
           validationName: @validationName
           validatorName: @NAME

@@ -21,9 +21,11 @@ define [
       unless (regex.test value)
         options =
           validatorName: @NAME
+          validationName: 'pattern'
           componentId: component.getComponentId()
 
         properties =
           pattern : @pattern
+          value: value
 
         component.add new ValidationError properties, options

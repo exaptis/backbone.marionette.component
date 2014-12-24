@@ -11,17 +11,18 @@ define [
 
     NAME: 'StringValidator'
 
-    constructor: (@minimum = null, @maximum = null) ->
+    constructor: (@minimum = null, @maximum = null, @validationName) ->
 
     validate: (component) ->
       value = component.getValue()
 
       if (@minimum and @minimum > value) or (@maximum and @maximum < value)
         options =
+          validationName: @validationName
           validatorName: @NAME
           componentId: component.getComponentId()
 
-        error = new ValidationError null, options
+        error = new ValidationError value: value, options
         error.set 'minimum', @minimum if @minimum
         error.set 'maximum', @maximum if @maximum
 
@@ -32,14 +33,14 @@ define [
       tag.attr 'maxlength', @maximum unless tag.attr 'maxlength'
 
     exactLength: (length) ->
-      new StringValidator(length, length)
+      new StringValidator(length, length, 'exactLength')
 
     maximumLength: (length) ->
-      new StringValidator(null, length)
+      new StringValidator(null, length, 'maximumLength')
 
     minimumLength: (length) ->
-      new StringValidator(length, null)
+      new StringValidator(length, null, 'minimumLength')
 
     lengthBetween: (minimum, maximum) ->
-      new StringValidator(minimum, maximum)
+      new StringValidator(minimum, maximum, 'between')
 

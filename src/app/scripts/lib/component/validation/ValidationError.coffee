@@ -1,4 +1,9 @@
-define [], () ->
+define [
+  'i18n'
+  'underscore.string'
+], (
+  i18n
+) ->
   'use strict'
 
   class ValidationError extends Backbone.Model
@@ -7,22 +12,25 @@ define [], () ->
       errorMessage: ''
 
     initialize: (attributes, options) ->
-      { @validatorName, @componentId } = options
+      { @validatorName, @validationName, @componentId } = options
 
-      @on 'change', =>
-        @set 'errorMessage', @getErrorMessage()
+      @on 'change', @updateErrorMessage
 
-      @trigger 'change'
+      do @updateErrorMessage
+
+    updateErrorMessage: ->
+      @set 'errorMessage', i18n.t @getErrorKey(), @getErrorValues(), silent: true
 
     getComponentId: () -> @componentId
 
-    getErrorMessage: () ->
+    getErrorKey: () ->
       errorKey = []
-      errorKey.push @validatorName
       errorKey.push @componentId
+      errorKey.push @validatorName
+      errorKey.push @validationName
 
-      for key, value of @attributes
-        unless key is 'errorMessage'
-          errorKey.push key
-
+      errorKey = _.map errorKey, (name) -> _.string.capitalize name
       errorKey.join '.'
+
+    getErrorValues: () ->
+      _.omit @toJSON(), 'errorMessage'

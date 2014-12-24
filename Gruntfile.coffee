@@ -62,6 +62,7 @@ module.exports = (grunt) ->
 
       static:
         files: [
+          "<%= dirs.srcApp %>/locales/{,**/}*.json"
           "<%= dirs.srcApp %>/templates/{,**/}*.hbs"
           "<%= dirs.srcApp %>/images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
@@ -110,6 +111,7 @@ module.exports = (grunt) ->
           src: [
             "*.html"
             "templates/**"
+            "locales/**"
             "*.{ico,txt}"
             ".htaccess"
             "styles/**"

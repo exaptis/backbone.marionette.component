@@ -1,8 +1,13 @@
 require [
   'Application'
   'modules/main/MainModule'
+  'i18n'
   'bootstrap'
-], (Application, MainModule) ->
+], (
+  Application
+  MainModule
+  i18n
+) ->
   'use strict'
 
   App = new Application
@@ -15,8 +20,8 @@ require [
     .parents 'li:last'
     .addClass 'active'
 
-
-  App.start()
+  i18n.init lng: 'en', ->
+    App.start()
 
   $('.nav').on 'click', 'a', ->
     $ '.nav li'

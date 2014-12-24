@@ -50,6 +50,7 @@ require.config
     handlebars: '../bower_components/require-handlebars-plugin/Handlebars'
     json2: '../bower_components/require-handlebars-plugin/hbs/json2'
     hbs: '../bower_components/require-handlebars-plugin/hbs'
+    i18n: '../bower_components/i18next/i18next.amd'
     spec: '../../test/spec' # lives in the test directory
     mocks: '../../test/scripts/mocks' # lives in the test directory
 

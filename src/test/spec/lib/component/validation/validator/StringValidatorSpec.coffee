@@ -9,8 +9,8 @@ define [
 
   describe 'StringValidator', ->
 
-    MIN_LENGTH = 1
-    MAX_LENGTH = 3
+    MIN_LENGTH = 2
+    MAX_LENGTH = 4
     LONG_INPUT = '12345'
 
     describe 'validation methods', ->
@@ -53,7 +53,7 @@ define [
 
       it 'should validate minimumLength', ->
         #given
-        sinon.stub @component, 'getValue', -> null
+        sinon.stub @component, 'getValue', -> '1'
 
         #when
         validator = StringValidator::minimumLength MIN_LENGTH

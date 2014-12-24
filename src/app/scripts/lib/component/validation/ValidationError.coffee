@@ -14,6 +14,8 @@ define [], () ->
 
       @trigger 'change'
 
+    getComponentId: () -> @componentId
+
     getErrorMessage: () ->
       errorKey = []
       errorKey.push @validatorName

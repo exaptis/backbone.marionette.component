@@ -1,9 +1,11 @@
 define [
   'lib/component/panel/BasePanel'
   'lib/component/validation/validator/BaseValidator'
+  'lib/component/utils/FilteredCollection'
 ], (
   BasePanel
   BaseValidator
+  FilteredCollection
 ) ->
   'use strict'
 
@@ -13,11 +15,13 @@ define [
       super
 
     setFeedbackList: (collection) ->
-#      if @filter
-#        @_feedbackList = new FilteredCollection collection, filter: (validationError) =>
-#          validationError.getComponentId() is @filter
-#      else
-      @_feedbackList = collection
+      if @filter
+        @_feedbackList = new FilteredCollection collection, filter: @componentFilter
+      else
+        @_feedbackList = collection
+
+    componentFilter: (validationError) =>
+      validationError.getComponentId() is @filter.getComponentId()
 
     render: ->
       ITEM_NAME = 'feedback'
@@ -39,4 +43,5 @@ define [
       data
 
     destroy: ->
+      delete @filter
       delete @_feedbackList

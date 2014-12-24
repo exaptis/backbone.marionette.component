@@ -62,8 +62,6 @@ define [
       form.add emailComponent
 
       form.add new SubmitButton 'submitButtonComponent'
-      @add new FeedbackPanel 'formFeedbackPanel'
-
       @add form
 
     onButtonClick: (e) ->

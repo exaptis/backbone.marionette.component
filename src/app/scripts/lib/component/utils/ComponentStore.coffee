@@ -1,23 +1,20 @@
 define [
   'lib/component/Component'
   'lib/component/generics/Map'
-], (
-  Component
-  Map
-) ->
+], () ->
   'use strict'
 
   class ComponentStore
 
     constructor: () ->
-      @_components = new Map
+      @_components = new Backbone.Marionette.Component.Map
 
     ###
       Adds a component to the storage
     ###
     add: (components...) ->
       for component in components
-        unless component instanceof Component
+        unless component instanceof Backbone.Marionette.Component.Component
           throw new Error "#{component.constructor.name} has to be an instance of Component"
 
         if @_components.has component.getComponentId()
@@ -37,3 +34,7 @@ define [
     each: (callback) ->
       @_components.each (component) ->
         callback.call(@, component)
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.ComponentStore or= ComponentStore
+

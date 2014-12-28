@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.Button
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class Button extends Component
+  class Button extends Backbone.Marionette.Component.Component
 
     constructor: (@componentId, @callback) ->
       unless @callback
@@ -26,7 +24,6 @@ define [
 
     close: () ->
       @getDomNode().off 'click'
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.Button or= Button

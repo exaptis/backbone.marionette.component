@@ -13,7 +13,7 @@ define [
     INVALID_EMAIL_ADDRESS = '.david@gmail.com'
 
     beforeEach ->
-      @validator = new EmailAddressValidator()
+      @validator = new Backbone.Marionette.Component.EmailAddressValidator()
 
     describe 'regular expression', ->
 

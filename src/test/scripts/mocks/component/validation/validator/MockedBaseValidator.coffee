@@ -7,15 +7,15 @@ define [
 ) ->
   'use strict'
 
-  class MockedBaseValidator extends BaseValidator
+  class MockedBaseValidator extends Backbone.Marionette.Component.BaseValidator
 
     successfulValidator: ->
-      validator = new BaseValidator
+      validator = new Backbone.Marionette.Component.BaseValidator
       sinon.stub validator, 'validate', -> true
       return validator
 
     unsuccessfulValidator: ->
-      validator = new BaseValidator
+      validator = new Backbone.Marionette.Component.BaseValidator
 
       sinon.stub validator, 'validate', (component) ->
         component.add new ValidationError [],

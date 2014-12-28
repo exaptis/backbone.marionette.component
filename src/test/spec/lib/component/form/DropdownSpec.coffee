@@ -1,15 +1,15 @@
 define [
   'lib/component/Component'
-  'lib/component/form/DropDown'
+  'lib/component/form/Dropdown'
   'mocks/component/MockedItemView'
 ], (
   Component
-  DropDown
+  Dropdown
   MockedItemView
 ) ->
   'use strict'
 
-  describe 'DropDown', ->
+  describe 'Dropdown', ->
     COMPONENT_ID = "COMPONENT_ID"
     COMPONENT_PROPERTY = "COMPONENT_PROPERTY"
 
@@ -24,14 +24,14 @@ define [
     ERROR_MESSAGE_UNSUPPORTED_METHOD = 'Unsupported Method, use getDomNodes() instead.'
 
     beforeEach ->
-      @model = new Backbone.Model(COMPONENT_PROPERTY: null)
+      @model = new Backbone.Model COMPONENT_PROPERTY: null
       @collection = new Backbone.Collection [
         value: VALUE_1, text: TEXT_1
       ,
         value: VALUE_2, text: TEXT_2
       ]
 
-      @select = new DropDown COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
+      @select = new Backbone.Marionette.Component.Dropdown COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
 
       @targetNode = $("<select>").attr
         'component-id': COMPONENT_ID
@@ -43,16 +43,16 @@ define [
     afterEach ->
       @view.$el.empty()
 
-    it 'should be an instance of DropDown', ->
-      expect(@select).to.be.an.instanceof DropDown
-      expect(@select).to.be.an.instanceof Component
+    it 'should be an instance of Dropdown', ->
+      expect(@select).to.be.an.instanceof Backbone.Marionette.Component.Dropdown
+      expect(@select).to.be.an.instanceof Backbone.Marionette.Component.Component
       expect(@select.constructor.name).to.be.equal 'Dropdown'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new DropDown()).to.throw ERROR_MESSAGE_MODEL
+      expect(-> new Backbone.Marionette.Component.Dropdown()).to.throw ERROR_MESSAGE_MODEL
 
     it 'should throw an error if no collection is passed', ->
-      expect(=> new DropDown(COMPONENT_ID, COMPONENT_PROPERTY, @model)).to.throw ERROR_MESSAGE_COLLECTION;
+      expect(=> new Backbone.Marionette.Component.Dropdown(COMPONENT_ID, COMPONENT_PROPERTY, @model)).to.throw ERROR_MESSAGE_COLLECTION;
 
     it 'should throw an error if getDomNode is called', ->
       expect(=> @select.getDomNode()).to.throw ERROR_MESSAGE_UNSUPPORTED_METHOD

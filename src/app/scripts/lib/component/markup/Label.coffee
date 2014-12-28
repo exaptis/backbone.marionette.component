@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Markup.Label
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class Label extends Component
+  class Label extends Backbone.Marionette.Component.Component
 
     constructor: (@componentId, @value, @model) ->
       super @componentId, @model
@@ -22,7 +20,6 @@ define [
         @getDomNode().attr('rv-text', "#{@cid}:#{@value}")
       else
         @getDomNode().text(@value)
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.Label or= Label

@@ -18,8 +18,8 @@ define [
     FORM_COMPONENT_ID = "FORM_COMPONENT_ID"
 
     beforeEach ->
-      @button = new SubmitButton BUTTON_COMPONENT_ID
-      @form = new Form FORM_COMPONENT_ID
+      @button = new Backbone.Marionette.Component.SubmitButton BUTTON_COMPONENT_ID
+      @form = new Backbone.Marionette.Component.Form FORM_COMPONENT_ID
       @form.add @button
 
       @buttonNode = $("<button>").attr 'component-id', BUTTON_COMPONENT_ID

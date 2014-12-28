@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.RadioButton
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class RadioButton extends Component
+  class RadioButton extends Backbone.Marionette.Component.Component
     defaultInputType = 'radio'
 
     constructor: (@componentId, @property, @model, @collection) ->
@@ -58,14 +56,13 @@ define [
       Return the option dom elements
     ###
     getDomNodes: () ->
-      Component::getDomNode.call(@, arguments)
+      Backbone.Marionette.Component.Component::getDomNode.call(@, arguments)
 
     ###
       Unsupported for this component, as more than one dom node can be returned.
     ###
     getDomNode: () ->
       throw new Error 'Unsupported Method, use getDomNodes() instead.'
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.RadioButton or= RadioButton

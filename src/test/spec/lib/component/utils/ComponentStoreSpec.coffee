@@ -9,15 +9,15 @@ define [
 
   describe 'ComponentStore', ->
     beforeEach ->
-      @componentStore = new ComponentStore
+      @componentStore = new Backbone.Marionette.Component.ComponentStore
 
     it 'should be an instance of componentStore', ->
-      expect(@componentStore).to.be.an.instanceof ComponentStore
+      expect(@componentStore).to.be.an.instanceof Backbone.Marionette.Component.ComponentStore
       expect(@componentStore.constructor.name).to.be.equal 'ComponentStore'
 
     it 'should add one component to the view', ->
       #given
-      component = new Component("componentId")
+      component = new Backbone.Marionette.Component.Component("componentId")
 
       #when
       @componentStore.add(component)
@@ -27,8 +27,8 @@ define [
 
     it 'should add multiple components to the view', ->
       #given
-      component1 = new Component("componentId1")
-      component2 = new Component("componentId2")
+      component1 = new Backbone.Marionette.Component.Component("componentId1")
+      component2 = new Backbone.Marionette.Component.Component("componentId2")
 
       #when
       @componentStore.add(component1, component2)
@@ -39,7 +39,7 @@ define [
 
     it 'should remove an component from the view', ->
       #given
-      component = new Component("componentId")
+      component = new Backbone.Marionette.Component.Component("componentId")
       @componentStore.add(component)
 
       #when
@@ -62,7 +62,7 @@ define [
 
     it 'should throw exception if object is already added', ->
       #given
-      component1 = new Component("componentId1")
+      component1 = new Backbone.Marionette.Component.Component("componentId1")
       errorMessage = "#{component1.getComponentId()} has already been added"
 
       #when

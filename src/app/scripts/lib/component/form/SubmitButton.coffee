@@ -1,10 +1,7 @@
 define [
   'lib/component/Component'
   'lib/component/form/Button'
-], (
-  Component
-  Button
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.SubmitButton
@@ -14,7 +11,7 @@ define [
   ##
   ##
 
-  class SubmitButton extends Button
+  class SubmitButton extends Backbone.Marionette.Component.Button
 
     constructor: (@componentId) ->
       super @componentId, (event) =>

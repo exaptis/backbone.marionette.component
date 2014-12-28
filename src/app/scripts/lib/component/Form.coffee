@@ -1,12 +1,7 @@
 define [
   'lib/component/Component'
   'lib/component/utils/ComponentStore'
-  'lib/component/adapter/rivets'
-], (
-  Component
-  ComponentStore
-  rivets
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form
@@ -16,12 +11,12 @@ define [
   ##
   ##
 
-  class Form extends Component
+  class Form extends Backbone.Marionette.Component.Component
 
     constructor: (@componentId, options = {}) ->
       super
       { @onSubmit, @onError } = options
-      @_componentStore = new ComponentStore
+      @_componentStore = new Backbone.Marionette.Component.ComponentStore
 
     setViewInstance: (viewInstance) ->
       super
@@ -80,7 +75,6 @@ define [
         @triggerMethod 'error', feedbackList
       else
         @triggerMethod 'submit'
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.Form or= Form

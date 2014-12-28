@@ -34,3 +34,6 @@ define [
 
     getErrorValues: () ->
       _.omit @toJSON(), 'errorMessage'
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.ValidationError or= ValidationError

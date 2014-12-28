@@ -1,22 +1,17 @@
 define [
   'lib/component/panel/BasePanel'
-  'lib/component/validation/validator/BaseValidator'
   'lib/component/utils/FilteredCollection'
-], (
-  BasePanel
-  BaseValidator
-  FilteredCollection
-) ->
+], () ->
   'use strict'
 
-  class FeedbackPanel extends BasePanel
+  class FeedbackPanel extends Backbone.Marionette.Component.BasePanel
 
     constructor: (@componentId, @filter) ->
       super
 
     setFeedbackList: (collection) ->
       if @filter
-        @_feedbackList = new FilteredCollection collection, filter: @componentFilter
+        @_feedbackList = new Backbone.Marionette.Component.FilteredCollection collection, filter: @componentFilter
       else
         @_feedbackList = collection
 
@@ -45,3 +40,7 @@ define [
     destroy: ->
       delete @filter
       delete @_feedbackList
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.FeedbackPanel or= FeedbackPanel
+

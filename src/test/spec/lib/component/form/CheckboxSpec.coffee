@@ -17,7 +17,7 @@ define [
 
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE_TRUE)
-      @checkbox = new Checkbox COMPONENT_ID, COMPONENT_PROPERTY, @model
+      @checkbox = new Backbone.Marionette.Component.Checkbox COMPONENT_ID, COMPONENT_PROPERTY, @model
 
       @targetNode = $("<input>").attr
         'component-id': COMPONENT_ID
@@ -35,7 +35,7 @@ define [
       expect(@checkbox.constructor.name).to.be.equal 'Checkbox'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new Checkbox()).to.throw(Error);
+      expect(-> new Backbone.Marionette.Component.Checkbox()).to.throw(Error);
 
     it 'should set the checkbox as checked', ->
       #given

@@ -1,8 +1,10 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
-  class BasePanel extends Component
+  class BasePanel extends Backbone.Marionette.Component.Component
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.BasePanel or= BasePanel
+

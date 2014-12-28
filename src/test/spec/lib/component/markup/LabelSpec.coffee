@@ -24,18 +24,18 @@ define [
       @view.$el.empty()
 
     it 'should be an instance of Label', ->
-      label = new Label COMPONENT_ID, COMPONENT_VALUE
+      label = new Backbone.Marionette.Component.Label COMPONENT_ID, COMPONENT_VALUE
 
       expect(label).to.be.an.instanceof Label
       expect(label).to.be.an.instanceof Component
       expect(label.constructor.name).to.be.equal 'Label'
 
     it 'should throw an error if no id is passed', ->
-      expect(-> new Label()).to.throw(Error);
+      expect(-> new Backbone.Marionette.Component.Label()).to.throw(Error);
 
     it 'should set the component value on the dom node', ->
       #given
-      label = new Label COMPONENT_ID, COMPONENT_VALUE
+      label = new Backbone.Marionette.Component.Label COMPONENT_ID, COMPONENT_VALUE
       @view.add label
 
       #when
@@ -49,7 +49,7 @@ define [
     it 'should set the component model-value on the dom node', ->
       #given
       COMPONENT_MODEL = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE)
-      label = new Label COMPONENT_ID, COMPONENT_PROPERTY, COMPONENT_MODEL
+      label = new Backbone.Marionette.Component.Label COMPONENT_ID, COMPONENT_PROPERTY, COMPONENT_MODEL
       @view.add label
 
       #when

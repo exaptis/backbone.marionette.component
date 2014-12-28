@@ -14,7 +14,7 @@ define [
 
     beforeEach ->
       @callbackSpy = sinon.spy()
-      @button = new Button COMPONENT_ID, @callbackSpy
+      @button = new Backbone.Marionette.Component.Button COMPONENT_ID, @callbackSpy
       @targetNode = $("<button>").attr 'component-id', COMPONENT_ID
 
       @view = new MockedItemView
@@ -36,7 +36,7 @@ define [
       expect(@button.constructor.name).to.be.equal 'Button'
 
     it 'should throw an error if no callback is passed', ->
-      expect(-> new Button()).to.throw(Error);
+      expect(-> new Backbone.Marionette.Component.Button()).to.throw(Error);
 
     it 'should register click callback on before render', ->
       #when

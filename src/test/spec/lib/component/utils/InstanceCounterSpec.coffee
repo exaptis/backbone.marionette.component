@@ -5,7 +5,7 @@ define [
 
   describe 'InstanceCounter', ->
     beforeEach ->
-      @instanceCounter = new InstanceCounter
+      @instanceCounter = new Backbone.Marionette.Component.InstanceCounter
 
     it 'should return the current counter', ->
       expect(@instanceCounter.getCounter()).to.be.equal 0

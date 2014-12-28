@@ -16,7 +16,7 @@ define [
     COMPONENT_ID = "COMPONENT_ID"
 
     beforeEach ->
-      @panel = new FeedbackPanel COMPONENT_ID
+      @panel = new Backbone.Marionette.Component.FeedbackPanel COMPONENT_ID
       @panelNode = $('<div>').attr 'component-id', COMPONENT_ID
 
       @collection = new Backbone.Collection [

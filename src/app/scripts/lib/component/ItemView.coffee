@@ -2,11 +2,7 @@ define [
   'lib/component/utils/ComponentStore'
   'lib/component/panel/BasePanel'
   'lib/component/adapter/rivets'
-], (
-  ComponentStore
-  BasePanel
-  rivets
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.ItemView
@@ -19,7 +15,7 @@ define [
   class ItemView extends Backbone.Marionette.ItemView
 
     constructor: () ->
-      @_componentStore = new ComponentStore
+      @_componentStore = new Backbone.Marionette.Component.ComponentStore
       @_feedbackList = new Backbone.Collection
       super
 
@@ -32,7 +28,7 @@ define [
         component.setParent @
         component.setViewInstance @
 
-        if component instanceof BasePanel
+        if component instanceof Backbone.Marionette.Component.BasePanel
           component.setFeedbackList @_feedbackList
 
     contains: (component) ->
@@ -75,7 +71,6 @@ define [
         component.destroy()
 
       super
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.ItemView or= ItemView

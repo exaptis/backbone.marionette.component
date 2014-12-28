@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.Checkbox
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class Checkbox extends Component
+  class Checkbox extends Backbone.Marionette.Component.Component
     defaultInputType = 'checkbox'
 
     constructor: (@componentId, @property, @model) ->
@@ -25,7 +23,6 @@ define [
       domNode = @getDomNode()
       domNode.attr('type', defaultInputType)
       domNode.attr('rv-checked', "#{@cid}:#{@property}")
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.Checkbox or= Checkbox

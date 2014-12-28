@@ -3,10 +3,10 @@
 module.exports = (grunt) ->
 
   # load all grunt tasks
-  require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
+  require('matchdep').filterDev("grunt-*").forEach grunt.loadNpmTasks
 
   # show elapsed time at the end
-  require("time-grunt") grunt
+  require('time-grunt') grunt
 
   # configurable paths
   directoryConfig =
@@ -241,8 +241,7 @@ module.exports = (grunt) ->
           baseUrl: "<%= dirs.buildApp %>/scripts"
           mainConfigFile: "<%= dirs.buildApp %>/scripts/init.js"
           wrapShim: true
-#          optimize: "uglify"
-          optimize: "none"
+          optimize: "uglify2"
           useStrict: true
           pragmasOnSave:
             excludeHbsParser: true
@@ -257,6 +256,28 @@ module.exports = (grunt) ->
           out: "<%= dirs.dist %>/scripts/main.js"
           wrap: true
           preserveLicenseComments: true
+          logLevel: 0
+
+      bundle:
+        options:
+          baseUrl: "<%= dirs.buildApp %>/scripts"
+          include: [ 'lib/bundle' ]
+          exclude: [ 'i18n', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
+          optimize: "none"
+          out: "<%= dirs.dist %>/backbone.marionette.component.js"
+          name: '../bower_components/almond/almond',
+          mainConfigFile: "<%= dirs.buildApp %>/scripts/lib/mainConfig.js"
+          logLevel: 0
+
+      bundleMinify:
+        options:
+          baseUrl: "<%= dirs.buildApp %>/scripts"
+          include: [ 'lib/bundle' ]
+          exclude: [ 'i18n', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
+          optimize: "uglify2"
+          out: "<%= dirs.dist %>/backbone.marionette.component.min.js"
+          name: '../bower_components/almond/almond',
+          mainConfigFile: "<%= dirs.buildApp %>/scripts/lib/mainConfig.js"
           logLevel: 0
     less:
       dev:
@@ -383,8 +404,10 @@ module.exports = (grunt) ->
       'copy:dist'
       'less:dist'
       'autoprefixer:dist'
-      'requirejs'
+      'requirejs:dist'
       'preprocess:dist'
+      'requirejs:bundle'
+      'requirejs:bundleMinify'
     ]
 
     grunt.registerTask 'run:dev', [

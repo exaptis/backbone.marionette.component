@@ -1,16 +1,8 @@
 define [
-  'lib/component/adapter/rivets'
   'lib/component/utils/InstanceCounter'
-  'lib/component/generics/Map'
   'lib/component/validation/ValidationError'
   'lib/component/validation/validator/BaseValidator'
-], (
-  rivets
-  InstanceCounter
-  Map
-  ValidationError
-  BaseValidator
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component
@@ -25,7 +17,7 @@ define [
     ###
      Private instance counter for generating unique ids
     ###
-    compentInstanceCounter = new InstanceCounter
+    compentInstanceCounter = new Backbone.Marionette.Component.InstanceCounter
 
     triggerMethod: Marionette.triggerMethod
 
@@ -98,9 +90,9 @@ define [
     ###
     add: (components...) ->
       for component in components
-        if component instanceof BaseValidator
+        if component instanceof Backbone.Marionette.Component.BaseValidator
           @_validators.push component
-        if component instanceof ValidationError
+        if component instanceof Backbone.Marionette.Component.ValidationError
           @_validationErrors.push component
     ###
       Called when the component is rendered
@@ -128,3 +120,6 @@ define [
       delete @parent if @parent
 
     _.extend Component::, Backbone.Events
+
+  Backbone.Marionette or= {}
+  Backbone.Marionette.Component.Component or= Component

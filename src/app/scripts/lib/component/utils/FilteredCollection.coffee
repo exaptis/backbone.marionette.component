@@ -43,3 +43,6 @@ define [], () ->
         collection.indexOf(model)
       func.induced = true
       func
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.FilteredCollection or= FilteredCollection

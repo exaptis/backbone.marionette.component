@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.Dropdown
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class Dropdown extends Component
+  class Dropdown extends Backbone.Marionette.Component.Component
 
     constructor: (@componentId, @property, @model, @collection) ->
       unless @model
@@ -45,14 +43,13 @@ define [
       Return the option dom elements
     ###
     getDomNodes: () ->
-      Component::getDomNode.call(@, arguments)
+      Backbone.Marionette.Component.Component::getDomNode.call(@, arguments)
 
     ###
       Unsupported for this component, as more than one dom node can be returned.
     ###
     getDomNode: () ->
       throw new Error 'Unsupported Method, use getDomNodes() instead.'
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.Dropdown or= Dropdown

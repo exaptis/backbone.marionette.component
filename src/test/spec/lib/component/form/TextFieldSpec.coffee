@@ -16,7 +16,7 @@ define [
 
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE)
-      @textField = new TextField COMPONENT_ID, COMPONENT_PROPERTY, @model
+      @textField = new Backbone.Marionette.Component.TextField COMPONENT_ID, COMPONENT_PROPERTY, @model
 
       @targetNode = $("<input>").attr 'component-id', COMPONENT_ID
 
@@ -27,12 +27,12 @@ define [
       @view.$el.empty()
 
     it 'should be an instance of TextField', ->
-      expect(@textField).to.be.an.instanceof TextField
-      expect(@textField).to.be.an.instanceof Component
+      expect(@textField).to.be.an.instanceof Backbone.Marionette.Component.TextField
+      expect(@textField).to.be.an.instanceof Backbone.Marionette.Component.Component
       expect(@textField.constructor.name).to.be.equal 'TextField'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new TextField()).to.throw(Error);
+      expect(-> new Backbone.Marionette.Component.TextField()).to.throw(Error);
 
 
     it 'should set the component model-value on the dom node', ->

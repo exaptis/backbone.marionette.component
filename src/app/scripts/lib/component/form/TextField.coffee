@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.TextField
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class TextField extends Component
+  class TextField extends Backbone.Marionette.Component.Component
     defaultInputType = 'text'
 
     constructor: (@componentId, @property, @model) ->
@@ -28,7 +26,6 @@ define [
         domNode.attr('type', @inputType or defaultInputType)
 
       domNode.attr('rv-value', "#{@cid}:#{@property}")
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.TextField or= TextField

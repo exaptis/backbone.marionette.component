@@ -1,13 +1,10 @@
 define [
   'lib/component/validation/validator/BaseValidator'
   'lib/component/validation/ValidationError'
-], (
-  BaseValidator
-  ValidationError
-) ->
+], () ->
   'use strict'
 
-  class PatternValidator extends BaseValidator
+  class PatternValidator extends Backbone.Marionette.Component.BaseValidator
 
     NAME: 'PatternValidator'
 
@@ -28,4 +25,7 @@ define [
           pattern : @pattern
           value: value
 
-        component.add new ValidationError properties, options
+        component.add new Backbone.Marionette.Component.ValidationError properties, options
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.PatternValidator or= PatternValidator

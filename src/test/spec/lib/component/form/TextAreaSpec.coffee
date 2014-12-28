@@ -16,7 +16,7 @@ define [
 
     beforeEach ->
       @model = new Backbone.Model(COMPONENT_PROPERTY: COMPONENT_VALUE)
-      @textArea = new TextArea COMPONENT_ID, COMPONENT_PROPERTY, @model
+      @textArea = new Backbone.Marionette.Component.TextArea COMPONENT_ID, COMPONENT_PROPERTY, @model
 
       @targetNode = $("<input>").attr 'component-id', COMPONENT_ID
 
@@ -32,7 +32,7 @@ define [
       expect(@textArea.constructor.name).to.be.equal 'TextArea'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new TextArea()).to.throw(Error);
+      expect(-> new Backbone.Marionette.Component.TextArea()).to.throw(Error);
 
 
     it 'should set the component model-value on the dom node', ->

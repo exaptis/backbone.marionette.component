@@ -5,6 +5,6 @@ define [
 ) ->
   'use strict'
 
-  class MockedItemView extends ItemView
+  class MockedItemView extends Backbone.Marionette.Component.ItemView
     template: false
     $el: $('<div>')

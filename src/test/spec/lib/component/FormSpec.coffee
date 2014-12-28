@@ -18,10 +18,10 @@ define [
     MODEL_DATA = {foo: 'bar'}
 
     beforeEach ->
-      @form = new Form COMPONENT_ID
+      @form = new Backbone.Marionette.Component.Form COMPONENT_ID
       @store = @form._componentStore = new MockedComponentStore
 
-      @component = new Component("componentId")
+      @component = new Backbone.Marionette.Component.Component("componentId")
       @component.model = new Backbone.Model()
 
       @targetNode = $("<form>").attr 'component-id', COMPONENT_ID
@@ -62,8 +62,8 @@ define [
 
     it 'should add multiple components to the view', ->
       #given
-      component1 = new Component("componentId1")
-      component2 = new Component("componentId2")
+      component1 = new Backbone.Marionette.Component.Component("componentId1")
+      component2 = new Backbone.Marionette.Component.Component("componentId2")
 
       #when
       @form.add(component1, component2)
@@ -110,7 +110,7 @@ define [
       beforeEach ->
         @form.onSubmit = new sinon.spy
         @form.onError = new sinon.spy
-        @validationError = new ValidationError [],
+        @validationError = new Backbone.Marionette.Component.ValidationError [],
           validatorName: 'VALIDATOR_NAME'
           componentId: 'COMPONENT_ID'
 

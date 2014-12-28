@@ -5,7 +5,7 @@ define [
 ) ->
   'use strict'
 
-  class MockedComponentStore extends ComponentStore
+  class MockedComponentStore extends Backbone.Marionette.Component.ComponentStore
 
     constructor: ->
       super

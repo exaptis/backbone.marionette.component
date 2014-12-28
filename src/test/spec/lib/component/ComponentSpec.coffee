@@ -9,17 +9,17 @@ define [
 
   describe 'Component', ->
     beforeEach ->
-      @component = new Component 'componentId'
+      @component = new Backbone.Marionette.Component.Component 'componentId'
       @viewInstance =
         $: jQuery
         $el: $('<div>')
 
     it 'should be an instance of Component', ->
-      @component.should.be.an.instanceof Component
+      @component.should.be.an.instanceof Backbone.Marionette.Component.Component
       @component.constructor.name.should.be.equal 'Component'
 
     it 'should throw an error if no Id is provided', ->
-      expect(-> new Component()).to.throw(Error)
+      expect(-> new Backbone.Marionette.Component.Component()).to.throw(Error)
 
     it 'should set and get componentId', ->
       #given
@@ -81,8 +81,8 @@ define [
 
     it 'should increase bindingId per instance', ->
       #given
-      component1 = new Component 'componentId1'
-      component2 = new Component 'componentId2'
+      component1 = new Backbone.Marionette.Component.Component 'componentId1'
+      component2 = new Backbone.Marionette.Component.Component 'componentId2'
 
       #when
       counter1 = parseInt component1.cid.slice 1

@@ -32,4 +32,5 @@ define [], () ->
       args.unshift @_entries
       _[method].apply(_, args)
 
-  return Map
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.Map or= Map

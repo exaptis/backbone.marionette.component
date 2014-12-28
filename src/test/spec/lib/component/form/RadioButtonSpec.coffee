@@ -30,7 +30,7 @@ define [
       , value: VALUE_2, text: TEXT_2
       ]
 
-      @radioButton = new RadioButton COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
+      @radioButton = new Backbone.Marionette.Component.RadioButton COMPONENT_ID, COMPONENT_PROPERTY, @model, @collection
 
       @targetNode = $("<input>").attr
         'component-id': COMPONENT_ID
@@ -44,15 +44,15 @@ define [
       @view.$el.empty()
 
     it 'should be an instance of RadioButton', ->
-      expect(@radioButton).to.be.an.instanceof RadioButton
-      expect(@radioButton).to.be.an.instanceof Component
+      expect(@radioButton).to.be.an.instanceof Backbone.Marionette.Component.RadioButton
+      expect(@radioButton).to.be.an.instanceof Backbone.Marionette.Component.Component
       expect(@radioButton.constructor.name).to.be.equal 'RadioButton'
 
     it 'should throw an error if no id and no model is passed', ->
-      expect(-> new RadioButton()).to.throw ERROR_MESSAGE_MODEL
+      expect(-> new Backbone.Marionette.Component.RadioButton()).to.throw ERROR_MESSAGE_MODEL
 
     it 'should throw an error if no collection is passed', ->
-      expect(=> new RadioButton(COMPONENT_ID, COMPONENT_PROPERTY, @model)).to.throw ERROR_MESSAGE_COLLECTION;
+      expect(=> new Backbone.Marionette.Component.RadioButton(COMPONENT_ID, COMPONENT_PROPERTY, @model)).to.throw ERROR_MESSAGE_COLLECTION;
 
     it 'should throw an error if getDomNode is called', ->
       expect(=> @radioButton.getDomNode()).to.throw ERROR_MESSAGE_UNSUPPORTED_METHOD

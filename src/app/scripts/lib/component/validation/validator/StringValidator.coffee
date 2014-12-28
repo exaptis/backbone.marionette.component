@@ -1,13 +1,10 @@
 define [
   'lib/component/validation/validator/BaseValidator'
   'lib/component/validation/ValidationError'
-], (
-  BaseValidator
-  ValidationError
-) ->
+], () ->
   'use strict'
 
-  class StringValidator extends BaseValidator
+  class StringValidator extends Backbone.Marionette.Component.BaseValidator
 
     NAME: 'StringValidator'
 
@@ -22,7 +19,7 @@ define [
           validatorName: @NAME
           componentId: component.getComponentId()
 
-        error = new ValidationError value: value, options
+        error = new Backbone.Marionette.Component.ValidationError value: value, options
         error.set 'minimum', @minimum if @minimum
         error.set 'maximum', @maximum if @maximum
 
@@ -33,14 +30,16 @@ define [
       tag.attr 'maxlength', @maximum unless tag.attr 'maxlength'
 
     exactLength: (length) ->
-      new StringValidator(length, length, 'exactLength')
+      new Backbone.Marionette.Component.StringValidator(length, length, 'exactLength')
 
     maximumLength: (length) ->
-      new StringValidator(null, length, 'maximumLength')
+      new Backbone.Marionette.Component.StringValidator(null, length, 'maximumLength')
 
     minimumLength: (length) ->
-      new StringValidator(length, null, 'minimumLength')
+      new Backbone.Marionette.Component.StringValidator(length, null, 'minimumLength')
 
     lengthBetween: (minimum, maximum) ->
-      new StringValidator(minimum, maximum, 'between')
+      new Backbone.Marionette.Component.StringValidator(minimum, maximum, 'between')
 
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.StringValidator or= StringValidator

@@ -1,8 +1,6 @@
 define [
   'lib/component/Component'
-], (
-  Component
-) ->
+], () ->
   'use strict'
 
   ## Backbone.Marionette.Component.Form.TextArea
@@ -12,7 +10,7 @@ define [
   ##
   ##
 
-  class TextArea extends Component
+  class TextArea extends Backbone.Marionette.Component.Component
     constructor: (@componentId, @property, @model) ->
       unless @model
         throw new Error "model needs to be specified"
@@ -22,7 +20,6 @@ define [
     render: () ->
       domNode = @getDomNode()
       domNode.attr('rv-value', "#{@cid}:#{@property}")
-
 
   Backbone.Marionette.Component or= {}
   Backbone.Marionette.Component.TextArea or= TextArea

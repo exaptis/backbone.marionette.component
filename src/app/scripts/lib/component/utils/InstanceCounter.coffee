@@ -17,3 +17,6 @@ define [], () ->
 
       @incrementCounter = ->
         ++counter
+
+  Backbone.Marionette.Component or= {}
+  Backbone.Marionette.Component.InstanceCounter or= InstanceCounter

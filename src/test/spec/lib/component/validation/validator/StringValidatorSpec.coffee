@@ -26,7 +26,7 @@ define [
         sinon.stub @component, 'getValue', -> LONG_INPUT
 
         #when
-        validator = StringValidator::exactLength MIN_LENGTH
+        validator = Backbone.Marionette.Component.StringValidator::exactLength MIN_LENGTH
         validator.validate @component
 
         #then
@@ -41,7 +41,7 @@ define [
         sinon.stub @component, 'getValue', -> LONG_INPUT
 
         #when
-        validator = StringValidator::maximumLength MAX_LENGTH
+        validator = Backbone.Marionette.Component.StringValidator::maximumLength MAX_LENGTH
         validator.validate @component
 
         #then
@@ -56,7 +56,7 @@ define [
         sinon.stub @component, 'getValue', -> '1'
 
         #when
-        validator = StringValidator::minimumLength MIN_LENGTH
+        validator = Backbone.Marionette.Component.StringValidator::minimumLength MIN_LENGTH
         validator.validate @component
 
         #then
@@ -71,7 +71,7 @@ define [
         sinon.stub @component, 'getValue', -> LONG_INPUT
 
         #when
-        validator = StringValidator::lengthBetween MIN_LENGTH, MAX_LENGTH
+        validator = Backbone.Marionette.Component.StringValidator::lengthBetween MIN_LENGTH, MAX_LENGTH
         validator.validate @component
 
         #then
@@ -87,7 +87,7 @@ define [
       $tag = $('<input>')
 
       #when
-      validator = new StringValidator MIN_LENGTH, MAX_LENGTH
+      validator = new Backbone.Marionette.Component.StringValidator MIN_LENGTH, MAX_LENGTH
       validator.onComponentTag null, $tag
 
       #then

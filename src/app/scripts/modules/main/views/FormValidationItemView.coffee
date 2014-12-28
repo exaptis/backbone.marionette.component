@@ -41,29 +41,36 @@ define [
     initialize: ->
       # Initialize person model
       @personModel = new Backbone.Model
-        name: 'David'
-        email: 'david@gmail.com'
+        name: 'A too long name'
+        email: 'david-???@gmail.com'
 
       # Create form and add components
       form = new Form 'formComponent',
         onSubmit: =>
           @ui.formOutput.text JSON.stringify @personModel.toJSON(), null, 4
-        onError: ->
-          console.log 'error'
+        onError: =>
+          @ui.formOutput.text 'Invalid Input'
 
+      # Create text component and add validators
       textFieldComponent = new TextField 'nameComponent', 'name', @personModel
       textFieldComponent.add new StringValidator::minimumLength 2
       textFieldComponent.add new StringValidator::maximumLength 5
-      @add new FeedbackPanel 'nameFeedbackPanel', textFieldComponent
-      form.add textFieldComponent
 
+      # Create email component and add validators
       emailComponent = new TextField 'emailComponent', 'email', @personModel
       emailComponent.add new EmailAddressValidator
-      @add new FeedbackPanel 'emailFeedbackPanel', emailComponent
-      form.add emailComponent
 
+      # Add all components to the form
+      form.add emailComponent
+      form.add textFieldComponent
       form.add new SubmitButton 'submitButtonComponent'
+
+      # Add components to the page
       @add form
+
+      # Add feedback panels for form validation to the page
+      @add new FeedbackPanel 'nameFeedbackPanel', textFieldComponent
+      @add new FeedbackPanel 'emailFeedbackPanel', emailComponent
 
     onButtonClick: (e) ->
       e.preventDefault()

@@ -1,6 +1,6 @@
-<h2 class="page-headline">TextField Component</h2>
+<h2 class="page-headline">Form Component with validation</h2>
 <p>
-    The TextField Component can be used to ...
+    The Form component can be used with validations
 </p>
 <br/>
 
@@ -70,39 +70,37 @@
         initialize: ->
             # Initialize person model
             @personModel = new Backbone.Model
-                name: 'David'
-                email: 'david@gmail.com'
-                gender: 'm'
-                salutation: 'mr'
-                newsletter: true
-                description: ''
+                name: 'A too long name'
+                email: 'david-???@gmail.com'
 
-            # Initialize gender collection
-            genderCollection = new Backbone.Collection [
-                value: 'm', text: 'Male'
-                ,
-                value: 'f', text: 'Female'
-                ]
-
-            # Initialize salutation collection
-            salutationCollection = new Backbone.Collection [
-                value: 'mr', text: 'Mr.'
-                ,
-                value: 'mrs', text: 'Mrs.'
-                ]
 
             # Create form and add components
-            form = new Form('form')
+            form = new Form 'formComponent',
+                onSubmit: =>
+                    @ui.formOutput.text JSON.stringify @personModel.toJSON(), null, 4
+                onError: =>
+                    @ui.formOutput.text 'Invalid Input'
 
-            form.add new TextField 'nameComponent', 'name', @personModel
-            form.add new TextField 'emailComponent', 'email', @personModel
-            form.add new RadioButton 'genderComponent', 'gender', @personModel, genderCollection
-            form.add new Dropdown 'salutationComponent', 'salutation', @personModel, salutationCollection
-            form.add new Checkbox 'newsletterComponent', 'newsletter', @personModel
-            form.add new TextArea 'descriptionComponent', 'description', @personModel
-            form.add new Button 'buttonComponent', @onButtonClick
+            # Create text component and add validators
+            textFieldComponent = new TextField 'nameComponent', 'name', @personModel
+            textFieldComponent.add new StringValidator::minimumLength 2
+            textFieldComponent.add new StringValidator::maximumLength 5
 
+            # Create email component and add validators
+            emailComponent = new TextField 'emailComponent', 'email', @personModel
+            emailComponent.add new EmailAddressValidator
+
+            # Add all components to the form
+            form.add emailComponent
+            form.add textFieldComponent
+            form.add new SubmitButton 'submitButtonComponent'
+
+            # Add components to the page
             @add form
+
+            # Add feedback panels for form validation to the page
+            @add new FeedbackPanel 'nameFeedbackPanel', textFieldComponent
+            @add new FeedbackPanel 'emailFeedbackPanel', emailComponent
 
         onButtonClick: (e) ->
             e.preventDefault()
@@ -116,15 +114,11 @@
 <code class="language-markup">
     &lt;input component-id=&quot;nameComponent&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;
 
-    &lt;input component-id=&quot;emailComponent&quot; id=&quot;email&quot; type=&quot;text&quot; &gt;
+    &lt;div component-id=&quot;nameFeedbackPanel&quot; &gt; &lt;/ div &gt;
 
-    &lt;input component-id=&quot;genderComponent&quot; id=&quot;gender&quot; type=&quot;radio&quot; name=&quot;genders&quot;&gt;
+    &lt;input component-id=&quot;emailComponent&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;
 
-    &lt;select component-id=&quot;salutationComponent&quot; id=&quot;salutation&quot; /&gt;
-
-    &lt;input component-id=&quot;newsletterComponent&quot; id=&quot;newsletter&quot; type=&quot;checkbox&quot; value=&quot;subscribe&quot;&gt; Subscribe
-
-    &lt;textarea component-id=&quot;descriptionComponent&quot; id=&quot;description&quot;&gt;&lt;/textarea&gt;
+    &lt;div component-id=&quot;emailFeedbackPanel&quot; &gt; &lt;/ div &gt;
 
     &lt;button component-id=&quot;buttonComponent&quot;&gt; Submit &lt;/button&gt;
 </code>

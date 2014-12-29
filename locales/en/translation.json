@@ -1,0 +1,17 @@
+{
+
+  "NameComponent": {
+    "StringValidator": {
+        "MinimumLength": "Name must be at least __minimum__ characters long",
+        "MaximumLength": "Name must be at most __maximum__ characters long",
+        "Between": "Name must be between __minimum__ and __maximum__ characters long",
+        "Exact": "Name must be exactly __minimum__ characters long"
+    }
+  },
+
+  "EmailComponent" : {
+      "EmailAddressValidator" : {
+        "Pattern": "'__value__' ist not a valid E-Mail address"
+      }
+  }
+}

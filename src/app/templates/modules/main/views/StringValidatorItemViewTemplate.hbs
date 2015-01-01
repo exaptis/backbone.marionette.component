@@ -1,0 +1,107 @@
+<h2 class="page-headline">String Validator</h2>
+<p>
+    The <code>StringValidator</code> can be used on the <code>TextFieldComponent</code> and <code>TextAreaComponent</code>.
+    It has to be used in conduction with the <code>FormComponent</code>. Validators are evaluated on form submission.
+    Currently four StringValidators are available, which are accessible via the classes prototype <code>StringValidator::*</code>
+    <ul>
+    <li><code>minimumLength</code></li>
+    <li><code>maximumLength</code></li>
+    <li><code>exactLength</code></li>
+    <li><code>lengthBetween</code></li>
+    </ul>
+    The Validators error message is constructed out of the component name, the class name and the validator itself e.g.
+    the validator in the example below will be looked up under the following JSON key <code>NameComponent.StringValidator.Between</code>.
+    Validation parameters are interpolated vie named placeholders <code>"Name must be between __minimum__ and __maximum__ characters long"</code>
+</p>
+
+<h3 class="page-subline">Example</h3>
+<div class="well">
+    <div class="row">
+        <div class="col-sm-7">
+            <form class="form-horizontal" role="form" component-id="formComponent">
+                <fieldset>
+                    <legend>Person Data</legend>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="name" class="col-sm-2 control-label">
+                            Name:
+                        </label>
+
+                        <div class="col-sm-10">
+                            <input component-id="nameComponent" id="name" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div component-id="feedbackPanel"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-default btn-raised" type="submit" component-id="submitButtonComponent">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>
+        <div class="col-sm-5">
+            <div class="legend">Model Data</div>
+           <!-- @formatter:off -->
+            <pre><code id="formOutput">Submit the form to see results</code></pre>
+            <!-- @formatter:on -->
+
+        </div>
+    </div>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class StringValidatorView extends Backbone.Marionette.Component.ItemView
+
+        initialize: ->
+            # Initialize model
+            @personModel = new Backbone.Model
+                name: 'Maximilian'
+
+            # Create components
+            form = new Form 'formComponent'
+
+            nameComponent = new TextField 'nameComponent', 'name', @personModel
+            nameComponent.add new StringValidator::lengthBetween 2, 8
+
+            nameComponentFeedbackPanel = new FeedbackPanel 'feedbackPanel', nameComponent
+
+            submitButtonComponent = new SubmitButton 'submitButtonComponent'
+
+            # Add components to the form
+            form.add nameComponent
+            form.add submitButtonComponent
+
+            # Add components to the view
+            @add form
+            @add nameComponentFeedbackPanel
+
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;form component-id=&quot;formComponent&quot;&gt;
+
+        &lt;input component-id=&quot;nameComponent&quot; id=&quot;name&quot; type=&quot;text&quot;&gt;
+
+        &lt;div component-id=&quot;nameFeedbackPanel&quot;&gt; &lt;/div&gt;
+
+        &lt;button component-id=&quot;submitButtonComponent&quot;&gt; Submit &lt;/button&gt;
+
+    &lt;/form &gt;
+</code>
+</pre>
+<!-- @formatter:on -->

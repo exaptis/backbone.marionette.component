@@ -28,11 +28,11 @@
 
                         <div class="col-sm-10">
                             <div class="form-control-wrapper ">
-                                <input component-id="emailComponent" id="email" type="text" class="form-control">
+                                <input component-id="emailAddressComponent" id="email" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-offset-2 col-sm-10">
-                            <div component-id="emailFeedbackPanel"></div>
+                            <div component-id="emailAddressFeedbackPanel"></div>
                         </div>
                     </div>
 
@@ -87,11 +87,11 @@
             textFieldComponent.add new StringValidator::maximumLength 5
 
             # Create email component and add validators
-            emailComponent = new TextField 'emailComponent', 'email', @personModel
-            emailComponent.add new EmailAddressValidator
+            emailAddressComponent = new TextField 'emailAddressComponent', 'email', @personModel
+            emailAddressComponent.add new EmailAddressValidator
 
             # Add all components to the form
-            form.add emailComponent
+            form.add emailAddressComponent
             form.add textFieldComponent
             form.add new SubmitButton 'submitButtonComponent'
 
@@ -100,7 +100,7 @@
 
             # Add feedback panels for form validation to the page
             @add new FeedbackPanel 'nameFeedbackPanel', textFieldComponent
-            @add new FeedbackPanel 'emailFeedbackPanel', emailComponent
+            @add new FeedbackPanel 'emailAddressFeedbackPanel', emailAddressComponent
 
         onButtonClick: (e) ->
             e.preventDefault()
@@ -116,9 +116,9 @@
 
     &lt;div component-id=&quot;nameFeedbackPanel&quot; &gt; &lt;/ div &gt;
 
-    &lt;input component-id=&quot;emailComponent&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;
+    &lt;input component-id=&quot;emailAddressComponent&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;
 
-    &lt;div component-id=&quot;emailFeedbackPanel&quot; &gt; &lt;/ div &gt;
+    &lt;div component-id=&quot;emailAddressFeedbackPanel&quot; &gt; &lt;/ div &gt;
 
     &lt;button component-id=&quot;buttonComponent&quot;&gt; Submit &lt;/button&gt;
 </code>

@@ -68,7 +68,7 @@ define [
       form = new Form('form')
 
       form.add new TextField 'nameComponent', 'name', @personModel
-      form.add new TextField 'emailComponent', 'email', @personModel
+      form.add new TextField 'emailAddressComponent', 'email', @personModel
       form.add new RadioButton 'genderComponent', 'gender', @personModel, genderCollection
       form.add new Dropdown 'salutationComponent', 'salutation', @personModel, salutationCollection
       form.add new Checkbox 'newsletterComponent', 'newsletter', @personModel

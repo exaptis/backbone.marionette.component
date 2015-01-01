@@ -1,0 +1,103 @@
+<h2 class="page-headline">Pattern Validator</h2>
+<p>
+    The <code>PatternValidator</code> can be used on the <code>TextFieldComponent</code> and <code>TextAreaComponent</code>.
+    It has to be used in conduction with the <code>FormComponent</code>. Validators are evaluated on form submission.
+    It accepts an regular expression as first parameter <code>new PatternValidator(pattern, modifiers)</code>.
+    <br />
+    <br />
+    The Validators error message is constructed out of the component's name `phoneNumberComponent`, the class `patternValidator` and the validator itself e.g.
+    `pattern`. The validator in the example below will be looked up under the following JSON key <code>PhoneNumberComponent.PatternValidator.Pattern</code>.
+    Validation parameters are interpolated vie value placeholders <code>"'__value__' ist not a valid phone number"</code>
+</p>
+
+<h3 class="page-subline">Example</h3>
+<div class="well">
+    <div class="row">
+        <div class="col-sm-7">
+            <form class="form-horizontal" role="form" component-id="formComponent">
+                <fieldset>
+                    <legend>Person Data</legend>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="phoneNumber" class="col-sm-2 control-label">
+                            Phone Number:
+                        </label>
+
+                        <div class="col-sm-10">
+                            <input component-id="phoneNumberComponent" id="phoneNumber" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div component-id="phoneNumberFeedbackPanel"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-default btn-raised" type="submit" component-id="submitButtonComponent">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>
+        <div class="col-sm-5">
+            <div class="legend">Model Data</div>
+           <!-- @formatter:off -->
+            <pre><code id="formOutput">Submit the form to see results</code></pre>
+            <!-- @formatter:on -->
+
+        </div>
+    </div>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class PatternValidatorView extends Backbone.Marionette.Component.ItemView
+
+        initialize: ->
+            # Initialize model
+            @personModel = new Backbone.Model
+                phoneNumber: '012-456-'
+
+            # Create components
+            form = new Form 'formComponent'
+
+            phoneNumber = new TextField 'phoneNumberComponent', 'phoneNumber', @personModel
+            phoneNumber.add new PatternValidator '^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$', 'ig'
+
+            phoneNumberFeedbackPanel = new FeedbackPanel 'phoneNumberFeedbackPanel', phoneNumber
+
+            submitButtonComponent = new SubmitButton 'submitButtonComponent'
+
+            # Add components to the form
+            form.add phoneNumber
+            form.add submitButtonComponent
+
+            # Add components to the view
+            @add form
+            @add phoneNumberFeedbackPanel
+
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;form component-id=&quot;formComponent&quot;&gt;
+
+        &lt;input component-id=&quot;phoneNumber&quot; id=&quot;phoneNumber&quot; type=&quot;text&quot;&gt;
+
+        &lt;div component-id=&quot;phoneNumberFeedbackPanel&quot;&gt; &lt;/div&gt;
+
+        &lt;button component-id=&quot;buttonComponent&quot;&gt; Submit &lt;/button&gt;
+
+    &lt;/form &gt;
+</code>
+</pre>
+<!-- @formatter:on -->

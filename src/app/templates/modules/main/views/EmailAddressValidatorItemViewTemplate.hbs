@@ -1,0 +1,102 @@
+<h2 class="page-headline">EmailAddress Validator</h2>
+<p>
+    The <code>EmailAddressValidator</code> can be used on the <code>TextFieldComponent</code> and <code>TextAreaComponent</code>.
+    It has to be used in conduction with the <code>FormComponent</code>. Validators are evaluated on form submission.
+    It uses a pre-defined regular expression and has no parameters <code>new EmailAddressValidator()</code>.
+    <br />
+    <br />
+    The Validators error message is constructed out of the component's name `emailAddressComponent`, the class `emailAddressValidator` and the validator itself e.g.
+    `pattern`. The validator in the example below will be looked up under the following JSON key <code>EmailAddressComponent.EmailAddressValidator.Pattern</code>.
+    Validation parameters are interpolated vie value placeholders <code>"'__value__' ist not a valid E-Mail address"</code>
+</p>
+
+<h3 class="page-subline">Example</h3>
+<div class="well">
+    <div class="row">
+        <div class="col-sm-7">
+            <form class="form-horizontal" role="form" component-id="formComponent">
+                <fieldset>
+                    <legend>Person Data</legend>
+
+                    <div class="form-group form-group-material-purple">
+                        <label for="email" class="col-sm-2 control-label">E-Mail</label>
+
+                        <div class="col-sm-10">
+                            <div class="form-control-wrapper ">
+                                <input component-id="emailAddressComponent" id="email" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div component-id="emailAddressFeedbackPanel"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-material-purple">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-default btn-raised" type="submit" component-id="submitButtonComponent">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>
+        <div class="col-sm-5">
+            <div class="legend">Model Data</div>
+           <!-- @formatter:off -->
+            <pre><code id="formOutput">Submit the form to see results</code></pre>
+            <!-- @formatter:on -->
+
+        </div>
+    </div>
+</div>
+
+<!-- @formatter:off -->
+<h3 class="page-subline">Code</h3>
+<pre>
+<code class="language-coffeescript">
+    class EmailAddressValidatorView extends Backbone.Marionette.Component.ItemView
+
+        initialize: ->
+            # Initialize model
+            @personModel = new Backbone.Model
+                email: '!-?-david@gmail.com'
+
+            # Create components
+            form = new Form 'formComponent'
+
+            emailAddressComponent = new TextField 'emailAddressComponent', 'email', @personModel
+            emailAddressComponent.add new EmailAddressValidator
+
+            emailAddressFeedbackPanel = new FeedbackPanel 'emailAddressFeedbackPanel', emailAddressComponent
+
+            submitButtonComponent = new SubmitButton 'submitButtonComponent'
+
+            # Add components to the form
+            form.add emailAddressComponent
+            form.add submitButtonComponent
+
+            # Add components to the view
+            @add form
+            @add emailAddressFeedbackPanel
+
+</code>
+</pre>
+
+<h3 class="page-subline">Markup</h3>
+<pre>
+<code class="language-markup">
+    &lt;form component-id=&quot;formComponent&quot;&gt;
+
+        &lt;input component-id=&quot;emailAddressComponent&quot; id=&quot;name&quot; type=&quot;text&quot;&gt;
+
+        &lt;div component-id=&quot;emailAddressFeedbackPanel&quot;&gt; &lt;/div&gt;
+
+        &lt;button component-id=&quot;submitButtonComponent&quot;&gt; Submit &lt;/button&gt;
+
+    &lt;/form &gt;
+</code>
+</pre>
+<!-- @formatter:on -->

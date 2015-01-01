@@ -5,7 +5,7 @@ define [
 ) ->
   'use strict'
 
-  class LabelController extends Backbone.Marionette.Controller
+  class MarkupController extends Backbone.Marionette.Controller
 
     initialize: (@app) ->
 

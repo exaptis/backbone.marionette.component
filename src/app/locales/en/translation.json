@@ -9,9 +9,15 @@
     }
   },
 
-  "EmailComponent" : {
+  "EmailAddressComponent" : {
       "EmailAddressValidator" : {
         "Pattern": "'__value__' ist not a valid E-Mail address"
+      }
+  },
+
+  "PhoneNumberComponent" : {
+      "PatternValidator" : {
+        "Pattern": "'__value__' ist not a valid phone number"
       }
   }
 }

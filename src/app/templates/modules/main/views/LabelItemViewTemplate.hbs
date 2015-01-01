@@ -3,23 +3,30 @@
     The Label Component can be used to ...
 </p>
 
-<br />
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <form>
+            <legend>Example</legend>
+            <p>
+                <span component-id="message1"></span>
+            </p>
 
-<div class="well">
-    <form>
-        <legend>Example</legend>
-        <p>
-            <span component-id="message1"></span>
-        </p>
-
-        <p>
-            <span component-id="message2"></span>
-        </p>
-    </form>
+            <p>
+                <span component-id="message2"></span>
+            </p>
+        </form>
+    </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
   class LabelItemView extends Backbone.Marionette.Component.ItemView
@@ -29,12 +36,20 @@
         @add(new Label("message2", "message", new Backbone.Model(message: "Hi Human!")))
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;span component-id=&quot;message1&quot;&gt;&lt;/span&gt;
     &lt;span component-id=&quot;message2&quot;&gt;&lt;/span&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

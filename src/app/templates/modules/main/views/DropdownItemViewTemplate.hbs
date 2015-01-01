@@ -3,29 +3,38 @@
     The Dropdown Component can be used to ...
 </p>
 
-<br/>
 
-<div class="well">
-    <form class="form-horizontal" role="form">
-        <fieldset>
-            <legend>Example</legend>
-            <select component-id="fruitChoice" name="fruitChoices" class="form-control"/>
-            <em>
-                Selected Value:
-                <label component-id="fruitValue" />
-            </em>
-        </fieldset>
-    </form>
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <fieldset>
+                <legend>Example</legend>
+                <select component-id="fruitChoice" name="fruitChoices" class="form-control"/>
+                <em>
+                    Selected Value:
+                    <label component-id="fruitValue" />
+                </em>
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
     class DropdownItemView extends Backbone.Marionette.Component.ItemView
 
         initialize: ->
-            model = new Backbone.Model(fruit: '2')
+            model = new Backbone.Model fruit: '2'
+
             collection = new Backbone.Collection [
               value: '1', text: 'Orange'
             ,
@@ -34,14 +43,23 @@
               value: '3', text: 'Banana'
             ]
 
-            @add(new Dropdown('fruitChoice', 'fruits', model, collection))
+            @add new Dropdown 'fruitChoice', 'fruits', model, collection
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;select component-id=&quot;fruitChoice&quot; name=&quot;fruitChoices&quot;&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

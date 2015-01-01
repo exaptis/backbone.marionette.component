@@ -4,7 +4,7 @@
 @import '../bower_components/bootstrap-material-design/less/material-wfont';
 
 body {
-    background: #fafafa;
+    background: #fdfdfd;
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
     margin-bottom: 2em;
@@ -14,8 +14,14 @@ body {
     margin: 0.5em 0 1em 0;
 }
 
-.page-subline {
-    margin: 2em 0 1em 0;
+.panel {
+    margin-top: 45px;
+}
+
+.panel-code {
+    .panel-body {
+        padding: 0;
+    }
 }
 
 .browsehappy {
@@ -36,7 +42,16 @@ legend, .legend {
 
 
 pre[class*="language-"] {
-    border-left-color: #9c27b0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+pre[class*="language-"]:before,
+pre[class*="language-"]:after {
+    box-shadow: none;
 }
 
 code[class*="language-"] {

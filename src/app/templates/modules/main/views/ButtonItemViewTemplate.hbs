@@ -3,43 +3,59 @@
     The ButtonButton Component can be used to ...
 </p>
 
-<br/>
 
-<div class="well">
-    <form class="form-horizontal" role="form">
-        <fieldset>
-            <legend>Example</legend>
-            <div>
-                <button class="btn btn-default btn-raised" component-id="button">Click Me</button>
-            </div>
-            <em>Button was clicked: <label component-id="label"></label> times.</em>
-        </fieldset>
-
-    </form>
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <fieldset>
+                <legend>Example</legend>
+                <div>
+                    <button class="btn btn-default btn-raised" component-id="button">Click Me</button>
+                </div>
+                <em>Button was clicked: <label component-id="label"></label> times.</em>
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
     class ButtonItemView extends Backbone.Marionette.Component.ItemView
 
         initialize: ->
-            @model = new Backbone.Model(counter: 0)
+            @model = new Backbone.Model counter: 0
 
-            @add new Button('button', @onButtonClick)
-            @add new Label('label', 'counter', @model)
+            @add new Button 'button', @onButtonClick
+            @add new Label 'label', 'counter', @model
 
         onButtonClick: (e) ->
             e.preventDefault()
             @model.set 'counter', @model.get('counter') + 1
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;button class=&quot;btn btn-default btn-raised&quot; component-id=&quot;button&quot;&gt;Click Me&lt;/button&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

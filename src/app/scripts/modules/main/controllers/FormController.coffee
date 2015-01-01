@@ -44,7 +44,7 @@ define [
     showFormComponent: ->
       @app.contentRegion.show new FormItemView
 
-    showFormValidationComponent: ->
+    showValidationComponent: ->
       @app.contentRegion.show new FormValidationItemView
 
 

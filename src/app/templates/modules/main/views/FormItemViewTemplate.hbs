@@ -2,96 +2,104 @@
 <p>
     The TextField Component can be used to ...
 </p>
-<br/>
 
-<div class="well">
-    <div class="row">
-        <div class="col-sm-7">
-            <form class="form-horizontal" role="form" component-id="form">>
-                <fieldset>
-                    <legend>Person Data</legend>
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-7">
+                <form class="form-horizontal" role="form" component-id="form">
+                    <fieldset>
+                        <legend>Person Data</legend>
 
-                    <div class="form-group form-group-material-purple">
-                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <div class="form-group form-group-material-purple">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
 
-                        <div class="col-sm-10">
-                            <input component-id="nameComponent" id="name" type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-group-material-purple">
-                        <label for="email" class="col-sm-2 control-label">E-Mail</label>
-
-                        <div class="col-sm-10">
-                            <div class="form-control-wrapper ">
-                                <input component-id="emailAddressComponent" id="email" type="text" class="form-control">
+                            <div class="col-sm-10">
+                                <input component-id="nameComponent" id="name" type="text" class="form-control">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-group-material-purple">
-                        <label class="col-sm-2 control-label">Gender</label>
+                        <div class="form-group form-group-material-purple">
+                            <label for="email" class="col-sm-2 control-label">E-Mail</label>
 
-                        <div class="col-sm-10">
-                            <div class="radio radio-material-purple">
-                                <input component-id="genderComponent" type="radio" name="genders">
+                            <div class="col-sm-10">
+                                <div class="form-control-wrapper ">
+                                    <input component-id="emailAddressComponent" id="email" type="text" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-group-material-purple">
-                        <label for="salutation" class="col-sm-2 control-label">Salutation</label>
+                        <div class="form-group form-group-material-purple">
+                            <label class="col-sm-2 control-label">Gender</label>
 
-                        <div class="col-sm-10">
-                                <select component-id="salutationComponent" id="salutation" class="form-control"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group form-group-material-purple">
-                        <label class="col-sm-2 control-label">Newsletter</label>
-
-                        <div class="col-sm-10">
-                            <div class="checkbox checkbox-material-purple">
-                                <label>
-                                    <input component-id="newsletterComponent" type="checkbox" value="subscribe">
-                                    Subscribe
-                                </label>
+                            <div class="col-sm-10">
+                                <div class="radio radio-material-purple">
+                                    <input component-id="genderComponent" type="radio" name="genders">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-group-material-purple">
-                        <label for="description" class="col-sm-2 control-label">Description</label>
+                        <div class="form-group form-group-material-purple">
+                            <label for="salutation" class="col-sm-2 control-label">Salutation</label>
 
-                        <div class="col-sm-10">
-                            <textarea component-id="descriptionComponent" id="description" class="form-control"></textarea>
+                            <div class="col-sm-10">
+                                    <select component-id="salutationComponent" id="salutation" class="form-control"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-group-material-purple">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button class="btn btn-default btn-raised" component-id="buttonComponent">
-                                Submit
-                            </button>
+                        <div class="form-group form-group-material-purple">
+                            <label class="col-sm-2 control-label">Newsletter</label>
+
+                            <div class="col-sm-10">
+                                <div class="checkbox checkbox-material-purple">
+                                    <label>
+                                        <input component-id="newsletterComponent" type="checkbox" value="subscribe">
+                                        Subscribe
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                </fieldset>
-            </form>
+                        <div class="form-group form-group-material-purple">
+                            <label for="description" class="col-sm-2 control-label">Description</label>
 
-        </div>
-        <div class="col-sm-5">
-            <div class="legend">Model Data</div>
-           <!-- @formatter:off -->
-            <pre><code id="formOutput">Submit the form to see results</code></pre>
-            <!-- @formatter:on -->
+                            <div class="col-sm-10">
+                                <textarea component-id="descriptionComponent" id="description" class="form-control"></textarea>
+                            </div>
+                        </div>
 
+                        <div class="form-group form-group-material-purple">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button class="btn btn-default btn-raised" component-id="buttonComponent">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+            <div class="col-sm-5">
+                <div class="legend">Model Data</div>
+               <!-- @formatter:off -->
+                <pre><code id="formOutput">Submit the form to see results</code></pre>
+                <!-- @formatter:on -->
+
+            </div>
         </div>
     </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
     class FormItemView extends Backbone.Marionette.Component.ItemView
@@ -142,27 +150,36 @@
 
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
-    &lt;form component-id=&quot;formComponent&quot; &gt;
+    &lt;form component-id=&quot;formComponent&quot;&gt;
 
-    &lt;input component-id=&quot;nameComponent&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;
+        &lt;input component-id=&quot;nameComponent&quot; id=&quot;name&quot; type=&quot;text&quot;&gt;
 
-    &lt;input component-id=&quot;emailAddressComponent&quot; id=&quot;email&quot; type=&quot;text&quot; &gt;
+        &lt;input component-id=&quot;emailAddressComponent&quot; id=&quot;email&quot; type=&quot;text&quot;&gt;
 
-    &lt;input component-id=&quot;genderComponent&quot; id=&quot;gender&quot; type=&quot;radio&quot; name=&quot;genders&quot;&gt;
+        &lt;input component-id=&quot;genderComponent&quot; id=&quot;gender&quot; type=&quot;radio&quot; name=&quot;genders&quot;&gt;
 
-    &lt;select component-id=&quot;salutationComponent&quot; id=&quot;salutation&quot; /&gt;
+        &lt;select component-id=&quot;salutationComponent&quot; id=&quot;salutation&quot; /&gt;
 
-    &lt;input component-id=&quot;newsletterComponent&quot; id=&quot;newsletter&quot; type=&quot;checkbox&quot; value=&quot;subscribe&quot;&gt; Subscribe
+        &lt;input component-id=&quot;newsletterComponent&quot; id=&quot;newsletter&quot; type=&quot;checkbox&quot; value=&quot;subscribe&quot;&gt; Subscribe
 
-    &lt;textarea component-id=&quot;descriptionComponent&quot; id=&quot;description&quot;&gt;&lt;/textarea&gt;
+        &lt;textarea component-id=&quot;descriptionComponent&quot; id=&quot;description&quot;&gt;&lt;/textarea&gt;
 
-    &lt;button component-id=&quot;buttonComponent&quot;&gt; Submit &lt;/button&gt;
+        &lt;button component-id=&quot;buttonComponent&quot;&gt; Submit &lt;/button&gt;
 
     &lt;/form&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

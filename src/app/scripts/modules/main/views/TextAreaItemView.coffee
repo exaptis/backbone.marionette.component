@@ -28,5 +28,5 @@ define [
     initialize: ->
       commentModel = new Backbone.Model(comment: 'This is my first comment...')
 
-      @add(new TextArea('textarea1', 'comment', commentModel))
+      @add(new TextArea('textareaComponent', 'comment', commentModel))
       @add(new Label('label', 'comment', commentModel))

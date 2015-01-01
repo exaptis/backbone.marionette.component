@@ -2,50 +2,69 @@
 <p>
     The Checkbox Component can be used to ...
 </p>
-<br />
 
-<div class="well">
-    <form class="form">
-        <fieldset>
-            <legend>Example</legend>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input component-id="checkboxApple" type="checkbox" name="fruits" value="apple">
-                        Apple
-                    </label>
-                    <em>Checked:<strong component-id="labelApple"></strong></em>
+
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <form class="form">
+            <fieldset>
+                <legend>Example</legend>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input component-id="checkboxApple" type="checkbox" name="fruits" value="apple">
+                            Apple
+                        </label>
+                        <em>Checked:<strong component-id="labelApple"></strong></em>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input component-id="checkboxOrange" type="checkbox" name="fruits" value="orange">
+                            Orange
+                        </label>
+                        <em>Checked: <strong component-id="labelOrange"></strong></em>
+                    </div>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input component-id="checkboxOrange" type="checkbox" name="fruits" value="orange">
-                        Orange
-                    </label>
-                    <em>Checked: <strong component-id="labelOrange"></strong></em>
-                </div>
-            </div>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
-class CheckboxItemView extends Backbone.Marionette.Component.ItemView
+    class CheckboxItemView extends Backbone.Marionette.Component.ItemView
 
-    initialize: ->
-        @add(new Checkbox('checkboxApple', 'isChecked', new Backbone.Model(isChecked: true)))
-        @add(new Checkbox('checkboxOrange', 'isChecked', new Backbone.Model(isChecked: false)))
+        initialize: ->
+            @add new Checkbox 'checkboxApple', 'isChecked', new Backbone.Model isChecked: true
+            @add new Checkbox 'checkboxOrange', 'isChecked', new Backbone.Model isChecked: false
+
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;input component-id=&quot;checkboxApple&quot; type=&quot;checkbox&quot; name=&quot;fruits&quot; value=&quot;apple&quot;&gt; Apple
     &lt;input component-id=&quot;checkboxOrange&quot; type=&quot;checkbox&quot; name=&quot;fruits&quot; value=&quot;orange&quot;&gt; Orange
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->
 

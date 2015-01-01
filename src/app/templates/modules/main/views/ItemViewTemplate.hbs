@@ -2,35 +2,53 @@
 <p>
     The ItemView Component can be used to ...
 </p>
-<br />
 
-<div class="well">
-    <form class="form-horizontal" role="form">
-        <fieldset>
-            <legend>Example</legend>
-            <div id="content"></div>
-        </fieldset>
-    </form>
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <form>
+            <fieldset>
+                <legend>Example</legend>
+                <div id="content"></div>
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
     class TextFieldItemView extends Backbone.Marionette.Component.ItemView
         initialize: ->
-            @add new TextField('textfield', 'name', @model)
+            @add new TextField 'textfield', 'name', @model
 
-    model = new Backbone.Model(name: 'David')
-    view  = new TextFieldItemView(model: model);
-    view.render()
+    do ->
+        model = new Backbone.Model name: 'David'
+
+        view  = new TextFieldItemView model: model
+        view.render()
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;input class=&quot;form-control&quot; component-id=&quot;textfield&quot; placeholder=&quot;Name&quot;&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

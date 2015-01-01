@@ -3,41 +3,60 @@
     The RadioButton Component can be used to ...
 </p>
 
-<br/>
 
-<div class="well">
-    <form class="form-horizontal" role="form">
-        <fieldset>
-            <legend>Example</legend>
-            <div class="radio radio-matieral-purple">
-                <input component-id="radioButtonGender" type="radio" name="genders">
-            </div>
-            <em>Selected Vaue: <strong component-id="labelGender"></strong></em>
-        </fieldset>
-    </form>
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <fieldset>
+                <legend>Example</legend>
+                <div class="radio radio-matieral-purple">
+                    <input component-id="radioButtonGender" type="radio" name="genders">
+                </div>
+                <em>Selected Vaue: <strong component-id="labelGender"></strong></em>
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
     class RadioButtonItemView extends Backbone.Marionette.Component.ItemView
 
         initialize: ->
-          model = new Backbone.Model(gender: 'm')
-          collection = new Backbone.Collection([
-            value: 'm', text: 'Male'
-          , value: 'f', text: 'Female'
-          ])
+          model = new Backbone.Model gender: 'm'
 
-          @add(new RadioButton('radioButtonGender', 'gender', model, collection))
+          collection = new Backbone.Collection [
+            value: 'm', text: 'Male'
+          ,
+            value: 'f', text: 'Female'
+          ]
+
+          @add new RadioButton 'radioButtonGender', 'gender', model, collection
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;input component-id=&quot;radioButtonGender&quot; type=&quot;radio&quot; name=&quot;gender&quot;&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

@@ -3,9 +3,12 @@
     The TextArea Component can be used to ...
 </p>
 
-<br />
 
-<div class="well">
+<div class="panel panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Example</div>
+    </div>
+    <div class="panel-body">
     <form class="form-horizontal" role="form">
         <fieldset>
             <legend>Example</legend>
@@ -14,7 +17,7 @@
 
                 <div class="col-lg-10">
                     <div class="form-control-wrapper">
-                        <textarea class="form-control" component-id="textarea1" id="comment" placeholder="Comment"></textarea>
+                        <textarea class="form-control" component-id="textareaComponent" id="comment" placeholder="Comment"></textarea>
                     </div>
                 </div>
             </div>
@@ -30,23 +33,36 @@
         </fieldset>
     </form>
 </div>
+</div>
 
 <!-- @formatter:off -->
-<h3 class="page-subline">Code</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Code</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-coffeescript">
-class TextAreaItemView extends Backbone.Marionette.Component.ItemView
+    class TextAreaItemView extends Backbone.Marionette.Component.ItemView
 
-    initialize: ->
-        @add(new TextArea('textarea1', 'comment', new Backbone.Model(comment: 'This is my first comment ...')))
+        initialize: ->
+            @add new TextArea 'textareaComponent', 'comment', new Backbone.Model comment: 'This is my first comment ...'
 </code>
 </pre>
+    </div>
+</div>
 
-<h3 class="page-subline">Markup</h3>
+<div class="panel panel-code panel-material-purple">
+    <div class="panel-heading">
+        <div class="panel-title">Markup</div>
+    </div>
+    <div class="panel-body">
 <pre>
 <code class="language-markup">
     &lt;label for=&quot;inputName&quot;&gt;Name&lt;/label&gt;
-    &lt;textarea component-id=&quot;textarea1&quot; id=&quot;comment&quot; placeholder=&quot;Comment&quot;&gt;&lt;/textarea&gt;
+    &lt;textarea component-id=&quot;textareaComponent&quot; id=&quot;comment&quot; placeholder=&quot;Comment&quot;&gt;&lt;/textarea&gt;
 </code>
 </pre>
+    </div>
+</div>
 <!-- @formatter:on -->

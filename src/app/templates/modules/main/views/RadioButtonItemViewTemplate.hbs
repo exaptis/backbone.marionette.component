@@ -1,6 +1,24 @@
 <h2 class="page-headline">RadioButton Component</h2>
 <p>
-    The RadioButton Component can be used to ...
+    The <code>RadioButton</code> component can be used to display a list and bind update the selection on the model.
+    The collection containing the radio button choices needs to have the model properties <code>text</code> and <code>value</code> set.
+    To connect the component with the markup its <code>component-id</code> has to be set on an according HTML tag.
+    <br /><br />
+    Usage: <code> new RadioButton(componentId, modelProperty, model, collection) </code>
+<ul>
+    <li>
+        The 1st parameter is the the component identifier.
+    </li>
+    <li>
+        The 2nd parameter is the key of the model property it should be bound to.
+    </li>
+    <li>
+        The 3rd parameter is the model bound to the component
+    </li>
+    <li>
+        The 4th parameter is the collection containing the values for the radio button choices
+    </li>
+</ul>
 </p>
 
 

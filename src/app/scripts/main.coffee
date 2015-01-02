@@ -10,6 +10,10 @@ require [
 ) ->
   'use strict'
 
+  rivets = require 'rivets'
+  rivets.configure
+    templateDelimiters: ['{{{{', '}}}}'],
+
   App = new Application
 
   App.module 'MainModule', moduleClass: MainModule

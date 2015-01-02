@@ -1,6 +1,14 @@
 <h2 class="page-headline">ItemView Component</h2>
 <p>
-    The ItemView Component can be used to ...
+    The <code>ItemView</code> component has to be used as container for all other components.
+    Components are added directly on the view with the <code>add</code> method.
+</p>
+<p>
+    Usage:
+    <code>
+        view = new Backbone.Marionette.Component.ItemView()
+        view.add new TextFieldItemView(…)
+    </code>
 </p>
 
 <div class="panel panel-material-purple">

@@ -3,7 +3,6 @@ define [
   'lib/component/markup/Label'
   'lib/component/Form'
   'lib/component/form/TextField'
-  'lib/component/form/SubmitButton'
   'lib/component/validation/validator/StringValidator'
   'lib/component/validation/validator/EmailAddressValidator'
   'lib/component/panel/FeedbackPanel'
@@ -15,7 +14,6 @@ define [
   Label
   Form
   TextField
-  SubmitButton
   StringValidator
   EmailAddressValidator
   FeedbackPanel
@@ -53,8 +51,7 @@ define [
 
       # Create text component and add validators
       textFieldComponent = new TextField 'nameComponent', 'name', @personModel
-      textFieldComponent.add new StringValidator::minimumLength 2
-      textFieldComponent.add new StringValidator::maximumLength 5
+      textFieldComponent.add new StringValidator::lengthBetween 2, 5
 
       # Create email component and add validators
       emailAddressComponent = new TextField 'emailAddressComponent', 'email', @personModel
@@ -63,7 +60,6 @@ define [
       # Add all components to the form
       form.add emailAddressComponent
       form.add textFieldComponent
-      form.add new SubmitButton 'submitButtonComponent'
 
       # Add components to the page
       @add form

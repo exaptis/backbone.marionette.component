@@ -37,7 +37,7 @@
 
                         <div class="form-group form-group-material-purple">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button class="btn btn-default btn-raised" type="submit" component-id="submitButtonComponent">
+                                <button class="btn btn-default btn-raised" type="submit">
                                     Submit
                                 </button>
                             </div>
@@ -81,11 +81,8 @@
 
             phoneNumberFeedbackPanel = new FeedbackPanel 'phoneNumberFeedbackPanel', phoneNumber
 
-            submitButtonComponent = new SubmitButton 'submitButtonComponent'
-
             # Add components to the form
             form.add phoneNumber
-            form.add submitButtonComponent
 
             # Add components to the view
             @add form

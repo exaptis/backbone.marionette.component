@@ -10,6 +10,7 @@ define [
   class WelcomeItemView extends Backbone.Marionette.ItemView
     template: WelcomeItemViewTemplate
 
-    materialize:
-      behaviorClass: MaterializeBehavior
+    behaviors:
+      materialize:
+        behaviorClass: MaterializeBehavior
 

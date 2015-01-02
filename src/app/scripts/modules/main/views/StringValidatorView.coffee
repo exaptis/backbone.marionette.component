@@ -2,7 +2,6 @@ define [
   'lib/component/ItemView'
   'lib/component/Form'
   'lib/component/form/TextField'
-  'lib/component/form/SubmitButton'
   'lib/component/validation/validator/StringValidator'
   'lib/component/panel/FeedbackPanel'
   'modules/main/behavior/CodeHighlightBehavior'
@@ -12,7 +11,6 @@ define [
   ItemView
   Form
   TextField
-  SubmitButton
   StringValidator
   FeedbackPanel
   CodeHighlightBehavior
@@ -51,11 +49,8 @@ define [
 
       nameComponentFeedbackPanel = new FeedbackPanel 'feedbackPanel', nameComponent
 
-      submitButtonComponent = new SubmitButton 'submitButtonComponent'
-
       # Add components to the form
       form.add nameComponent
-      form.add submitButtonComponent
 
       # Add components to the page
       @add form

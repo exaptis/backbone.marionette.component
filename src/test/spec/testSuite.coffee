@@ -13,7 +13,6 @@ define ->
     'spec/lib/component/form/CheckboxSpec'
     'spec/lib/component/form/DropdownSpec'
     'spec/lib/component/form/ButtonSpec'
-    'spec/lib/component/form/SubmitButtonSpec'
     'spec/lib/component/generics/MapSpec'
     'spec/lib/component/markup/LabelSpec'
     'spec/lib/component/panel/FeedbackPanelSpec'

@@ -1,7 +1,46 @@
 <h2 class="page-headline">Form Component with validation</h2>
 <p>
-    The Form component can be used with validations
+    The <code>Form</code> component can be used as container for other components containing validation rules.
+    Validators are added directly on the component with the <code>add</code> method.
+    When the submit event is triggered on the form each components validator is evaluated.
+    If all validations are successful the forms onSubmit method will be triggered. If at least one validation fails the
+    onError method is called with the validation errors (<code>Backbone.Collection</code>) as 1st parameter.
 </p>
+<p>
+    Usage:
+    <code>
+        new FeedbackPanel(componentId, { onSuccess: function(…) , onError: function(validationErrors) {…} })
+    </code>
+<ul>
+    <li>
+        The 1st parameter is the the component identifier.
+    </li>
+    <li>
+        The 2nd parameter (optional) is an object containing two callback functions <code>onSuccess</code> and <code>onError</code>.
+    </li>
+</ul>
+</p>
+
+
+<h3>FeedbackPanel</h3>
+<p>
+    In order to display the validation errors a <code>FeedbackPanel</code> has to be added to the view.
+    By default the <code>FeedbackPanel</code> will show the output produced by all validators, but
+    the output can also be filtered.
+</p>
+<p>
+    Usage:
+    <code>new FeedbackPanel(componentId, [component])</code>
+<ul>
+    <li>
+        The 1st parameter is the the component identifier.
+    </li>
+    <li>
+        The 2nd parameter (optional) is the component to filter the error messages for.
+    </li>
+</ul>
+</p>
+
 
 <div class="panel panel-material-purple">
     <div class="panel-heading">
@@ -31,7 +70,8 @@
 
                             <div class="col-sm-10">
                                 <div class="form-control-wrapper ">
-                                    <input component-id="emailAddressComponent" id="email" type="text" class="form-control">
+                                    <input component-id="emailAddressComponent" id="email" type="text"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-offset-2 col-sm-10">
@@ -41,7 +81,7 @@
 
                         <div class="form-group form-group-material-purple">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button class="btn btn-default btn-raised" type="submit" component-id="submitButtonComponent">
+                                <button class="btn btn-default btn-raised" type="submit">
                                     Submit
                                 </button>
                             </div>
@@ -53,14 +93,14 @@
             </div>
             <div class="col-sm-5">
                 <div class="legend">Model Data</div>
-               <!-- @formatter:off -->
+                <!-- @formatter:off -->
                 <pre><code id="formOutput">Submit the form to see results</code></pre>
                 <!-- @formatter:on -->
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- @formatter:off -->
@@ -92,8 +132,7 @@
 
             # Create text component and add validators
             textFieldComponent = new TextField 'nameComponent', 'name', @personModel
-            textFieldComponent.add new StringValidator::minimumLength 2
-            textFieldComponent.add new StringValidator::maximumLength 5
+            textFieldComponent.add new StringValidator::lengthBetween 2, 5
 
             # Create email component and add validators
             emailAddressComponent = new TextField 'emailAddressComponent', 'email', @personModel
@@ -102,7 +141,6 @@
             # Add all components to the form
             form.add emailAddressComponent
             form.add textFieldComponent
-            form.add new SubmitButton 'submitButtonComponent'
 
             # Add components to the page
             @add form
@@ -110,10 +148,6 @@
             # Add feedback panels for form validation to the page
             @add new FeedbackPanel 'nameFeedbackPanel', textFieldComponent
             @add new FeedbackPanel 'emailAddressFeedbackPanel', emailAddressComponent
-
-        onButtonClick: (e) ->
-            e.preventDefault()
-            @ui.formOutput.text JSON.stringify @personModel.toJSON(), null, 4
 
 </code>
 </pre>

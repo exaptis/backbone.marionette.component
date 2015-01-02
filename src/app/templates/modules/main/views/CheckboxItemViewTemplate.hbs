@@ -1,6 +1,20 @@
 <h2 class="page-headline">Checkbox Component</h2>
 <p>
-    The Checkbox Component can be used to ...
+    The <code>Checkbox</code> component can be used to toggle a boolean value on a model.
+    To connect the component with the markup its <code>component-id</code> has to be set on an according HTML tag.
+    <br /><br />
+    Usage: <code> new Checkbox(componentId, modelProperty, model) </code>
+<ul>
+    <li>
+        The 1st parameter is the the component identifier.
+    </li>
+    <li>
+        The 2nd parameter is the key of the model property it should be bound to.
+    </li>
+    <li>
+        The 3rd parameter is the model bound to the component
+    </li>
+</ul>
 </p>
 
 
@@ -13,14 +27,14 @@
             <fieldset>
                 <legend>Example</legend>
                 <div class="form-group">
-                    <div class="checkbox">
+                    <div class="checkbox checkbox-material-deeppurple">
                         <label>
                             <input component-id="checkboxApple" type="checkbox" name="fruits" value="apple">
                             Apple
                         </label>
                         <em>Checked:<strong component-id="labelApple"></strong></em>
                     </div>
-                    <div class="checkbox">
+                    <div class="checkbox checkbox-material-deeppurple">
                         <label>
                             <input component-id="checkboxOrange" type="checkbox" name="fruits" value="orange">
                             Orange

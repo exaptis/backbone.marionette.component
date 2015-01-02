@@ -4,7 +4,6 @@ define [
   'lib/component/form/Checkbox'
   'lib/component/form/Dropdown'
   'lib/component/form/RadioButton'
-  'lib/component/form/SubmitButton'
   'lib/component/form/TextArea'
   'lib/component/form/TextField'
   'lib/component/Form'

@@ -1,6 +1,24 @@
 <h2 class="page-headline">Dropdown Component</h2>
 <p>
-    The Dropdown Component can be used to ...
+    The <code>Dropdown</code> component can be used to display a list of values and bind the selection of a single one to the model.
+    The collection containing the dropdown choices needs to have the model properties <code>text</code> and <code>value</code> set.
+    To connect the component with the markup its <code>component-id</code> has to be set on an according HTML tag.
+    <br /><br />
+    Usage: <code> new Dropdown(componentId, modelProperty, model, collection) </code>
+<ul>
+    <li>
+        The 1st parameter is the the component identifier.
+    </li>
+    <li>
+        The 2nd parameter is the key of the model property it should be bound to.
+    </li>
+    <li>
+        The 3rd parameter is the model bound to the component
+    </li>
+    <li>
+        The 4th parameter is the collection containing the values for the dropdown choices
+    </li>
+</ul>
 </p>
 
 

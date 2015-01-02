@@ -10,11 +10,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>backbone marionette component</title>
+    <title>Component.js</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href='//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <!-- Windows 8 Tile Icons -->
+    <meta name="msapplication-square70x70logo" content="smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="mediumtile.png" />
+    <meta name="msapplication-square310x310logo" content="largetile.png" />
+
 
     <link rel="stylesheet" href="styles/prism-coy.css">
     <link rel="stylesheet" href="styles/main.css">
@@ -26,32 +43,26 @@
 
 
 <div class="navbar navbar-default">
-    <div class="navbar-header navbar-material-purple">
+    <div class="navbar-header navbar-material-deeppurple">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand withripple" href="javascript:void(0)">
+        <a class="navbar-brand withripple" href="#">
             Backbone.Marionette.Component
         </a>
     </div>
 
-    <div class="navbar-collapse navbar-material-purple navbar-responsive-collapse collapse ">
+    <div class="navbar-collapse navbar-material-deeppurple navbar-responsive-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li>
-                <a href="#" class="withripple">
-                    Home
-                </a>
-            </li>
-
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
                     Markup <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-material-purple ">
                     <li>
-                        <a href="#component/markup/label" class="withripple">
+                        <a href="#markup/label" class="withripple">
                             Label
                         </a>
                     </li>
@@ -60,48 +71,48 @@
 
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
-                    Form <b class="caret"></b>
+                    Component <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-material-purple ">
+                <ul class="dropdown-menu dropdown-menu-material-purple">
                     <li>
-                        <a href="#component/form/textField" class="withripple">
+                        <a href="#form/textField" class="withripple">
                             TextField
                         </a>
                     </li>
                     <li>
-                        <a href="#component/form/textArea" class="withripple">
+                        <a href="#form/textArea" class="withripple">
                             TextArea
                         </a>
                     </li>
                     <li>
-                        <a href="#component/form/radioButton" class="withripple">
+                        <a href="#form/radioButton" class="withripple">
                             RadioButton
                         </a>
                     </li>
                     <li>
-                        <a href="#component/form/checkbox" class="withripple">
+                        <a href="#form/checkbox" class="withripple">
                             Checkbox
                         </a>
                     </li>
                     <li>
-                        <a href="#component/form/dropdown" class="withripple">
+                        <a href="#form/dropdown" class="withripple">
                             Dropdown
                         </a>
                     </li>
                     <li>
-                        <a href="#component/form/button" class="withripple">
+                        <a href="#form/button" class="withripple">
                             Button
                         </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#component/form/form" class="withripple">
+                        <a href="#form/form" class="withripple">
                             Form
                         </a>
                     </li>
                     <li>
-                        <a href="#component/form/formValidation" class="withripple">
-                            Form Validation
+                        <a href="#form/validation" class="withripple">
+                            Form + Validation
                         </a>
                     </li>
                 </ul>
@@ -112,20 +123,44 @@
                     View <b class="caret"></b>
 
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-material-purple">
                     <li>
-                        <a href="#component/view/itemView" class="withripple">
+                        <a href="#view/itemView" class="withripple">
                             ItemView
                         </a>
                     </li>
                     <li>
-                        <a href="#component/view/collectionView" class="withripple">
+                        <a href="#view/collectionView" class="withripple">
                             CollectionView
                         </a>
                     </li>
                     <li>
-                        <a href="#component/view/compositeView" class="withripple">
+                        <a href="#view/compositeView" class="withripple">
                             CompositeView
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle withripple" data-toggle="dropdown">
+                    Validation <b class="caret"></b>
+
+                </a>
+                <ul class="dropdown-menu dropdown-menu-material-purple">
+                    <li>
+                        <a href="#validation/emailAddress" class="withripple">
+                            EmailAddressValidator
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#validation/string" class="withripple">
+                            StringValidator
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#validation/pattern" class="withripple">
+                            PatternValidator
                         </a>
                     </li>
                 </ul>
@@ -147,7 +182,7 @@
 
 
 <a href="https://github.com/exaptis/backbone.marionette.component">
-    <img style="position: absolute; top: 0; right: 0; border: 0;"
+    <img style="position: absolute; top: 0; right: 0; border: 0;" class="hidden-xs"
          src="http://mediacrush.net/W/W2syMxU_7KUK.png"
          alt="Fork me on GitHub"
          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">

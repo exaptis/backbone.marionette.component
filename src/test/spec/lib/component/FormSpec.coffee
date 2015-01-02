@@ -108,17 +108,33 @@ define [
     describe 'form submit', ->
 
       beforeEach ->
+        @event =
+          preventDefault: new sinon.spy
+
         @form.onSubmit = new sinon.spy
         @form.onError = new sinon.spy
         @validationError = new Backbone.Marionette.Component.ValidationError [],
           validatorName: 'VALIDATOR_NAME'
           componentId: 'COMPONENT_ID'
 
+        sinon.spy @form, 'process'
+
       afterEach ->
         @component.getValidationErrors.restore()
-
+        @form.process.restore()
         delete @form.onSubmit
         delete @form.onError
+
+      it 'should call process on submit event', ->
+        #given
+        @form.render()
+        sinon.stub @component, 'getValidationErrors', -> []
+
+        #when
+        @form.getDomNode().trigger 'submit'
+
+        #then
+        @form.process.should.have.been.calledOnce
 
       it 'should call submit after successful validation', ->
         #given
@@ -126,12 +142,13 @@ define [
         sinon.stub @component, 'getValidationErrors', -> []
 
         #when
-        @form.process()
+        @form.process @event
 
         #then
         @feedbackList.length.should.be.equal 0
         @feedbackList.reset.should.have.been.calledOnce
 
+        @event.preventDefault.should.have.been.calledOnce
         @form.onSubmit.should.have.been.calledOnce
         @form.onError.should.have.been.calledNever
 
@@ -142,12 +159,13 @@ define [
         sinon.stub @component, 'getValidationErrors', => [ @validationError ]
 
         #when
-        @form.process()
+        @form.process @event
 
         #then
         @feedbackList.length.should.be.equal 1
         @feedbackList.reset.should.have.been.calledOnce
 
+        @event.preventDefault.should.have.been.calledOnce
         @form.onError.should.have.been.calledOnce
         @form.onSubmit.should.have.been.calledNever
 

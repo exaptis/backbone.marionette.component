@@ -47,7 +47,8 @@ define [
         component.render()
 
       form = @getDomNode()
-      form.on 'submit', @process
+      form.on 'submit', (event) =>
+        @process.call(@, event)
 
     close: ->
       @_componentStore.each (component) ->
@@ -63,7 +64,9 @@ define [
     ###
       Validate all nested components
     ###
-    process: ->
+    process: (event) ->
+      event.preventDefault()
+
       feedbackList = @getParent().getFeedbackList()
       feedbackList.reset()
 

@@ -36,7 +36,7 @@
 
                         <div class="form-group form-group-material-purple">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button class="btn btn-default btn-raised" type="submit" component-id="submitButtonComponent">
+                                <button class="btn btn-default btn-raised" type="submit">
                                     Submit
                                 </button>
                             </div>
@@ -81,11 +81,8 @@
 
             emailAddressFeedbackPanel = new FeedbackPanel 'emailAddressFeedbackPanel', emailAddressComponent
 
-            submitButtonComponent = new SubmitButton 'submitButtonComponent'
-
             # Add components to the form
             form.add emailAddressComponent
-            form.add submitButtonComponent
 
             # Add components to the view
             @add form
@@ -109,7 +106,7 @@
 
         &lt;div component-id=&quot;emailAddressFeedbackPanel&quot;&gt; &lt;/div&gt;
 
-        &lt;button component-id=&quot;submitButtonComponent&quot;&gt; Submit &lt;/button&gt;
+        &lt;button &gt; Submit &lt;/button&gt;
 
     &lt;/form &gt;
 </code>

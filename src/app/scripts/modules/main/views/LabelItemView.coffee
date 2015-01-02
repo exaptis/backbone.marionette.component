@@ -2,11 +2,13 @@ define [
   'lib/component/markup/Label'
   'lib/component/ItemView'
   'modules/main/behavior/CodeHighlightBehavior'
+  'modules/main/behavior/MaterializeBehavior'
   'hbs!templates/modules/main/views/LabelItemViewTemplate'
 ], (
   Label
   ItemView
   CodeHighlightBehavior
+  MaterializeBehavior
   LabelItemViewTemplate
 ) ->
   'use strict'
@@ -18,6 +20,9 @@ define [
     behaviors:
       codeHighlight:
         behaviorClass: CodeHighlightBehavior
+      materialize:
+        behaviorClass: MaterializeBehavior
+
 
     initialize: ->
       @add(new Label("message1", "Hello World"))

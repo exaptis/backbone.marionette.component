@@ -2,7 +2,6 @@ define [
   'lib/component/ItemView'
   'lib/component/Form'
   'lib/component/form/TextField'
-  'lib/component/form/SubmitButton'
   'lib/component/validation/validator/PatternValidator'
   'lib/component/panel/FeedbackPanel'
   'modules/main/behavior/CodeHighlightBehavior'
@@ -12,7 +11,6 @@ define [
   ItemView
   Form
   TextField
-  SubmitButton
   PatternValidator
   FeedbackPanel
   CodeHighlightBehavior
@@ -52,11 +50,8 @@ define [
 
       phoneNumberFeedbackPanel = new FeedbackPanel 'phoneNumberFeedbackPanel', phoneNumberComponent
 
-      submitButtonComponent = new SubmitButton 'submitButtonComponent'
-
       # Add components to the form
       form.add phoneNumberComponent
-      form.add submitButtonComponent
 
       # Add components to the view
       @add form

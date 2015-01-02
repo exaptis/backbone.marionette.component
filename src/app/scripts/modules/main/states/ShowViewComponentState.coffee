@@ -1,15 +1,8 @@
 define [
-  'State'
+  './ShowState'
   'modules/main/controllers/ViewController'
-  './ApplicationState'
-  'underscore.string'
-], (State, ViewController, ApplicationState)->
-  new class ShowViewComponent extends State
+], (ShowState, ViewController)->
+  new class ShowViewComponent extends ShowState
     route: 'component/view/:component'
-    parent: ApplicationState
     statename: 'showViewComponent'
-    onActivate: (parameters)->
-      controller = new ViewController(@module.app)
-      controller["show#{_.string.capitalize(parameters.component)}Component"]()
-    initialize: (module)->
-      @module = module
+    controller: ViewController

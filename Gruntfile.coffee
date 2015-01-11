@@ -123,6 +123,7 @@ module.exports = (grunt) ->
             "*.{ico,txt}"
             ".htaccess"
             "styles/**"
+            "*.png"
             "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
           ]
         ,
@@ -154,6 +155,7 @@ module.exports = (grunt) ->
             ".htaccess"
             "locales/**"
             "styles/**"
+            "*.png"
             "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
           ]
         ,

@@ -24,6 +24,9 @@ switch process.env.NODE_ENV
   when 'dev'
     app.use '/', express.static "#{paths.build}/app"
 
+    #mount for js.maps
+    app.use '/src/app', express.static "#{paths.source}/app"
+
     app.get "/", (req, res) ->
       res.sendFile "#{paths.build}/app/index.html"
 
@@ -32,6 +35,11 @@ switch process.env.NODE_ENV
 
     app.get "/", (req, res) ->
       res.sendFile "#{paths.build}/test/index.html"
+
+    #mount for js.maps
+    app.use '/src/app', express.static "#{paths.source}/app"
+    app.use '/src/test', express.static "#{paths.source}/test"
+
 
     app.get "/*.js.map", (req, res) ->
       res.sendStatus 200

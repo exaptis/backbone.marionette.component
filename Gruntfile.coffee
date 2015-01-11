@@ -48,6 +48,9 @@ module.exports = (grunt) ->
 
   # watch list
     watch:
+      options:
+        livereload: true
+
       index:
         files: [
           "<%= dirs.srcApp %>/*.html"
@@ -58,8 +61,6 @@ module.exports = (grunt) ->
           "newer:copy:test"
           "preprocess:dev"
         ]
-        options:
-          livereload: true
 
       static:
         files: [
@@ -68,22 +69,16 @@ module.exports = (grunt) ->
           "<%= dirs.srcApp %>/images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
         tasks: ["newer:copy:dev"]
-        options:
-          livereload: true
 
       coffeeApp:
         files: ["<%= dirs.srcApp %>/scripts/{,**/}*.coffee"]
         tasks: ["newer:coffee:dev"]
-        options:
-          livereload: true
 
       coffeeTest:
         files: ["<%= dirs.srcTest %>/{,**/}*.coffee"]
         tasks: ["newer:coffee:test"]
-        options:
-          livereload: true
 
-      styles:
+      less:
         files: [
           "<%= dirs.srcApp %>/styles/{,**/}*.less"
         ]
@@ -93,13 +88,25 @@ module.exports = (grunt) ->
           "autoprefixer:dev"
         ]
         options:
-          livereload: true
+          livereload: false
+
+      bower:
+        files: [
+          "<%= dirs.buildApp %>/scripts/init.js"
+          "<%= dirs.buildTest %>/SpecRunner.js"
+        ]
+        tasks: [
+          "bowerRequirejs"
+        ]
+
+      styles:
+        files: ["<%= dirs.buildApp %>/styles/{,**/}*.css"]
 
       test:
-        files: [
-          "<%= dirs.buildTest %>/{,**/}*.js"
-        ]
+        files: ["<%= dirs.buildTest %>/{,**/}*.js"]
         tasks: ["mocha:test"]
+        options:
+          livereload: false
 
   # copying all kind of files - no processing
     copy:
@@ -209,6 +216,8 @@ module.exports = (grunt) ->
           dest: "<%= dirs.srcApp %>/scripts/"
           ext: ".js"
         ]
+        options:
+          sourceMap: false
 
     coffeelint:
       options:
@@ -224,6 +233,18 @@ module.exports = (grunt) ->
       server: [
         "<%= dirs.srcServer %>/**/*.coffee"
       ]
+
+    bowerRequirejs:
+      app:
+        rjsConfig: "<%= dirs.buildApp %>/scripts/init.js"
+        options:
+          transitive: true
+          exclude: ['i18next']
+      test:
+        rjsConfig: "<%= dirs.buildTest %>/SpecRunner.js"
+        options:
+          transitive: true
+          exclude: ['i18next']
 
     requirejs:
       dist:
@@ -251,7 +272,7 @@ module.exports = (grunt) ->
         options:
           baseUrl: "<%= dirs.buildApp %>/scripts"
           include: [ 'lib/bundle' ]
-          exclude: [ 'i18n', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
+          exclude: [ 'i18next', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
           optimize: "none"
           out: "<%= dirs.dist %>/backbone.marionette.component.js"
           name: '<%= dirs.bowerComponents %>/almond/almond',
@@ -262,7 +283,7 @@ module.exports = (grunt) ->
         options:
           baseUrl: "<%= dirs.buildApp %>/scripts"
           include: [ 'lib/bundle' ]
-          exclude: [ 'i18n', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
+          exclude: [ 'i18next', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
           optimize: "uglify2"
           out: "<%= dirs.dist %>/backbone.marionette.component.min.js"
           name: '<%= dirs.bowerComponents %>/almond/almond',
@@ -384,6 +405,7 @@ module.exports = (grunt) ->
       'coffeelint:dev'
       'coffeelint:server'
       'preprocess:dev'
+      'bowerRequirejs'
     ]
 
     grunt.registerTask 'dist', [

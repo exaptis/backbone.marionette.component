@@ -1,8 +1,8 @@
 define [
-  'i18n'
+  'i18next'
   'underscore.string'
 ], (
-  i18n
+  i18next
 ) ->
   'use strict'
 
@@ -19,7 +19,7 @@ define [
       do @updateErrorMessage
 
     updateErrorMessage: ->
-      @set 'errorMessage', i18n.t @getErrorKey(), @getErrorValues(), silent: true
+      @set 'errorMessage', i18next.t @getErrorKey(), @getErrorValues(), silent: true
 
     getComponentId: () -> @componentId
 

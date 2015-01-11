@@ -70,7 +70,6 @@
     "grunt-preprocess": "4.1.0",
     "grunt-requirejs": "0.4.x",
     "matchdep": "0.3.0",
-    "mocha-phantomjs": "3.5.2",
     "time-grunt": "1.0.0"
   }
 }

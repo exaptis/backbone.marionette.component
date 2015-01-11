@@ -19,6 +19,7 @@ module.exports = (grunt) ->
     buildTest: "build/test"
     buildServer: "build/server"
     dist: "build/dist"
+    bowerComponents: "../../../bower_components"
 
   grunt.initConfig
     dirs: directoryConfig
@@ -98,7 +99,7 @@ module.exports = (grunt) ->
         files: [
           "<%= dirs.buildTest %>/{,**/}*.js"
         ]
-        tasks: ["exec:mocha"]
+        tasks: ["mocha:test"]
 
   # copying all kind of files - no processing
     copy:
@@ -117,18 +118,6 @@ module.exports = (grunt) ->
             "styles/**"
             "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
           ]
-        ,
-          expand: true
-          dot: true
-          cwd: "bower_components"
-          dest: "<%= dirs.buildApp %>/bower_components"
-          src: ["**"]
-        ,
-          expand: true
-          dot: true
-          cwd: "node_modules"
-          dest: "<%= dirs.buildApp %>/node_modules"
-          src: ["grunt-blanket-mocha/**"]
         ,
           expand: true
           dot: true
@@ -156,6 +145,7 @@ module.exports = (grunt) ->
             "*.{ico,txt}"
             "scripts/appConf.js"
             ".htaccess"
+            "locales/**"
             "styles/**"
             "images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}"
           ]
@@ -247,11 +237,10 @@ module.exports = (grunt) ->
             excludeHbsParser: true
             excludeHbs: true
             excludeAfterBuild: true
-
           findNestedDependencies: true
           removeCombined: false
           include: [
-            "../bower_components/requirejs/require"
+            "<%= dirs.bowerComponents %>/requirejs/require"
           ]
           out: "<%= dirs.dist %>/scripts/main.js"
           wrap: true
@@ -265,7 +254,7 @@ module.exports = (grunt) ->
           exclude: [ 'i18n', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
           optimize: "none"
           out: "<%= dirs.dist %>/backbone.marionette.component.js"
-          name: '../bower_components/almond/almond',
+          name: '<%= dirs.bowerComponents %>/almond/almond',
           mainConfigFile: "<%= dirs.buildApp %>/scripts/lib/mainConfig.js"
           logLevel: 0
 
@@ -276,7 +265,7 @@ module.exports = (grunt) ->
           exclude: [ 'i18n', 'rivets', 'underscore', 'underscore.string', 'sightglass' ]
           optimize: "uglify2"
           out: "<%= dirs.dist %>/backbone.marionette.component.min.js"
-          name: '../bower_components/almond/almond',
+          name: '<%= dirs.bowerComponents %>/almond/almond',
           mainConfigFile: "<%= dirs.buildApp %>/scripts/lib/mainConfig.js"
           logLevel: 0
     less:
@@ -334,14 +323,6 @@ module.exports = (grunt) ->
           port: "<%= ports.dist %>"
           node_env: 'dist'
 
-
-  # mocha command
-    exec:
-      mocha:
-        command: "mocha-phantomjs http://localhost:<%= ports.test %>/test"
-        stdout: true
-
-
   # open app for development
     open:
       dev:
@@ -367,11 +348,16 @@ module.exports = (grunt) ->
         src: "<%= dirs.buildApp %>/index.html"
         dest: "<%= dirs.buildApp %>/index.html"
 
+    mocha:
+      test:
+        options:
+          urls: [ "http://localhost:<%= ports.test%>" ],
+
     blanket_mocha:
-      all: ["<%= dirs.buildTest %>/index.html"],
-      options:
-        threshold: 90,
-        run: false
+      test:
+        options:
+          urls: [ "http://localhost:<%= ports.test%>" ],
+          threshold: 90
 
 
     grunt.registerTask 'default', ->

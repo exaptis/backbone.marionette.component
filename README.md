@@ -1,13 +1,13 @@
 <h1 align="center">Backbone.Marionette.Component</h1>
 <p align="center">
-  <img title="backbone marionette" src='http://mediacrush.net/skm1LxaunCbv.svg' width="350" height="343"/>
+  <img title="backbone marionette" src='http://exaptis.github.io/backbone.marionette.component/images/logo.svg' width="350" height="343"/>
 </p>
-<p align="center">The WebCompononent Extension</p>
+<p align="center">The WebComponent Extension</p>
 
 ## About Marionette.Component
 
 Backbone.Marionette.Component is an extension for Marionette.js that
-aims at simplifying the application of reusabele view components.
+aims at simplifying the application of reusable view components.
 
 It comes with a collection of common view components. Its functionality is inspired by the great [Apache Wicket Framework](https://wicket.apache.org/).
 
@@ -15,16 +15,16 @@ It comes with a collection of common view components. Its functionality is inspi
 
 All of the documentation for Marionette.Component can be found at
 
-##### [gh-pages/docs/current](http://gh-pages/docs/current)
+##### [exaptis.github.io/backbone.marionette.component](http://exaptis.github.io/backbone.marionette.component)
 
 ## Source Code and Downloads
 
 You can download the latest builds directly from the "lib" folder above.
 For more information about the files in this folder, or to obtain an archive
 containing all Marionette.Component dependencies (including Underscore, Backbone, etc.),
-please visit [the downloads section on the website](http://gh-pages.com#download).
+please visit [the downloads section on the website](http://exaptis.github.io/backbone.marionette.component).
 
-#### [gh-pages.com](http://gh-pages.com#download)
+#### [exaptis.github.io/backbone.marionette.component](http://exaptis.github.io/backbone.marionette.component)
 
 ### Available Packages
 
@@ -37,15 +37,6 @@ Marionette.Component is available via bower and npm. There are currently no othe
 
 **Upgrade Guide**: Be sure to read [the upgrade guide](upgradeGuide.md)
 for information on upgrading to the latest version of Marionette.
-
-
-### Annotated Source Code
-
-The source code for Marionette.Component is heavily documented.
-You can read the annotations for all the details of how Marionette.Component works, and advice on which methods to override.
-
-##### [View the annotated source code](http://gh-pages.com/annotated-src/backbone.marionette.component)
-
 
 ## Compatibility and Requirements
 
